@@ -1,0 +1,11 @@
+[build]
+  command = "pnpm run build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[build.environment]
+  # Disable blob storage requirement for Netlify
+  NEXT_PRIVATE_SKIP_BLOB_STORAGE = "true"
+
