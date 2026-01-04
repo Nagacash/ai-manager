@@ -128,7 +128,7 @@ export default function ChatBot() {
             />
           </div>
           <div>
-            <h2 className="text-base sm:text-lg font-semibold text-slate-900">Maie Assistant</h2>
+            <h2 className="text-base sm:text-lg font-semibold text-foreground">Maie Assistant</h2>
             <p className="text-xs text-slate-500">AI Assistant by Naga Codex</p>
           </div>
         </div>
@@ -163,7 +163,7 @@ export default function ChatBot() {
                 className={`max-w-[85%] sm:max-w-[75%] rounded-2xl px-4 py-2.5 ${
                   message.role === "user"
                     ? "bg-gradient-primary text-white rounded-br-sm shadow-sm"
-                    : "bg-white text-slate-900 rounded-bl-sm shadow-sm border border-slate-100"
+                    : "bg-white text-foreground rounded-bl-sm shadow-sm border border-slate-100"
                 }`}
               >
                 {message.role === "assistant" ? (
@@ -180,7 +180,7 @@ export default function ChatBot() {
               </div>
               {message.role === "user" && (
                 <div className="size-7 rounded-full bg-slate-300 flex items-center justify-center flex-shrink-0 shadow-sm mt-0.5">
-                  <User className="size-3.5 text-slate-700" />
+                  <User className="size-3.5 text-foreground" />
                 </div>
               )}
             </motion.div>
@@ -222,7 +222,7 @@ export default function ChatBot() {
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={handleKeyPress}
             placeholder="Type your message..."
-            className="flex-1 min-h-[52px] max-h-[120px] px-4 py-3 rounded-2xl border border-slate-200/80 bg-white text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 resize-none text-sm shadow-sm transition-all"
+            className="flex-1 min-h-[52px] max-h-[120px] px-4 py-3 rounded-2xl border border-slate-200/80 bg-white text-foreground placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 resize-none text-sm shadow-sm transition-all"
             disabled={isLoading}
           />
           <Button

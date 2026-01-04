@@ -88,13 +88,13 @@ export default function PerlinNoiseBackground() {
       time += speed;
       const width = Math.floor(canvas.width / resolution);
       const height = Math.floor(canvas.height / resolution);
-      
+
       if (!tempCtx || tempCanvas.width !== width || tempCanvas.height !== height) {
         tempCanvas.width = width;
         tempCanvas.height = height;
         tempCtx = tempCanvas.getContext("2d");
       }
-      
+
       if (!tempCtx) {
         requestAnimationFrame(animate);
         return;
@@ -122,7 +122,7 @@ export default function PerlinNoiseBackground() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.imageSmoothingEnabled = true;
       ctx.drawImage(tempCanvas, 0, 0, canvas.width, canvas.height);
-      
+
       animationFrameId = requestAnimationFrame(animate);
     };
 
@@ -139,8 +139,8 @@ export default function PerlinNoiseBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 w-full h-full pointer-events-none z-0"
-      style={{ mixBlendMode: "soft-light", opacity: 0.6 }}
+      className="fixed inset-0 w-full h-full pointer-events-none -z-20"
+      style={{ mixBlendMode: "soft-light", opacity: 0.3 }}
     />
   );
 }

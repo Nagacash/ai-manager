@@ -11,19 +11,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const apiKey = process.env.OPENAI_API_KEY;
-    if (!apiKey) {
-      console.error('OPENAI_API_KEY is not set in environment variables');
-      return NextResponse.json(
-        { error: 'OpenAI API key is not configured' },
-        { status: 500 }
-      );
-    }
-
-    // Log API key status (first few chars only for security)
-    console.log('API Key found:', apiKey.substring(0, 10) + '...');
-
-    // System message to define the assistant's personality
+    // System message to define the assistant's personality.
+    // We prepend this before sending to n8n so the workflow
+    // can pass it straight into the LLM / agent node.
     const systemMessage = {
       role: 'system',
       content: `You are Maie, a helpful and friendly AI assistant created by Naga Codex. You are the assistant for Maurice Holda, a Certified AI Manager and web design expert.
@@ -42,61 +32,72 @@ IMPORTANT: If someone asks about topics NOT related to Maurice's services, work,
 Keep your responses concise, clear, and engaging. Always be professional and helpful when discussing Maurice's services.`
     };
 
-    // Filter out system messages from user messages and combine
-    const userMessages = messages.filter(msg => msg.role !== 'system');
+    // Filter out any system messages from client and prepend our own
+    const userMessages = messages.filter((msg: any) => msg.role !== 'system');
     const conversationMessages = [systemMessage, ...userMessages];
-    
-    console.log('Sending to OpenAI:', {
+
+    // n8n webhook URL – this is what the workflow listens on.
+    const webhookUrl =
+  'https://ki-automatisierung.startplatz-ai-hub.de/webhook/794a4bb7-cc28-4afe-a211-dc648afa9085';
+
+    console.log('Sending to n8n webhook:', {
       messageCount: conversationMessages.length,
-      model: 'gpt-4o-mini'
+      url: webhookUrl,
     });
 
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+    const response = await fetch(webhookUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: 'gpt-4o-mini', // Using gpt-4o-mini for cost efficiency, can be changed to gpt-4o
         messages: conversationMessages,
-        temperature: 0.7,
-        max_tokens: 1000,
       }),
     });
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
-      console.error('OpenAI API Error:', {
+      console.error('n8n Webhook Error:', {
         status: response.status,
         statusText: response.statusText,
-        error: errorData
+        error: errorData,
       });
       return NextResponse.json(
-        { 
-          error: errorData.error?.message || `OpenAI API error: ${response.statusText}`,
-          details: errorData
+        {
+          error:
+            (errorData as any)?.error?.message ||
+            `n8n webhook error: ${response.statusText}`,
+          details: errorData,
         },
         { status: response.status }
       );
     }
 
-    const data = await response.json();
-    const assistantMessage = data.choices[0]?.message;
+    const data = await response.json().catch(() => null);
 
-    if (!assistantMessage) {
+    // n8n usually returns an array of items: [{ reply: "..." }]
+    // Normalize both array and object shapes.
+    const firstItem = Array.isArray(data) ? (data as any)[0] : data;
+
+    // Expect n8n to return a simple JSON like: { reply: "assistant text" }
+    const reply =
+      (firstItem as any)?.reply ??
+      (firstItem as any)?.message ??
+      (typeof firstItem === 'string' ? firstItem : null);
+
+    if (!reply) {
       return NextResponse.json(
-        { error: 'No response from assistant' },
+        { error: 'Invalid response format from n8n webhook', raw: data },
         { status: 500 }
       );
     }
 
     return NextResponse.json({
-      message: assistantMessage.content,
-      role: assistantMessage.role,
+      message: reply,
+      role: 'assistant',
     });
   } catch (error) {
-    console.error('Chat API error:', error);
+    console.error('Chat API error (n8n integration):', error);
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

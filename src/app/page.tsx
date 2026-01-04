@@ -6,13 +6,27 @@ import { motion } from "framer-motion";
 import { useRef, useState } from "react";
 import {
   ArrowUpRight,
+  ArrowUp,
   BrainCircuit,
   ChevronLeft,
   ChevronRight,
   LineChart,
   ShieldCheck,
+  Code,
+  Cpu,
+  Globe,
+  Palette,
+  GraduationCap,
+  Languages,
+  BookOpen,
+  Mail,
+  Menu,
+  X,
 } from "lucide-react";
 import PerlinNoiseBackground from "@/components/PerlinNoiseBackground";
+import BackgroundParticles from "@/components/BackgroundParticles";
+import AIActSection from "@/components/AIActSection";
+import Navbar from "@/components/Navbar";
 
 import { Badge } from "@/components/ui/badge";
 import {
@@ -23,166 +37,14 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import AICreationCarousel from "@/components/AICreationCarousel";
+import AudioShowcase from "@/components/AudioShowcase";
+import WorkGalleryCarousel from "@/components/WorkGalleryCarousel";
+import ServicesCarousel from "@/components/ServicesCarousel";
+import RAGSection from "@/components/RAGSection";
+import CookieBanner from "@/components/CookieBanner";
+import { useLanguage } from "@/lib/LanguageContext";
 
-const services = [
-  {
-    title: "Intelligent Video Content",
-    description:
-      "Generate branded video styles, motion boards, and cinematic scenes on demand so complex storytelling stays fast, consistent, and on brief.",
-    icon: BrainCircuit,
-    image: "/images/nagaweb3.png",
-  },
-  {
-    title: "AI Automation Systems",
-    description:
-      "Ship automation assemblies with human approvals, telemetry, and compliance dashboards so every workflow scales safely and transparently.",
-    icon: ShieldCheck,
-    image: "/images/nagaweb2.png",
-  },
-  {
-    title: "AI Image Creation",
-    description:
-      "Create AI image systems for product mockups, campaigns, and bespoke art that mirror your brand, stay production ready, and scale across teams.",
-    icon: LineChart,
-    image: "/images/nagaweb1.png",
-  },
-];
-
-const work = [
-  {
-    company: "Helix BioCloud",
-    outcome: "42% faster regulatory reviews",
-    detail:
-      "Multi-agent reviewer that cross-checks lab results against CFR Part 11, surfacing issues in real time.",
-  },
-  {
-    company: "Nova Commodities",
-    outcome: "$3.1M captured arbitrage",
-    detail:
-      "Autonomous trading intelligence that reconciles 19 data feeds, identifies anomalies, and alerts traders.",
-  },
-  {
-    company: "Sable Support",
-    outcome: "-63% ticket resolution time",
-    detail:
-      "Conversational triage layer with retrieval-augmented reasoning and guided workflows for agents.",
-  },
-];
-
-const principles = [
-  {
-    label: "01 / Strategy",
-    title: "Systems thinking first",
-    copy: "We map your value chain, identify the highest-leverage moments, and only then design the AI surface.",
-  },
-  {
-    label: "02 / Safety",
-    title: "Guardrails baked in",
-    copy: "Human review loops, telemetry, and policy enforcement ensure every automation is auditable and trusted.",
-  },
-  {
-    label: "03 / Momentum",
-    title: "Ship in 30-day arcs",
-    copy: "Each sprint lands a measurable outcome, so you see ROI while we progressively scale the capability.",
-  },
-];
-
-const highlights = [
-  {
-    title: "Miracle Logistics",
-    subtitle: "Custom Web Design",
-    description:
-      "Led the AI roadmap for a Hamburg operator, defining governance, success metrics, and UX for an intelligent logistics control room.",
-  },
-  {
-    title: "Automation Stack",
-    subtitle: "AI Integration + MCP",
-    description:
-      "Directed multi-agent automation with MCP servers, aligning stakeholders on data contracts, oversight rituals, and KPI telemetry.",
-  },
-  {
-    title: "Personal Portfolio",
-    subtitle: "Showcase & Experimentation",
-    description:
-      "Documented AI-manager playbooks at cyber-sec-six.vercel.app, blending product briefs, governance templates, and live prototypes.",
-  },
-  {
-    title: "AI Creative Solutions",
-    subtitle: "Image & Video Generation",
-    description:
-      "Built scalable AI image and video generation systems for product mockups, marketing campaigns, and bespoke digital art solutions.",
-  },
-];
-
-const education = [
-  {
-    title: "Masterschool Cybersecurity Certificate",
-    detail:
-      "Full-stack security curriculum focused on threat modeling, monitoring, and secure-by-design thinking.",
-  },
-  {
-    title: "Web Development – DCI Berlin",
-    detail:
-      "Front-end specialization across HTML, React, and Next.js with emphasis on dynamic, user-centric design.",
-  },
-  {
-    title: "Audio Engineering – Mastering Academy (Top 5%)",
-    detail:
-      "Mastered high-fidelity sound design, showcasing disciplined workflows now applied to systems engineering.",
-  },
-];
-
-const languages = [
-  { name: "Deutsch", level: "Professional Working" },
-  { name: "English", level: "Professional Working" },
-  { name: "Creole", level: "Elementary" },
-];
-
-const certifications = [
-  "CompTIA Security+",
-  "CCNA (in progress)",
-  "AI for Everyone",
-  "AI for Networking",
-  "Google Cybersecurity Certificate",
-  "Audio Engineer Certification",
-  "Tata Group – Cybersecurity Analyst Simulation",
-];
-
-const skills = [
-  "AI Management",
-  "KI Prompting",
-  "Multimodal Prompting",
-  "Ops Playbooks",
-];
-
-const publications = [
-  "#wearenbundesliga trailer recording",
-  "NAGA APPAREL creative direction",
-];
-
-const heroStats = [
-  { label: "Certified", value: "AI Manager · Security+" },
-  { label: "Focus", value: "AI Strategy & Ops" },
-  { label: "Base", value: "Hamburg, Germany" },
-];
-
-const heroBadges = [
-  "Certified AI Manager",
-  "CompTIA Security+",
-  "CCNA (in progress)",
-  "MCP Automation Systems",
-];
-
-const navLinks = [
-  { label: "About", href: "#hero" },
-  { label: "Services", href: "#services" },
-  { label: "Work", href: "#work" },
-  { label: "Highlights", href: "#highlights" },
-  { label: "Codex", href: "#codex" },
-  { label: "Certifications", href: "/certifications" },
-  { label: "Chat", href: "/chat" },
-  { label: "Contact", href: "/contact" },
-];
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -252,9 +114,39 @@ const titleReveal = {
 const sectionShell =
   "scroll-mt-32 rounded-[2.5rem] border border-white/40 bg-white/60 p-8 sm:p-12 shadow-xl backdrop-blur-xl";
 
-export default function Home() {
+export default function App() {
+  const { t, lang } = useLanguage();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  const navLinks = [
+    { name: t("nav.about"), href: "#hero" },
+    { name: t("nav.services"), href: "#services" },
+    { name: t("nav.audio"), href: "#audio" },
+    { name: t("nav.work"), href: "#work" },
+    { name: t("nav.highlights"), href: "#highlights" },
+    { name: t("nav.codex"), href: "#codex" },
+    { name: t("nav.certifications"), href: "/certifications" },
+    { name: t("nav.contact"), href: "#contact" },
+  ];
+
+  // Data for "About" section
+  const principlesData = t("principles") || [];
+
+  const highlightIcons = [BrainCircuit, Cpu, Code, Palette];
+
+  const highlightsData = (t("highlights.items") || []).map((item: any, index: number) => ({
+    ...item,
+    icon: highlightIcons[index % highlightIcons.length]
+  }));
+
+  const aboutData = {
+    education: t("about.education.items") || [],
+    languages: t("about.languages.items") || [],
+    certifications: t("about.certifications.items") || [],
+    skills: t("about.skills.items") || [],
+    publications: t("about.publications.items") || [],
+  };
 
   const playClickSound = () => {
     if (audioRef.current) {
@@ -275,57 +167,18 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-hero text-foreground relative overflow-hidden selection:bg-primary/20 selection:text-primary">
       <PerlinNoiseBackground />
+      <BackgroundParticles />
 
       {/* Ambient Background Glows */}
-      <div className="absolute inset-x-0 top-0 h-[800px] bg-[radial-gradient(ellipse_1000px_800px_at_50%_-200px,oklch(0.2_0.02_240/0.15),transparent)] blur-3xl pointer-events-none" />
-      <div className="absolute right-0 top-[20%] size-[600px] bg-[radial-gradient(circle_at_center,oklch(0.94_0.01_240/0.4),transparent)] blur-3xl pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-[800px] bg-[radial-gradient(ellipse_1000px_800px_at_50%_-200px,var(--brand-purple),transparent)] opacity-[0.03] blur-3xl pointer-events-none -z-10" />
+      <div className="absolute right-0 top-[20%] size-[600px] bg-[radial-gradient(circle_at_center,var(--brand-purple),transparent)] opacity-[0.05] blur-3xl pointer-events-none -z-10" />
 
-      <motion.header
-        className="sticky top-4 z-50 mx-auto max-w-6xl px-4"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeInOut" as const }}
-      >
-        <div className="glass-panel rounded-full px-6 py-3 flex items-center justify-between">
-          <Link href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="flex items-center smooth-transition hover:opacity-80">
-            <Image
-              src="/images/logo.png"
-              alt="Naga Codex Logo"
-              width={120}
-              height={40}
-              className="h-8 w-auto"
-              priority
-            />
-          </Link>
-          <nav className="hidden items-center gap-8 text-sm font-medium text-slate-600 md:flex">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={playClickSound}
-                className="smooth-transition hover:text-primary relative group"
-              >
-                {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
-              </Link>
-            ))}
-          </nav>
-          <Button asChild size="sm" className="hidden md:inline-flex rounded-full px-6 shadow-lg shadow-primary/20">
-            <a href="mailto:chosenfewrecords@hotmail.de">Start a Build</a>
-          </Button>
+      <Navbar />
 
-          {/* Mobile Menu Button Placeholder - Ideally this would be a proper mobile menu component */}
-          <Button variant="ghost" size="icon" className="md:hidden">
-            <span className="sr-only">Open menu</span>
-            <svg className="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
-          </Button>
-        </div>
-      </motion.header>
-
-      <main className="relative mx-auto flex max-w-7xl flex-col gap-24 px-4 py-16 sm:px-6 lg:px-8">
+      <main className="relative z-10 isolate mx-auto flex max-w-7xl flex-col gap-40 px-6 pt-32 pb-24 lg:px-12">
         <motion.section
           id="hero"
-          className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20 pt-8"
+          className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20 pt-12 md:pt-20"
           variants={sectionVariants}
           initial="hidden"
           animate="visible"
@@ -337,59 +190,43 @@ export default function Home() {
             animate="visible"
           >
             <motion.div variants={fadeItem}>
-              <Badge variant="glass" className="px-4 py-1.5 text-sm border-primary/20 bg-primary/5 text-primary shadow-sm backdrop-blur-sm">
-                Naga Codex • AI Agency
+              <Badge variant="glass" className="bg-[var(--brand-purple)]/10 text-[var(--brand-purple)] border-[var(--brand-purple)]/20 px-3 py-1">
+                {t("hero.badge")}
               </Badge>
             </motion.div>
 
             <div className="space-y-8">
               <motion.h1
-                className="text-5xl font-bold tracking-tight text-slate-900 sm:text-6xl lg:text-7xl text-smooth leading-[1.1]"
+                className="text-5xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl text-smooth leading-[1.1]"
                 variants={textReveal}
                 initial="hidden"
                 animate="visible"
               >
-                {"Certified AI Manager orchestrating secure, high-ROI automation.".split(" ").map((word, i) => (
-                  <motion.span
-                    key={i}
-                    variants={wordReveal}
-                    className="inline-block mr-3"
-                  >
-                    {word}
-                  </motion.span>
-                ))}
+                {t("hero.title1")} <span className="text-accent italic font-serif">{t("hero.title2")}</span> {t("hero.title3")} <span className="text-accent italic font-serif">{t("hero.title4")}</span>
               </motion.h1>
               <motion.p
-                className="text-xl leading-relaxed text-slate-600 max-w-2xl"
+                className="text-xl leading-relaxed text-muted-foreground max-w-2xl"
                 variants={textReveal}
                 initial="hidden"
                 animate="visible"
               >
-                {"Maurice Holda applies a Certified AI Manager playbook at Naga Codex—combining product visioning, governance, and technical leadership so copilots, MCP agents, and web systems ship with measurable impact and trusted guardrails.".split(" ").map((word, i) => (
-                  <motion.span
-                    key={i}
-                    variants={wordReveal}
-                    className="inline-block mr-1.5"
-                  >
-                    {word}
-                  </motion.span>
-                ))}
+                {t("hero.description")}
               </motion.p>
             </div>
 
-            <motion.div className="flex flex-wrap gap-4" variants={fadeItem}>
-              <Button asChild size="lg" className="rounded-full px-8 text-base shadow-xl shadow-primary/25 hover:shadow-2xl hover:shadow-primary/30 hover:-translate-y-1 transition-all duration-300">
+            <motion.div className="flex flex-wrap gap-5" variants={fadeItem}>
+              <Button asChild size="lg" className="rounded-full px-10 text-base shadow-2xl shadow-brand-purple/20 hover:shadow-brand-purple/30 hover:-translate-y-1 transition-all duration-300">
                 <a
                   href="mailto:chosenfewrecords@hotmail.de"
                   className="inline-flex items-center gap-2"
                 >
-                  Discuss a Build
+                  {t("hero.contact")}
                   <ArrowUpRight className="size-5" />
                 </a>
               </Button>
-              <Button asChild variant="outline" size="lg" className="rounded-full px-8 text-base border-slate-300 hover:bg-slate-50 hover:border-slate-400 hover:-translate-y-1 transition-all duration-300">
+              <Button asChild variant="outline" size="lg" className="rounded-full px-10 text-base border-border hover:bg-muted/50 hover:border-brand-purple hover:text-brand-purple hover:-translate-y-1 transition-all duration-300">
                 <a
-                  href="https://mauriceholda-portfolio.vercel.app"
+                  href="https://cyber-sec-six.vercel.app/"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -404,16 +241,16 @@ export default function Home() {
               initial="hidden"
               animate="visible"
             >
-              {heroStats.map((stat, idx) => (
+              {t("hero.stats").map((stat: any) => (
                 <motion.div
                   key={stat.label}
                   className="space-y-1"
                   variants={fadeItem}
                 >
-                  <p className="text-xs font-bold uppercase tracking-widest text-slate-400">
+                  <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground/60">
                     {stat.label}
                   </p>
-                  <p className="text-lg font-semibold text-slate-900">
+                  <p className="text-lg font-semibold text-foreground">
                     {stat.value}
                   </p>
                 </motion.div>
@@ -443,7 +280,7 @@ export default function Home() {
                   Maurice Holda
                 </p>
                 <h3 className="text-3xl font-bold mb-2">
-                  AI & Cybersecurity Builder
+                  AI & Cyber Security Graduate
                 </h3>
                 <p className="text-white/90 text-lg leading-relaxed max-w-md">
                   Human-centered strategist delivering AI copilots and secure web surfaces.
@@ -452,110 +289,114 @@ export default function Home() {
             </div>
 
             {/* Floating Badges */}
+            <div className="absolute -left-6 -top-6 z-20">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.8, duration: 0.5 }}
+              >
+                <div className="size-24 rounded-full bg-white/90 backdrop-blur-md shadow-2xl border border-white/50 p-2 flex items-center justify-center overflow-hidden">
+                  <Image
+                    src="/images/badge.png"
+                    alt="AI Manager Badge"
+                    width={80}
+                    height={80}
+                    className="object-contain"
+                  />
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Floating Right Badges */}
             <div className="absolute -right-4 top-12 flex flex-col gap-3">
-              {heroBadges.map((badge, i) => (
-                <motion.div
-                  key={badge}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.6 + i * 0.1, duration: 0.5 }}
-                >
-                  <Badge variant="glass" className="bg-white/80 backdrop-blur-md text-slate-900 shadow-lg border-white/50 px-4 py-2 text-xs font-semibold">
-                    {badge}
-                  </Badge>
-                </motion.div>
-              ))}
+              <div className="flex flex-wrap gap-2 pt-2">
+                {[
+                  "Certified AI Manager",
+                  "Full-Stack Web Developer",
+                  "CompTIA Security+",
+                  "CCNA (in progress)",
+                  "MCP Automation Systems",
+                ].map((badge, i) => (
+                  <motion.div
+                    key={badge}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.5 + i * 0.1 }}
+                  >
+                    <Badge
+                      variant="glass"
+                      className="bg-primary/5 text-primary border-primary/20 backdrop-blur-md px-3 py-1 text-[10px] font-bold uppercase tracking-widest"
+                    >
+                      {badge}
+                    </Badge>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </motion.div>
         </motion.section>
 
+        {/* --- SERVICES SECTION --- */}
         <motion.section
           id="services"
-          className="scroll-mt-32 space-y-16"
+          className="scroll-mt-32 space-y-12"
           variants={sectionVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
         >
-          <div className="text-center space-y-6 max-w-3xl mx-auto">
-            <motion.span
-              className="inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary uppercase tracking-wider"
-              variants={fadeItem}
-            >
-              Services
-            </motion.span>
-            <motion.h2
-              className="text-4xl font-bold text-slate-900 sm:text-5xl"
-              variants={titleReveal}
-            >
-              Full-stack AI product leadership
-            </motion.h2>
-            <motion.p
-              className="text-xl text-slate-600 leading-relaxed"
-              variants={fadeItem}
-            >
-              From strategic roadmaps to shipped automation, we handle the entire lifecycle of intelligent systems.
-            </motion.p>
+          <div className="text-center space-y-4 max-w-3xl mx-auto mb-12">
+            <Badge variant="glass" className="bg-primary/10 text-primary border-primary/20 px-4 py-1.5 uppercase tracking-widest text-xs font-bold">
+              {t("services.badge")}
+            </Badge>
+            <h2 className="text-4xl md:text-6xl font-bold text-foreground tracking-tight">
+              {t("services.title1")} <span className="text-primary italic font-serif">{t("services.title2")}</span> {t("services.title3")} <span className="text-primary italic font-serif">{t("services.title4")}</span>
+            </h2>
+            <p className="text-xl text-muted-foreground leading-relaxed">
+              {t("services.description")}
+            </p>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="relative mx-auto w-full max-w-5xl overflow-hidden rounded-3xl shadow-2xl shadow-slate-200 border border-slate-200/50 bg-slate-900"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-slate-800/50 to-transparent z-10 pointer-events-none" />
-            <video
-              src="/images/clips/naga.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-auto opacity-90"
-            >
-              Your browser does not support the video tag.
-            </video>
-          </motion.div>
+          <ServicesCarousel />
+        </motion.section>
 
-          <div className="grid gap-8 md:grid-cols-3">
-            {services.map((service, idx) => {
-              const order = String(idx + 1).padStart(2, "0");
+        {/* --- CAPABILITIES & AUTOMATION --- */}
+        <div className="space-y-24">
+          <AIActSection />
+          <RAGSection />
+        </div>
 
-              return (
-                <motion.div
-                  key={service.title}
-                  variants={fadeItem}
-                  custom={idx}
-                >
-                  <Card className="h-full bg-white/50 backdrop-blur-sm border-white/60 hover:bg-white hover:border-primary/20 group">
-                    <CardHeader>
-                      <div className="mb-4 inline-flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br from-slate-100 to-white shadow-inner border border-slate-100 text-primary group-hover:scale-110 transition-transform duration-300">
-                        <service.icon className="size-7" />
-                      </div>
-                      <CardTitle className="text-xl group-hover:text-primary transition-colors">{service.title}</CardTitle>
-                      <CardDescription className="text-base">{service.description}</CardDescription>
-                    </CardHeader>
-                    <CardContent className="mt-auto pt-6">
-                      {service.image && (
-                        <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-slate-100 shadow-sm group-hover:shadow-md transition-all bg-slate-100">
-                          <Image
-                            src={service.image}
-                            alt={service.title}
-                            fill
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                            className="object-cover transition-transform duration-700 group-hover:scale-105"
-                            unoptimized
-                          />
-                        </div>
-                      )}
-                      <p className="mt-6 text-xs font-bold text-slate-300 tracking-widest">{order}</p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              );
-            })}
+        {/* --- AI CREATIVE SHOWCASE --- */}
+        <motion.section
+          className="scroll-mt-32 space-y-12"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <div className="text-center space-y-4 max-w-2xl mx-auto mb-8">
+            <Badge variant="outline" className="text-primary border-primary/20 uppercase tracking-tighter py-1 font-bold">
+              {t("services.aiCreationBadge") || "AI Image Artistry"}
+            </Badge>
+            <h3 className="text-3xl md:text-5xl font-bold text-foreground">
+              {t("services.aiCreationTitle") || "Showcase: AI Image Creation"}
+            </h3>
+            <p className="text-lg text-muted-foreground">
+              {t("services.aiCreationDescription") || "Discover how we leverage state-of-the-art AI models to create bespoke, production-ready brand assets."}
+            </p>
           </div>
+          <AICreationCarousel />
+        </motion.section>
+
+        {/* --- AUDIO SHOWCASE SECTION --- */}
+        <motion.section
+          id="audio"
+          className="scroll-mt-32 pt-12"
+          variants={sectionVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
+          <AudioShowcase />
         </motion.section>
 
         <motion.section
@@ -566,255 +407,212 @@ export default function Home() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
         >
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <div className="space-y-4">
-              <motion.span
-                className="text-sm font-bold uppercase tracking-widest text-primary"
+          <div className="flex flex-wrap items-end justify-between gap-8 px-6">
+            <div className="space-y-6">
+              <motion.div
+                className="flex items-center gap-4 text-brand-purple"
                 variants={fadeItem}
               >
-                Selected Work
-              </motion.span>
+                <div className="h-px w-10 bg-current opacity-30" />
+                <span className="text-xs font-bold uppercase tracking-[0.25em]">
+                  {t("work.badge")}
+                </span>
+                <div className="h-px w-10 bg-current opacity-30" />
+              </motion.div>
               <motion.h2
-                className="text-3xl font-bold text-slate-900 sm:text-4xl"
+                className="text-5xl font-bold text-foreground sm:text-7xl tracking-tighter leading-[1.05]"
                 variants={titleReveal}
               >
-                Proof in shipped systems
+                {t("work.title1")} <span className="text-brand-purple italic font-serif">{t("work.title2")}</span>
               </motion.h2>
             </div>
-            <Button variant="outline" className="rounded-full border-slate-300">
-              View Full Portfolio
-            </Button>
           </div>
 
-          <div className="grid gap-6 lg:grid-cols-3">
-            {work.map((item, idx) => (
-              <motion.div
-                key={item.company}
-                variants={fadeItem}
-                custom={idx}
-              >
-                <Card className="h-full bg-slate-900 text-white border-slate-800 hover:border-slate-700 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300 group">
-                  <CardHeader>
-                    <CardDescription className="text-slate-400 font-medium mb-2">{item.company}</CardDescription>
-                    <CardTitle className="text-2xl text-white group-hover:text-primary-foreground transition-colors">{item.outcome}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-slate-300 leading-relaxed mb-6">
-                      {item.detail}
-                    </p>
-                    <div className="flex items-center text-sm font-medium text-primary group-hover:translate-x-1 transition-transform">
-                      View Case Study <ArrowUpRight className="ml-2 size-4" />
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Gallery Section */}
           <motion.div
-            className="relative mt-12 rounded-3xl overflow-hidden bg-slate-100 border border-slate-200 p-2"
+            className="mt-12"
             variants={fadeItem}
           >
-            <div className="flex gap-4 overflow-x-auto pb-4 pt-2 px-2 scrollbar-hide snap-x">
-              {[
-                { src: "/images/nagaweb1.png", alt: "AI Image Creation Project" },
-                { src: "/images/nagaweb2.png", alt: "AI Automation System" },
-                { src: "/images/nagaweb3.png", alt: "Intelligent Video Content" },
-              ].map((image, idx) => (
-                <div key={idx} className="relative flex-none w-[85vw] sm:w-[400px] aspect-video rounded-2xl overflow-hidden shadow-md snap-center">
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    fill
-                    className="object-cover hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-              ))}
-            </div>
+            <WorkGalleryCarousel />
           </motion.div>
         </motion.section>
 
         <motion.section
           id="highlights"
-          className="scroll-mt-32 rounded-3xl border border-slate-700/50 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-4 sm:p-6 lg:p-12 shadow-xl backdrop-blur-sm grid gap-8 sm:gap-10 lg:gap-12 lg:grid-cols-[1.1fr_0.9fr]"
+          className="scroll-mt-32 pt-24"
           variants={sectionVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.1 }}
         >
-          <div className="space-y-8 sm:space-y-10">
-            <div className="pt-2">
-              <motion.p
-                className="text-sm font-semibold uppercase tracking-[0.3em] text-white/70"
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4 }}
+          <div className="space-y-12">
+            <div className="space-y-6 text-center max-w-4xl mx-auto">
+              <motion.div
+                className="inline-flex items-center gap-3 text-brand-purple bg-brand-purple/5 px-5 py-2 rounded-full border border-brand-purple/10"
+                variants={fadeItem}
               >
-                Portfolio Highlights
-              </motion.p>
+                <span className="text-xs font-bold uppercase tracking-[0.25em]">
+                  {t("highlights.badge")}
+                </span>
+              </motion.div>
               <motion.h2
-                className="text-2xl sm:text-3xl font-semibold text-white pt-2"
+                className="text-5xl font-bold text-foreground sm:text-7xl tracking-tighter leading-[1.05]"
                 variants={titleReveal}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
               >
-                Real-world builds from Maurice&apos;s codex
+                {t("highlights.title1")} <span className="text-brand-purple italic font-serif">{t("highlights.title2")}</span>
               </motion.h2>
             </div>
-            <div className="space-y-8">
-              {highlights.map((item, idx) => (
+
+            <div className="grid gap-6 md:grid-cols-2">
+              {highlightsData.map((item: any, idx: number) => (
                 <motion.div
-                  key={item.title}
-                  initial={{ opacity: 0, y: 15 }}
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: idx * 0.08 }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="glass-panel p-8 rounded-[2rem] border-primary/5 hover:border-brand-purple hover:shadow-[0_0_30px_-5px_rgba(var(--brand-purple),0.4)] hover:bg-brand-purple/5 transition-all duration-300 group"
                 >
-                  <Card className="border-slate-200/80 bg-white hover:border-slate-300 card-hover shadow-sm">
-                    <CardHeader className="space-y-3">
-                      <motion.div
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.3, delay: idx * 0.08 + 0.05 }}
-                      >
-                        <CardDescription className="uppercase tracking-[0.4em] text-xs text-primary/70">
-                          {item.subtitle}
-                        </CardDescription>
-                      </motion.div>
-                      <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.3, delay: idx * 0.08 + 0.1 }}
-                      >
-                        <CardTitle className="text-2xl text-slate-900">
-                          {item.title}
-                        </CardTitle>
-                      </motion.div>
-                    </CardHeader>
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.3, delay: idx * 0.08 + 0.15 }}
-                    >
-                      <CardContent className="text-slate-600 leading-relaxed">
-                        {item.description}
-                      </CardContent>
-                    </motion.div>
-                  </Card>
+                  <div className="size-12 rounded-xl bg-primary/5 flex items-center justify-center mb-6 group-hover:bg-primary/10 transition-colors">
+                    <item.icon className="size-6 text-primary/60 group-hover:text-primary transition-colors" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-foreground mb-2 truncate">
+                    {item.title}
+                  </h3>
+                  <div className="text-primary/70 text-[10px] font-bold uppercase tracking-widest mb-4">
+                    {item.subtitle}
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {item.description}
+                  </p>
                 </motion.div>
               ))}
             </div>
           </div>
-          <div className="space-y-4">
-            <Card className="h-full border-slate-200/80 bg-white hover:border-slate-300 card-hover shadow-sm">
-              <CardHeader className="space-y-4">
-                <motion.div
-                  initial={{ opacity: 0, x: -20, scale: 0.95 }}
-                  whileInView={{ opacity: 1, x: 0, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-                >
-                  <CardDescription>About Maurice Holda</CardDescription>
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
-                >
-                  <CardTitle className="text-2xl text-slate-900">
-                    Certified AI Manager & security-focused builder
-                  </CardTitle>
-                </motion.div>
-                <motion.p
-                  className="text-slate-600 leading-relaxed"
-                  initial={{ opacity: 0, y: 20, x: -10 }}
-                  whileInView={{ opacity: 1, y: 0, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
-                >
-                  Maurice operates as a Certified AI Manager who bridges discovery, governance,
-                  and deployment. He is pursuing CCNA while leading AI programs rooted in
-                  CompTIA Security+, MCP automations, and resilient frontend engineering.
-                </motion.p>
-              </CardHeader>
-              <CardContent className="space-y-6 text-sm text-slate-600">
-                <div>
-                  <p className="text-xs uppercase tracking-[0.4em] text-slate-400">
-                    Education
+        </motion.section>
+
+        <motion.section
+          id="about"
+          className="scroll-mt-32 pt-24"
+          variants={sectionVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
+          <div className="glass-panel rounded-[3rem] overflow-hidden border-border/40 shadow-2xl bg-card/40 backdrop-blur-2xl">
+            <div className="grid lg:grid-cols-[1fr_1.2fr] items-stretch min-h-[500px]">
+              {/* Left Column: Content Area */}
+              <div className="p-8 md:p-12 lg:p-16 flex flex-col justify-center space-y-8 relative z-10">
+                <div className="space-y-10">
+                  <div className="space-y-6">
+                    <p className="text-xs font-bold uppercase tracking-[0.3em] text-brand-purple">{t("about.title")}</p>
+                    <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-[1.05] tracking-tight">
+                      {t("about.subtitle")} <span className="text-brand-purple italic font-serif">{t("about.subtitleI")}</span>
+                    </h2>
+                  </div>
+                  <p className="text-xl text-muted-foreground leading-relaxed font-medium">
+                    {t("about.bio")}
                   </p>
-                  <ul className="mt-3 space-y-3">
-                    {education.map((item) => (
-                      <li key={item.title}>
-                        <p className="font-semibold text-slate-900">
-                          {item.title}
-                        </p>
-                        <p>{item.detail}</p>
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="pt-4">
+                    <Button asChild className="rounded-full gap-2">
+                      <Link href="/contact">
+                        {t("about.contact")}
+                        <ArrowUpRight className="size-4" />
+                      </Link>
+                    </Button>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-xs uppercase tracking-[0.4em] text-slate-400">
-                    Languages & Skills
-                  </p>
-                  <div className="mt-3 grid gap-3 sm:grid-cols-2">
-                    <div className="space-y-3">
-                      {languages.map((language) => (
-                        <div key={language.name} className="text-sm space-y-1">
-                          <p className="font-semibold text-slate-900">
-                            {language.name}
-                          </p>
-                          <p>{language.level}</p>
+              </div>
+
+
+
+              {/* Right Column: Experience & Skills */}
+              <div className="p-10 md:p-14 lg:p-16 space-y-16">
+                {/* Education */}
+                <div className="space-y-16">
+                  <div className="space-y-8">
+                    <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-purple flex items-center gap-3">
+                      <GraduationCap className="size-4" />
+                      {t("about.education.title")}
+                    </h3>
+                    <div className="space-y-8">
+                      {aboutData.education.map((item: any) => (
+                        <div key={item.title} className="space-y-2">
+                          <h4 className="text-lg font-bold text-foreground">
+                            {item.title}
+                          </h4>
+                          <p className="text-sm text-muted-foreground font-medium">{item.detail}</p>
                         </div>
                       ))}
                     </div>
-                    <div className="flex flex-wrap gap-3">
-                      {skills.map((skill) => (
-                        <span
-                          key={skill}
-                          className="inline-flex rounded-full border border-slate-200 px-3 py-1 text-xs font-medium text-slate-600"
+                  </div>
+
+                  <div className="grid md:grid-cols-2 gap-16">
+                    <div className="space-y-8">
+                      <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-purple flex items-center gap-3">
+                        <Languages className="size-4" />
+                        {t("about.languages.title")}
+                      </h3>
+                      <div className="grid gap-4">
+                        {aboutData.languages.map((langItem: any) => (
+                          <div
+                            key={langItem.name}
+                            className="flex items-center justify-between text-sm"
+                          >
+                            <span className="text-foreground font-bold">
+                              {langItem.name}
+                            </span>
+                            <span className="text-muted-foreground font-medium italic">
+                              {langItem.level}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="space-y-8">
+                      <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-purple flex items-center gap-3">
+                        <BrainCircuit className="size-4" />
+                        {t("about.skills.title")}
+                      </h3>
+                      <div className="flex flex-wrap gap-2">
+                        {aboutData.skills.map((skill: string) => (
+                          <span
+                            key={skill}
+                            className="px-3 py-1.5 rounded-lg bg-foreground/5 border border-foreground/5 text-[11px] font-bold text-foreground/70"
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-8 text-center pt-8 border-t border-border/40">
+                    <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-purple flex items-center justify-center gap-3">
+                      <ShieldCheck className="size-4" />
+                      {t("about.certifications.title")}
+                    </h3>
+                    <div className="flex flex-wrap justify-center gap-4">
+                      {aboutData.certifications.map((item: string) => (
+                        <div
+                          key={item}
+                          className="text-xs font-bold text-muted-foreground flex items-center gap-2 "
                         >
-                          {skill}
-                        </span>
+                          <div className="size-1.5 rounded-full bg-brand-purple" />
+                          {item}
+                        </div>
                       ))}
                     </div>
                   </div>
                 </div>
-                <div>
-                  <p className="text-xs uppercase tracking-[0.4em] text-slate-400">
-                    Certifications & Publications
-                  </p>
-                  <ul className="mt-3 space-y-2">
-                    {certifications.map((cert) => (
-                      <li key={cert} className="text-sm">
-                        • {cert}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-3 text-xs uppercase tracking-[0.4em] text-slate-400">
-                    Publications
-                  </div>
-                  <ul className="mt-2 space-y-2 text-sm">
-                    {publications.map((pub) => (
-                      <li key={pub}>• {pub}</li>
-                    ))}
-                  </ul>
-                </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </div>
         </motion.section>
 
         {/* Video Background Section */}
         <motion.section
-          className="relative scroll-mt-32 overflow-hidden rounded-3xl border border-slate-700/50 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 shadow-xl"
+          className="relative scroll-mt-32 overflow-hidden rounded-[2.5rem] border border-border/40 shadow-2xl bg-card/50"
           variants={sectionVariants}
           initial="hidden"
           whileInView="visible"
@@ -831,97 +629,66 @@ export default function Home() {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
-                className="absolute inset-0 h-full w-full scale-150"
+                className="absolute inset-0 h-full w-full scale-[1.02]"
                 style={{ pointerEvents: 'none' }}
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60 z-10" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-background/10 z-10" />
             </div>
           </div>
         </motion.section>
 
         <motion.section
           id="codex"
-          className={`${sectionShell} grid gap-8 sm:gap-10 lg:gap-12 lg:grid-cols-[1fr_1.2fr]`}
+          className="grid gap-20 lg:grid-cols-[0.8fr_1.2fr] items-start"
           variants={sectionVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.2 }}
         >
-          <div className="space-y-10 sm:space-y-12">
-            <motion.p
-              className="text-sm font-semibold uppercase tracking-[0.3em] text-primary/70 pt-2"
-              initial={{ opacity: 0, x: -20, scale: 0.95 }}
-              whileInView={{ opacity: 1, x: 0, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-            >
-              The Codex
-            </motion.p>
-            <motion.h2
-              className="text-2xl sm:text-3xl font-semibold text-slate-900 pt-2"
-              variants={titleReveal}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-            >
-              How Maurice frames and ships AI engagements
-            </motion.h2>
-            <motion.p
-              className="text-slate-600 leading-relaxed pt-2"
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.1 }}
-            >
-              Partnerships start with deep discovery—mapping your value chain, identifying high-leverage moments, and understanding your compliance landscape. This research collapses into a living blueprint that defines success metrics, governance frameworks, and technical architecture. From there, we move through rapid prototyping with 30-day sprint cycles, each delivering measurable outcomes. Telemetry-guided scaling ensures every automation remains explainable, auditable, and trusted. Finally, knowledge transfer embeds the capability into your team, with documentation, training, and ongoing support so you can evolve the system independently.
-            </motion.p>
-            <Button className="gap-2 pt-2" variant="outline">
-              Download the playbook
-              <ArrowUpRight className="size-4" />
-            </Button>
+          <div className="space-y-12">
+            <motion.div variants={fadeItem} className="space-y-8">
+              <Badge variant="glass" className="bg-brand-purple/10 text-brand-purple border-brand-purple/20 px-4 py-1.5 uppercase tracking-widest text-xs font-bold">
+                {t("codex.badge")}
+              </Badge>
+              <h2 className="text-5xl md:text-6xl font-bold text-foreground leading-[1.05] tracking-tighter">
+                {t("codex.title")}
+              </h2>
+              <p className="text-xl text-muted-foreground leading-relaxed font-medium">
+                {t("codex.description")}
+              </p>
+              <Button className="rounded-full px-10 h-14 text-base font-bold shadow-2xl hover:scale-105 transition-all" variant="outline">
+                {t("codex.download")}
+                <ArrowUpRight className="size-5 ml-2" />
+              </Button>
+            </motion.div>
           </div>
-          <div className="space-y-8 sm:space-y-10">
-            {principles.map((principle, idx) => (
+
+          <div className="space-y-8">
+            {principlesData.map((principle: any, idx: number) => (
               <motion.div
                 key={principle.label}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: idx * 0.08 }}
-                className="rounded-2xl border border-slate-200 bg-white/70 p-6 shadow-sm backdrop-blur"
+                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                className="glass-panel p-10 rounded-[3rem] border-border/40 hover:border-brand-purple hover:shadow-[0_0_40px_-5px_rgba(var(--brand-purple),0.4)] hover:bg-brand-purple/5 transition-all duration-300 group"
               >
-                <motion.p
-                  className="text-xs font-semibold uppercase tracking-[0.5em] text-slate-400"
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: idx * 0.08 + 0.05 }}
-                >
-                  {principle.label}
-                </motion.p>
-                <motion.div
-                  className="mt-3 flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between"
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: idx * 0.08 + 0.1 }}
-                >
-                  <h3 className="text-2xl font-semibold text-slate-900">
-                    {principle.title}
-                  </h3>
-                  <Badge className="gradient-primary text-white shadow-md">
+                <div className="flex justify-between items-start mb-8">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-brand-purple/50 group-hover:text-brand-purple transition-colors">
+                    {principle.label}
+                  </p>
+                  <Badge className="bg-foreground text-background font-bold px-3 py-1 rounded-full text-[10px] uppercase tracking-widest border-none">
                     Naga Codex
                   </Badge>
-                </motion.div>
-                <motion.p
-                  className="mt-5 text-slate-600 leading-relaxed"
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: idx * 0.08 + 0.15 }}
-                >
-                  {principle.copy}
-                </motion.p>
+                </div>
+                <div className="space-y-4">
+                  <h3 className="text-3xl font-bold text-foreground tracking-tight">
+                    {principle.title}
+                  </h3>
+                  <p className="text-lg text-muted-foreground font-medium leading-relaxed">
+                    {principle.copy}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -929,125 +696,127 @@ export default function Home() {
 
         <motion.section
           id="contact"
-          className="relative scroll-mt-32 overflow-hidden rounded-3xl border border-slate-700/50 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white shadow-xl"
-          variants={sectionVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.4 }}
+          className="relative overflow-hidden rounded-[4rem] bg-foreground text-background shadow-3xl"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,oklch(0.25_0.01_0/0.4),oklch(0.15_0.01_0/0.3),transparent_55%)]" />
-          <div className="relative grid gap-12 sm:gap-14 px-8 py-12 sm:py-16 md:grid-cols-[1.1fr_0.9fr] md:px-12">
-            <div className="space-y-10 sm:space-y-12">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9, y: 10 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-                className="pt-2"
-              >
-                <Badge className="bg-white/10 text-white">
-                  Ready for launch
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--brand-purple),transparent_70%)] opacity-20" />
+          <div className="relative grid gap-20 px-10 py-20 md:grid-cols-[1.1fr_0.9fr] md:px-20 lg:p-24">
+            <div className="space-y-12">
+              <motion.div variants={fadeItem} className="space-y-8">
+                <Badge className="bg-background/10 text-background border-background/20 px-4 py-1.5 font-bold uppercase tracking-widest text-[10px]">
+                  {t("contact.badge")}
                 </Badge>
+                <h2 className="text-5xl md:text-7xl font-bold tracking-tighter leading-[1.05]">
+                  {t("contact.title")}
+                </h2>
+                <p className="text-xl text-background/70 leading-relaxed font-medium max-w-xl">
+                  {t("contact.description")}
+                </p>
               </motion.div>
-              <motion.h2
-                className="text-2xl sm:text-3xl font-semibold pt-2"
-                variants={titleReveal}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-              >
-                Partner with an AI Manager to orchestrate your next capability.
-              </motion.h2>
-              <motion.p
-                className="text-slate-200 leading-relaxed pt-2"
-                initial={{ opacity: 0, y: 20, x: -10 }}
-                whileInView={{ opacity: 1, y: 0, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
-              >
-                Share your product vision, automation backlog, or governance
-                questions. Maurice responds as a Certified AI Manager with the
-                first experiment, KPIs, and risk posture within 48 hours.
-              </motion.p>
-              <div className="flex flex-wrap gap-6">
-                <Button asChild className="gap-2 gradient-accent text-white shadow-md hover:shadow-lg hover:scale-[1.02] smooth-transition" variant="secondary">
+
+              <div className="flex flex-wrap gap-6 pt-4">
+                <Button asChild size="lg" className="rounded-full px-12 h-16 text-lg font-bold bg-background text-foreground hover:bg-background/90 shadow-2xl transition-all hover:-translate-y-1">
                   <Link href="/contact">
-                    Open contact page
-                    <ArrowUpRight className="size-4" />
+                    {t("contact.open")}
+                    <ArrowUpRight className="size-6 ml-2" />
                   </Link>
                 </Button>
                 <Button
                   asChild
                   variant="ghost"
-                  className="text-white hover:bg-white/10"
+                  size="lg"
+                  className="text-background/60 hover:text-background hover:bg-background/10 h-16 font-bold px-8 rounded-full"
                 >
                   <a href="mailto:chosenfewrecords@hotmail.de">
-                    chosenfewrecords@hotmail.de
+                    {t("email") || "Email Us"}
                   </a>
                 </Button>
               </div>
             </div>
-            <div className="space-y-4 rounded-2xl border border-white/20 bg-white/5 p-6 text-sm">
-              <p className="text-white/90">
-                Prefer staying in the flow? Email Maurice directly or use the
-                contact page to share context, timelines, and any compliance needs
-                so we can move fast on the right experiment.
-              </p>
-              <p className="text-xs uppercase tracking-[0.4em] text-white/70">
-                Response Time
-              </p>
-              <p className="text-white/90">Maurice replies within 48 hours with next steps.</p>
+
+            <div className="flex flex-col justify-center">
+              <div className="glass-panel p-10 rounded-[3rem] bg-background/5 border-background/10 space-y-8">
+                <div className="space-y-4">
+                  <p className="text-lg font-bold text-background/90">
+                    {t("contact.instruction")}
+                  </p>
+                  <div className="flex items-center gap-3">
+                    <div className="size-2 rounded-full bg-brand-purple animate-pulse" />
+                    <p className="text-xs uppercase tracking-[0.3em] text-background/40 font-bold">
+                      {t("contact.responseTime")}
+                    </p>
+                  </div>
+                </div>
+                <div className="pt-8 border-t border-background/10">
+                  <p className="text-4xl font-bold text-background">{t("contact.reply")}</p>
+                </div>
+              </div>
             </div>
           </div>
         </motion.section>
-      </main>
-      <footer className="border-t border-slate-200/80 bg-white/95 backdrop-blur-sm">
-        <div className="mx-auto flex max-w-6xl flex-col gap-6 px-6 py-12 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-12">
-          <div>
-            <p className="text-base font-semibold text-slate-900">
-              Naga Codex · Maurice Holda
-            </p>
+      </main >
+
+      <footer className="bg-background border-t border-border/40 py-20">
+        <div className="mx-auto max-w-7xl px-8">
+          <div className="flex flex-col md:flex-row justify-between items-start gap-16">
+            <div className="space-y-8 max-w-sm">
+              <Image src="/images/logo.png" alt="Logo" width={140} height={40} className="dark:invert opacity-80" />
+              <p className="text-muted-foreground font-medium leading-relaxed">
+                Human-centered strategist delivering AI coproductions and secure digital surfaces.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 gap-20">
+              <div className="space-y-6">
+                <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-purple">Navigation</h4>
+                <ul className="space-y-4">
+                  {navLinks.map((link) => (
+                    <li key={link.href}>
+                      <Link href={link.href} className="text-sm font-bold text-foreground/60 hover:text-brand-purple transition-colors">
+                        {link.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="space-y-6">
+                <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-purple">Social</h4>
+                <ul className="space-y-4">
+                  <li><a href="https://linkedin.com/in/maurice-holda" className="text-sm font-bold text-foreground/60 hover:text-brand-purple transition-colors">LinkedIn</a></li>
+                  <li><a href="https://instagram.com/naga_apparel/" className="text-sm font-bold text-foreground/60 hover:text-brand-purple transition-colors">Instagram</a></li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <div className="flex flex-wrap gap-4">
-            <a
-              href="mailto:chosenfewrecords@hotmail.de"
-              className="transition-colors hover:text-slate-900"
-            >
-              Email
-            </a>
-            <a
-              href="https://linkedin.com/in/maurice-holda"
-              target="_blank"
-              rel="noreferrer"
-              className="transition-colors hover:text-slate-900"
-            >
-              LinkedIn
-            </a>
-            <a
-              href="https://instagram.com/naga_apparel/"
-              target="_blank"
-              rel="noreferrer"
-              className="transition-colors hover:text-slate-900"
-            >
-              Instagram
-            </a>
-            <a
-              href="https://mauriceholda-portfolio.vercel.app"
-              target="_blank"
-              rel="noreferrer"
-              className="transition-colors hover:text-slate-900"
-            >
-              Portfolio
-            </a>
-            <a
-              href="#hero"
-              className="transition-colors hover:text-slate-900"
-            >
-              Back to top
-            </a>
+
+          <div className="pt-20 mt-20 border-t border-border/40 flex flex-col md:flex-row justify-between items-center gap-8">
+            <p className="text-xs font-bold text-muted-foreground/40 tracking-widest uppercase">
+              © 2026 Naga Codex · Designed by Maurice Holda
+            </p>
+
+            <div className="flex items-center gap-8">
+              <div className="flex gap-8">
+                <Link href="/policies" className="text-xs font-bold text-muted-foreground/40 hover:text-foreground transition-colors uppercase tracking-widest">Privacy</Link>
+                <Link href="/policies" className="text-xs font-bold text-muted-foreground/40 hover:text-foreground transition-colors uppercase tracking-widest">Legal</Link>
+              </div>
+
+              <Button
+                variant="outline"
+                size="icon"
+                className="rounded-full size-10 border-border/40 hover:bg-foreground hover:text-background transition-all"
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              >
+                <ArrowUp className="size-4" />
+              </Button>
+            </div>
           </div>
         </div>
       </footer>
+
+      <CookieBanner />
     </div>
   );
 }

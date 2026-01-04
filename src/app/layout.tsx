@@ -106,6 +106,8 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://nagacodex.com"),
 };
 
+import { Providers } from "@/components/Providers";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -116,7 +118,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${libreBaskerville.variable} font-sans antialiased`}
       >
-        {children}
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   );

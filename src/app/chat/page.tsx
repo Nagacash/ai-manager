@@ -22,8 +22,8 @@ export default function ChatPage() {
       >
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6 sm:py-4 lg:px-12">
           <Link href="/" className="flex items-center gap-2 smooth-transition hover:opacity-80">
-            <ArrowLeft className="size-5 text-slate-600" />
-            <span className="text-sm font-medium text-slate-600">Back to Home</span>
+            <ArrowLeft className="size-5 text-muted-foreground" />
+            <span className="text-sm font-medium text-muted-foreground">Back to Home</span>
           </Link>
         </div>
       </motion.header>
@@ -38,7 +38,7 @@ export default function ChatPage() {
         >
           <div className="mb-6">
             <motion.h1
-              className="text-3xl sm:text-4xl font-semibold text-slate-900 mb-2"
+              className="text-3xl sm:text-4xl font-semibold text-foreground mb-2"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
@@ -46,7 +46,7 @@ export default function ChatPage() {
               Chat with Maie
             </motion.h1>
             <motion.p
-              className="text-slate-600"
+              className="text-muted-foreground"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
