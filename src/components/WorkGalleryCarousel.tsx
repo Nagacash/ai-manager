@@ -117,7 +117,7 @@ export default function WorkGalleryCarousel() {
                         variant="glass"
                         size="icon"
                         onClick={() => paginate(-1)}
-                        className="size-14 rounded-full border-white/20 bg-white/5 backdrop-blur-xl text-white pointer-events-auto opacity-0 group-hover:opacity-100 transition-all duration-500 -translate-x-4 group-hover:translate-x-0"
+                        className="size-14 rounded-full border-white/20 bg-white/5 backdrop-blur-xl text-white pointer-events-auto opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-500 transform translate-x-0 lg:-translate-x-4 lg:group-hover:translate-x-0 bg-black/40 lg:bg-white/5"
                     >
                         <ChevronLeft className="size-8" />
                     </Button>
@@ -125,7 +125,7 @@ export default function WorkGalleryCarousel() {
                         variant="glass"
                         size="icon"
                         onClick={() => paginate(1)}
-                        className="size-14 rounded-full border-white/20 bg-white/5 backdrop-blur-xl text-white pointer-events-auto opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-4 group-hover:translate-x-0"
+                        className="size-14 rounded-full border-white/20 bg-white/5 backdrop-blur-xl text-white pointer-events-auto opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-500 transform translate-x-0 lg:translate-x-4 lg:group-hover:translate-x-0 bg-black/40 lg:bg-white/5"
                     >
                         <ChevronRight className="size-8" />
                     </Button>

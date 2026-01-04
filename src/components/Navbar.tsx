@@ -95,12 +95,12 @@ export default function Navbar() {
 
     return (
         <motion.header
-            className="fixed top-6 left-0 right-0 z-50 mx-auto max-w-7xl px-6"
+            className="fixed top-0 left-0 right-0 z-50 mx-auto max-w-7xl px-0"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-            <div className={`glass-panel rounded-full px-8 py-3 flex items-center justify-between gap-8 border shadow-2xl transition-all duration-500 ${scrolled ? 'py-2.5 px-6' : ''}`}>
+            <div className={`glass-panel rounded-none rounded-b-2xl border-x-0 border-t-0 px-6 py-4 flex items-center justify-between gap-8 shadow-2xl transition-all duration-500 ${scrolled ? 'py-3' : ''}`}>
                 <Link
                     href="/"
                     onClick={(e) => {
@@ -166,7 +166,7 @@ export default function Navbar() {
                         animate="open"
                         exit="closed"
                         variants={menuVariants}
-                        className="absolute top-20 left-4 right-4 bg-background/90 backdrop-blur-3xl rounded-[2rem] border border-border/40 p-8 shadow-2xl lg:hidden overflow-hidden z-50"
+                        className="absolute top-20 left-4 right-4 bg-background/90 backdrop-blur-3xl rounded-[2rem] border border-border/40 p-8 shadow-2xl lg:hidden overflow-hidden z-50 max-h-[85vh] overflow-y-auto"
                     >
                         <div className="flex flex-col gap-6">
                             {navLinks.map((item) => (

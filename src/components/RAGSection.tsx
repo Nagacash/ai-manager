@@ -77,7 +77,7 @@ export default function RAGSection() {
                                 <div className="size-1 bg-gradient-to-b from-[var(--brand-purple)] to-accent h-12 w-0.5" />
                             </div>
 
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 xs:grid-cols-2 gap-4">
                                 <div className="p-6 rounded-3xl bg-card border border-border shadow-sm flex flex-col items-center gap-3">
                                     <Database className="size-6 text-indigo-400" />
                                     <span className="text-[10px] font-bold uppercase tracking-tight text-muted-foreground">Vector Store</span>

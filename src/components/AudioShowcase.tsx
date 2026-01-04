@@ -205,7 +205,7 @@ export default function AudioShowcase() {
                             </div>
 
                             {/* Controls */}
-                            <div className="flex items-center justify-center gap-10">
+                            <div className="flex items-center justify-center gap-4 sm:gap-10">
                                 <button
                                     onClick={handlePrev}
                                     className="text-foreground/40 hover:text-brand-purple transition-all duration-300 hover:scale-110"

@@ -178,7 +178,7 @@ export default function App() {
       <main className="relative z-10 isolate mx-auto flex max-w-7xl flex-col gap-40 px-6 pt-32 pb-24 lg:px-12">
         <motion.section
           id="hero"
-          className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20 pt-12 md:pt-20"
+          className="grid items-center gap-8 md:gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20 pt-12 md:pt-20"
           variants={sectionVariants}
           initial="hidden"
           animate="visible"
@@ -197,7 +197,7 @@ export default function App() {
 
             <div className="space-y-8">
               <motion.h1
-                className="text-5xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl text-smooth leading-[1.1]"
+                className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl text-smooth leading-[1.1]"
                 variants={textReveal}
                 initial="hidden"
                 animate="visible"
@@ -289,7 +289,7 @@ export default function App() {
             </div>
 
             {/* Floating Badges */}
-            <div className="absolute -left-6 -top-6 z-20">
+            <div className="hidden md:block absolute -left-6 -top-6 z-20">
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -308,7 +308,7 @@ export default function App() {
             </div>
 
             {/* Floating Right Badges */}
-            <div className="absolute -right-4 top-12 flex flex-col gap-3">
+            <div className="hidden md:flex absolute -right-4 top-12 flex-col gap-3">
               <div className="flex flex-wrap gap-2 pt-2">
                 {[
                   "Certified AI Manager",
@@ -349,7 +349,7 @@ export default function App() {
             <Badge variant="glass" className="bg-primary/10 text-primary border-primary/20 px-4 py-1.5 uppercase tracking-widest text-xs font-bold">
               {t("services.badge")}
             </Badge>
-            <h2 className="text-4xl md:text-6xl font-bold text-foreground tracking-tight">
+            <h2 className="text-3xl md:text-6xl font-bold text-foreground tracking-tight">
               {t("services.title1")} <span className="text-primary italic font-serif">{t("services.title2")}</span> {t("services.title3")} <span className="text-primary italic font-serif">{t("services.title4")}</span>
             </h2>
             <p className="text-xl text-muted-foreground leading-relaxed">
