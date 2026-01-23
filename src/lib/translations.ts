@@ -313,6 +313,31 @@ export const translations = {
       instruction: "Prefer staying in the flow? Email Maurice directly or use the contact page to share context, timelines, and any compliance needs so we can move fast on the right experiment.",
       responseTime: "Response Time",
       reply: "Maurice replies within 48 hours with next steps.",
+    },
+    testimonials: {
+      badge: "Client Testimonials",
+      title1: "What clients",
+      title2: "say",
+      items: [
+        {
+          name: "Sarah Müller",
+          role: "CEO",
+          company: "TechStart GmbH",
+          quote: "Maurice transformed our AI implementation from concept to reality. His certified approach ensured compliance and delivered measurable results in record time."
+        },
+        {
+          name: "Dr. Andreas Weber",
+          role: "CTO",
+          company: "InnovateAI Solutions",
+          quote: "The RAG system Maurice built for us revolutionized our internal knowledge management. Data sovereignty and accuracy were flawless."
+        },
+        {
+          name: "Lisa Chen",
+          role: "Marketing Director",
+          company: "CreativeBrand Co.",
+          quote: "Our AI-generated brand assets now rival professional photography. Maurice's expertise in multimodal prompting delivered exactly what we needed."
+        }
+      ]
     }
   },
   de: {
@@ -629,6 +654,31 @@ export const translations = {
       instruction: "Direkter Kontakt bevorzugt? Senden Sie Maurice eine E-Mail oder nutzen Sie das Kontaktformular für Details zu Kontext und Zeitplänen.",
       responseTime: "Antwortzeit",
       reply: "Maurice antwortet innerhalb von 48 Stunden.",
+    },
+    testimonials: {
+      badge: "Kundenstimmen",
+      title1: "Was Kunden",
+      title2: "sagen",
+      items: [
+        {
+          name: "Sarah Müller",
+          role: "CEO",
+          company: "TechStart GmbH",
+          quote: "Maurice hat unsere KI-Implementierung von der Idee zur Realität verwandelt. Sein zertifizierter Ansatz gewährleistete Compliance und lieferte messbare Ergebnisse in Rekordzeit."
+        },
+        {
+          name: "Dr. Andreas Weber",
+          role: "CTO",
+          company: "InnovateAI Solutions",
+          quote: "Das RAG-System, das Maurice für uns baute, revolutionierte unser internes Wissensmanagement. Datensouveränität und Genauigkeit waren makellos."
+        },
+        {
+          name: "Lisa Chen",
+          role: "Marketing Direktorin",
+          company: "CreativeBrand Co.",
+          quote: "Unsere KI-generierten Marken-Assets rivalisieren jetzt mit professioneller Fotografie. Maurices Expertise im multimodalen Prompting lieferte genau das, was wir brauchten."
+        }
+      ]
     }
   }
 };

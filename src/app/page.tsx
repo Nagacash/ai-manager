@@ -42,6 +42,7 @@ import AudioShowcase from "@/components/AudioShowcase";
 import WorkGalleryCarousel from "@/components/WorkGalleryCarousel";
 import ServicesCarousel from "@/components/ServicesCarousel";
 import RAGSection from "@/components/RAGSection";
+import Testimonials from "@/components/Testimonials";
 import CookieBanner from "@/components/CookieBanner";
 import { useLanguage } from "@/lib/LanguageContext";
 
@@ -215,7 +216,7 @@ export default function App() {
             </div>
 
             <motion.div className="flex flex-wrap gap-5" variants={fadeItem}>
-              <Button asChild size="lg" className="rounded-full px-10 text-base shadow-2xl shadow-brand-purple/20 hover:shadow-brand-purple/30 hover:-translate-y-1 transition-all duration-300">
+               <Button asChild size="lg" className="rounded-full px-10 text-base shadow-2xl shadow-brand-purple/20 hover:shadow-brand-purple/30 hover:-translate-y-1 glow-effect transition-all duration-300">
                 <a
                   href="mailto:chosenfewrecords@hotmail.de"
                   className="inline-flex items-center gap-2"
@@ -224,7 +225,7 @@ export default function App() {
                   <ArrowUpRight className="size-5" />
                 </a>
               </Button>
-              <Button asChild variant="outline" size="lg" className="rounded-full px-10 text-base border-border hover:bg-muted/50 hover:border-brand-purple hover:text-brand-purple hover:-translate-y-1 transition-all duration-300">
+               <Button asChild variant="outline" size="lg" className="rounded-full px-10 text-base border-border hover:bg-muted/50 hover:border-brand-purple hover:text-brand-purple hover:-translate-y-1 glow-effect transition-all duration-300">
                 <a
                   href="https://cyber-sec-six.vercel.app/"
                   target="_blank"
@@ -288,13 +289,17 @@ export default function App() {
               </div>
             </div>
 
-            {/* Floating Badges */}
-            <div className="hidden md:block absolute -left-6 -top-6 z-20">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.8, duration: 0.5 }}
-              >
+             {/* Floating Badges */}
+             <div className="hidden md:block absolute -left-6 -top-6 z-20">
+               <motion.div
+                 initial={{ opacity: 0, scale: 0.8 }}
+                 animate={{ opacity: 1, scale: 1, y: [0, -5, 0] }}
+                 transition={{
+                   delay: 0.8,
+                   duration: 0.5,
+                   y: { repeat: Infinity, duration: 3, ease: "easeInOut" }
+                 }}
+               >
                 <div className="size-24 rounded-full bg-white/90 backdrop-blur-md shadow-2xl border border-white/50 p-2 flex items-center justify-center overflow-hidden">
                   <Image
                     src="/images/badge.png"
@@ -307,22 +312,26 @@ export default function App() {
               </motion.div>
             </div>
 
-            {/* Floating Right Badges */}
-            <div className="hidden md:flex absolute -right-4 top-12 flex-col gap-3">
-              <div className="flex flex-wrap gap-2 pt-2">
-                {[
-                  "Certified AI Manager",
-                  "Full-Stack Web Developer",
-                  "CompTIA Security+",
-                  "CCNA (in progress)",
-                  "MCP Automation Systems",
-                ].map((badge, i) => (
-                  <motion.div
-                    key={badge}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.5 + i * 0.1 }}
-                  >
+             {/* Floating Right Badges */}
+             <div className="hidden md:flex absolute -right-4 top-12 flex-col gap-3">
+               <div className="flex flex-wrap gap-2 pt-2">
+                 {[
+                   "Certified AI Manager",
+                   "Full-Stack Web Developer",
+                   "CompTIA Security+",
+                   "CCNA (in progress)",
+                   "MCP Automation Systems",
+                 ].map((badge, i) => (
+                   <motion.div
+                     key={badge}
+                     initial={{ opacity: 0, scale: 0.8 }}
+                     animate={{ opacity: 1, scale: 1, x: [0, 3, 0] }}
+                     transition={{
+                       delay: 0.5 + i * 0.1,
+                       duration: 0.5,
+                       x: { repeat: Infinity, duration: 4 + i * 0.5, ease: "easeInOut" }
+                     }}
+                   >
                     <Badge
                       variant="glass"
                       className="bg-primary/5 text-primary border-primary/20 backdrop-blur-md px-3 py-1 text-[10px] font-bold uppercase tracking-widest"
@@ -489,6 +498,8 @@ export default function App() {
             </div>
           </div>
         </motion.section>
+
+        <Testimonials />
 
         <motion.section
           id="about"

@@ -41,7 +41,8 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --color-brand-purple: var(--brand-purple);
+   --color-brand-purple: var(--brand-purple);
+   --color-accent-green: var(--accent-green);
 }
 
 :root {
@@ -54,7 +55,8 @@
   --popover-foreground: oklch(0.12 0.01 300);
   --primary: oklch(0.12 0.01 300);
   --primary-foreground: oklch(0.98 0 0);
-  --brand-purple: oklch(0.35 0.18 300);
+   --brand-purple: oklch(0.35 0.22 300);
+   --accent-green: oklch(0.4 0.15 120);
   --secondary: oklch(0.98 0.005 300);
   --secondary-foreground: oklch(0.4 0.15 300);
   --muted: oklch(0.97 0.005 300);
@@ -95,7 +97,8 @@
   --muted-foreground: oklch(0.65 0.01 300);
   --accent: oklch(0.7 0.15 320);
   --accent-foreground: oklch(0.05 0.01 320);
-  --brand-purple: oklch(0.6 0.18 300);
+   --brand-purple: oklch(0.6 0.22 300);
+   --accent-green: oklch(0.7 0.15 120);
   --destructive: oklch(0.45 0.18 20);
   --border: oklch(0.18 0.01 300);
   --input: oklch(0.18 0.01 300);
@@ -118,6 +121,7 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    scroll-behavior: smooth;
   }
 
   ::selection {
@@ -183,10 +187,18 @@
     box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.05);
   }
 
-  .glass-panel:hover {
-    @apply border-brand-purple/30 bg-white/60 dark:bg-black/60;
-    box-shadow: 0 12px 40px -4px rgba(0, 0, 0, 0.1);
-  }
+   .glass-panel:hover {
+     @apply border-brand-purple/30 bg-white/60 dark:bg-black/60;
+     box-shadow: 0 12px 40px -4px rgba(0, 0, 0, 0.1);
+   }
+
+   .glow-effect {
+     box-shadow: 0 0 20px rgba(var(--brand-purple), 0.3);
+   }
+
+   .glow-effect:hover {
+     box-shadow: 0 0 30px rgba(var(--brand-purple), 0.5);
+   }
 
   .text-smooth {
     text-rendering: optimizeLegibility;
