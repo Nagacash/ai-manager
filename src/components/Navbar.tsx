@@ -48,14 +48,17 @@ export default function Navbar() {
                 e.preventDefault();
                 const element = document.querySelector(href);
                 if (element) {
-                    element.scrollIntoView({ behavior: "smooth" });
+                    element.scrollIntoView({ behavior: "smooth", block: "start" });
                 }
             }
-            // If not on homepage, let the link navigate normally to /#section
+            // If not on homepage, let the link navigate to /#section (don't prevent default)
         } else if (href === "/" && isHomePage) {
             e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.scrollTo({ top: 0, behavior: "smooth" });
         }
+        // For other links, let default navigation happen
+        
+        setIsOpen(false);
     };
 
     const getHref = (href: string) => {
@@ -100,7 +103,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-            <div className={`glass-panel rounded-none rounded-b-2xl border-x-0 border-t-0 px-6 py-4 flex items-center justify-between gap-8 shadow-2xl transition-all duration-500 ${scrolled ? 'py-3' : ''}`}>
+            <div             className={`bg-black/95 backdrop-blur-xl rounded-none rounded-b-2xl border-b border-cyan-500/20 px-6 py-4 flex items-center justify-between gap-8 shadow-2xl transition-all duration-500 ${scrolled ? 'py-3 bg-black/98' : ''}`}>
                 <Link
                     href="/"
                     onClick={(e) => {
@@ -108,39 +111,43 @@ export default function Navbar() {
                             e.preventDefault();
                             window.scrollTo({ top: 0, behavior: 'smooth' });
                         }
+
                     }}
-                    className="flex items-center smooth-transition hover:opacity-80 dark:invert"
+                    className="cyber-nav-item cyber-focus text-[11px] font-bold text-slate-300 hover:text-white tracking-[0.25em] uppercase transition-all duration-300 relative group/link"
                 >
                     <Image
                         src="/images/logo.png"
                         alt="Naga Codex Logo"
                         width={130}
                         height={40}
-                        className={`w-auto transition-all duration-500 ${scrolled ? 'h-6' : 'h-7'}`}
+                        className={`w-auto transition-all duration-500 filter brightness(0) contrast(200%) ${scrolled ? 'h-6' : 'h-7'}`}
                         priority
                     />
+                    <span className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-cyan-400 rounded-full transition-all duration-300 group-hover/link:w-full" />
                 </Link>
 
                 {/* Desktop Navigation */}
-                <nav className="hidden items-center gap-10 lg:flex">
-                    {navLinks.map((item) => (
+                 <nav className="hidden items-center gap-10 lg:flex" role="navigation" aria-label="Main navigation">
+                    {navLinks.map((link) => (
                         <Link
-                            key={item.href}
-                            href={getHref(item.href)}
-                            onClick={(e) => handleNavClick(e, item.href)}
-                            className="text-[11px] font-bold text-foreground/60 hover:text-foreground tracking-[0.25em] uppercase transition-all duration-300 relative group/link"
+                            key={link.href}
+                            href={getHref(link.href)}
+                            onClick={(e) => handleNavClick(e, link.href)}
+                            className={`cyber-nav-item cyber-focus flex items-center px-4 py-2 text-sm font-medium transition-all duration-300 ${
+                                pathname === link.href ? "text-white" : "text-white"
+                            }`}
+                            role="menuitem"
                         >
-                            {item.name}
-                            <span className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-brand-purple rounded-full transition-all duration-300 group-hover/link:w-full" />
+                            {link.name}
                         </Link>
                     ))}
                 </nav>
 
                 <div className="hidden items-center gap-8 lg:flex">
                     <LanguageToggle />
-                    <Button asChild size="sm" className="rounded-full px-7 bg-foreground text-background hover:bg-foreground/90 border-none shadow-lg shadow-foreground/5 font-bold transition-all hover:-translate-y-0.5 active:translate-y-0">
-                        <a href="mailto:chosenfewrecords@hotmail.de">{t("nav.startBuild")}</a>
-                    </Button>
+                 <Button asChild size="sm" className="accessible-cyber-button cyber-focus text-white hover:text-cyan-400 hover:bg-cyan-500/20 border-none shadow-lg shadow-cyan-500/30 font-bold transition-all hover:-translate-y-0.5 active:translate-y-0">
+                         <a href="mailto:chosenfewrecords@hotmail.de">{t("nav.startBuild")}</a>
+                     </Button>
                 </div>
 
                 {/* Mobile Controls */}
@@ -149,10 +156,12 @@ export default function Navbar() {
                     <Button
                         variant="ghost"
                         size="icon"
-                        className="text-foreground/70 hover:text-foreground hover:bg-foreground/5"
+                        className="accessible-cyber-button text-white hover:text-cyan-400 hover:bg-slate-800"
                         onClick={() => setIsOpen(!isOpen)}
+                        aria-label={isOpen ? "Close menu" : "Open menu"}
+                        aria-expanded={isOpen}
                     >
-                        <span className="sr-only">Open menu</span>
+                        <span className="sr-only">{isOpen ? "Close menu" : "Open menu"}</span>
                         {isOpen ? <X className="size-6" /> : <Menu className="size-6" />}
                     </Button>
                 </div>
@@ -166,9 +175,9 @@ export default function Navbar() {
                         animate="open"
                         exit="closed"
                         variants={menuVariants}
-                        className="absolute top-20 left-4 right-4 bg-background/90 backdrop-blur-3xl rounded-[2rem] border border-border/40 p-8 shadow-2xl lg:hidden overflow-hidden z-50 max-h-[85vh] overflow-y-auto"
+                         className="absolute top-20 left-4 right-4 bg-black/90 backdrop-blur-3xl rounded-[2rem] border border-cyan-500/30 p-8 shadow-2xl lg:hidden overflow-hidden z-50 max-h-[85vh] overflow-y-auto"
                     >
-                        <div className="flex flex-col gap-6">
+                 <div className="flex flex-col gap-6">
                             {navLinks.map((item) => (
                                 <motion.div key={item.href} variants={itemVariants}>
                                     <Link
@@ -176,15 +185,17 @@ export default function Navbar() {
                                         onClick={(e) => {
                                             handleNavClick(e, item.href);
                                             setIsOpen(false);
+
                                         }}
-                                        className="text-xs font-black text-foreground/60 hover:text-brand-purple tracking-[0.3em] uppercase block py-3 border-b border-border/20 transition-colors"
+                                        className="cyber-nav-item cyber-focus text-[11px] font-bold text-white hover:text-cyan-400 tracking-[0.25em] uppercase transition-all duration-300 relative group/link"
                                     >
                                         {item.name}
+                                        <span className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-cyan-400 rounded-full transition-all duration-300 group-hover/link:w-full" />
                                     </Link>
                                 </motion.div>
                             ))}
                             <motion.div variants={itemVariants} className="pt-6">
-                                <Button asChild className="w-full rounded-2xl h-14 bg-foreground text-background hover:bg-foreground/90 font-bold shadow-xl" onClick={() => setIsOpen(false)}>
+                                <Button asChild className="w-full rounded-2xl h-14 bg-purple-600 text-white hover:bg-purple-500 font-bold shadow-xl" onClick={() => setIsOpen(false)}>
                                     <a href="mailto:chosenfewrecords@hotmail.de" className="flex items-center justify-center gap-2">
                                         {t("nav.startBuild")}
                                         <ArrowUpRight className="size-5" />

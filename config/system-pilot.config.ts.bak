@@ -1,0 +1,82 @@
+/**
+ * System-Pilot Global Configuration
+ * Cyberpunk Theme Integration for Naga Codex Project
+ */
+
+import { z } from 'zod';
+
+const SystemPilotConfigSchema = z.object({
+  enabled: z.boolean().default(true),
+  globalAccess: z.boolean().default(true),
+  scope: z.array(z.string()).default(['build', 'analysis', 'optimization']),
+  aesthetic: z.object({
+    theme: z.string().default('cyberpunk'),
+    colorScheme: z.array(z.string()).default(['#FF00FF', '#00FFFF', '#00FF00']),
+    terminalStyle: z.string().default('holographic'),
+    neonIntensity: z.number().min(0).max(100).default(80),
+    glitchFrequency: z.number().min(0).max(100).default(15)
+  }),
+  capabilities: z.object({
+    buildEnhancement: z.boolean().default(true),
+    codeAnalysis: z.boolean().default(true),
+    performanceOptimization: z.boolean().default(true),
+    cyberpunkMode: z.boolean().default(true),
+    matrixVisualization: z.boolean().default(true),
+    neuralInterface: z.boolean().default(false)
+  }),
+  integration: z.object({
+    nextjs: z.boolean().default(true),
+    tailwind: z.boolean().default(true),
+    framerMotion: z.boolean().default(true),
+    gsap: z.boolean().default(true),
+    websocket: z.boolean().default(true)
+  }),
+  paths: z.object({
+    rootDir: z.string().default('./'),
+    srcDir: z.string().default('./src'),
+    componentsDir: z.string().default('./src/components'),
+    outputDir: z.string().default('./out'),
+    tempDir: z.string().default('./.system-pilot')
+  })
+});
+
+export type SystemPilotConfig = z.infer<typeof SystemPilotConfigSchema>;
+
+export const defaultSystemPilotConfig: SystemPilotConfig = {
+  enabled: true,
+  globalAccess: true,
+  scope: ['build', 'analysis', 'optimization', 'cyberpunk-enhancement'],
+  aesthetic: {
+    theme: 'cyberpunk',
+    colorScheme: ['#FF00FF', '#00FFFF', '#00FF00'],
+    terminalStyle: 'holographic',
+    neonIntensity: 80,
+    glitchFrequency: 15
+  },
+  capabilities: {
+    buildEnhancement: true,
+    codeAnalysis: true,
+    performanceOptimization: true,
+    cyberpunkMode: true,
+    matrixVisualization: true,
+    neuralInterface: false
+  },
+  integration: {
+    nextjs: true,
+    tailwind: true,
+    framerMotion: true,
+    gsap: true,
+    websocket: true
+  },
+  paths: {
+    rootDir: './',
+    srcDir: './src',
+    componentsDir: './src/components',
+    outputDir: './out',
+    tempDir: './.system-pilot'
+  }
+};
+
+export function validateSystemPilotConfig(config: any): SystemPilotConfig {
+  return SystemPilotConfigSchema.parse(config);
+}

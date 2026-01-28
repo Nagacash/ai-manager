@@ -1,0 +1,41 @@
+{
+  "name": "system-pilot-config",
+  "version": "1.0.0",
+  "description": "Global system-pilot configuration for naga-codex cyberpunk project",
+  "private": true,
+  "systemPilot": {
+    "enabled": true,
+    "globalAccess": true,
+    "scope": ["build", "analysis", "optimization", "cyberpunk-enhancement"],
+    "aesthetic": {
+      "theme": "cyberpunk",
+      "colorScheme": ["neon-purple", "electric-blue", "matrix-green"],
+      "terminalStyle": "holographic"
+    },
+    "capabilities": {
+      "buildEnhancement": true,
+      "codeAnalysis": true,
+      "performanceOptimization": true,
+      "cyberpunkMode": true
+    },
+    "integration": {
+      "nextjs": true,
+      "tailwind": true,
+      "framerMotion": true,
+      "gsap": true
+    }
+  },
+  "scripts": {
+    "pilot:init": "node scripts/init-pilot.js",
+    "pilot:analyze": "node scripts/analyze-project.js",
+    "pilot:optimize": "node scripts/optimize-build.js",
+    "pilot:enhance": "node scripts/cyberpunk-enhance.js"
+  },
+  "dependencies": {
+    "@opencode-ai/sdk": "^2.0.0",
+    "@opencode-ai/plugin": "^1.0.0"
+  },
+  "devDependencies": {
+    "zod": "^3.22.0"
+  }
+}

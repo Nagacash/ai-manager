@@ -27,6 +27,11 @@ import PerlinNoiseBackground from "@/components/PerlinNoiseBackground";
 import BackgroundParticles from "@/components/BackgroundParticles";
 import AIActSection from "@/components/AIActSection";
 import Navbar from "@/components/Navbar";
+import MatrixRain from "@/components/MatrixRain";
+import CodeParticles from "@/components/CodeParticles";
+import HackerTerminal from "@/components/HackerTerminal";
+import ChaosExplosion from "@/components/ChaosExplosion";
+import DataCorruption from "@/components/DataCorruption";
 
 import { Badge } from "@/components/ui/badge";
 import {
@@ -44,76 +49,113 @@ import ServicesCarousel from "@/components/ServicesCarousel";
 import RAGSection from "@/components/RAGSection";
 import Testimonials from "@/components/Testimonials";
 import CookieBanner from "@/components/CookieBanner";
+import AINetworkAnimation from "@/components/AINetworkAnimation";
 import { useLanguage } from "@/lib/LanguageContext";
 
 
-const sectionVariants = {
-  hidden: { opacity: 0, y: 30 },
+const luxurySectionVariants = {
+  hidden: { opacity: 0, y: 60, scale: 0.98 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: "easeInOut" as const },
-  },
-};
-
-const staggerContainer = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.1,
+    scale: 1,
+    transition: { 
+      duration: 1.2, 
+      ease: [0.19, 1, 0.22, 1] as const,
     },
   },
 };
 
-const fadeItem = {
+const luxuryStaggerContainer = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const luxuryFadeItem = {
+  hidden: { opacity: 0, y: 40, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.8,
+      ease: [0.19, 1, 0.22, 1] as const
+    }
+  },
+};
+
+const luxuryTextReveal = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      staggerChildren: 0.03,
+      delayChildren: 0.3,
+      duration: 0.6,
+      ease: [0.19, 1, 0.22, 1] as const,
+    },
+  },
+};
+
+const luxuryWordReveal = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
       duration: 0.5,
-      ease: "easeInOut" as const
-    }
-  },
-};
-
-const textReveal = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.02,
-      delayChildren: 0.1,
+      ease: [0.19, 1, 0.22, 1] as const
     },
   },
 };
 
-const wordReveal = {
-  hidden: { opacity: 0, y: 10 },
+const luxuryTitleReveal = {
+  hidden: { opacity: 0, y: 40, scale: 0.95 },
   visible: {
     opacity: 1,
     y: 0,
+    scale: 1,
     transition: {
-      duration: 0.4,
-      ease: "easeInOut" as const
+      duration: 1.0,
+      ease: [0.19, 1, 0.22, 1] as const
     },
   },
 };
 
-const titleReveal = {
-  hidden: { opacity: 0, y: 20 },
+const brutalReveal = {
+  hidden: { opacity: 0, x: -100, skewX: -10 },
   visible: {
     opacity: 1,
-    y: 0,
+    x: 0,
+    skewX: 0,
     transition: {
-      duration: 0.6,
-      ease: "easeInOut" as const
+      duration: 0.8,
+      ease: [0.16, 1, 0.3, 1] as const
+    },
+  },
+};
+
+const metallicGlow = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 1.2,
+      ease: [0.19, 1, 0.22, 1] as const,
+      delay: 0.5,
     },
   },
 };
 
 const sectionShell =
-  "scroll-mt-32 rounded-[2.5rem] border border-white/40 bg-white/60 p-8 sm:p-12 shadow-xl backdrop-blur-xl";
+  "scroll-mt-32 rounded-[3rem] glass-panel p-10 sm:p-16 shadow-2xl noise-texture metallic-sheen";
 
 export default function App() {
   const { t, lang } = useLanguage();
@@ -166,13 +208,29 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-hero text-foreground relative overflow-hidden selection:bg-primary/20 selection:text-primary">
+    <div className="min-h-screen cyber-mode text-cyan-400 relative overflow-hidden selection:bg-red-500/50 selection:text-yellow-300 chaos-cursor">
+      {/* Skip to Content for Accessibility */}
+      <a href="#hero" className="skip-to-content">
+        Skip to main content
+      </a>
+      
       <PerlinNoiseBackground />
       <BackgroundParticles />
+      <MatrixRain />
+      <CodeParticles />
+      <HackerTerminal />
+      <ChaosExplosion />
+      <DataCorruption />
 
-      {/* Ambient Background Glows */}
-      <div className="absolute inset-x-0 top-0 h-[800px] bg-[radial-gradient(ellipse_1000px_800px_at_50%_-200px,var(--brand-purple),transparent)] opacity-[0.03] blur-3xl pointer-events-none -z-10" />
-      <div className="absolute right-0 top-[20%] size-[600px] bg-[radial-gradient(circle_at_center,var(--brand-purple),transparent)] opacity-[0.05] blur-3xl pointer-events-none -z-10" />
+      {/* CALMED CHAOS BACKGROUND - STILL INSANE THOUGH */}
+      <>
+        <div className="thermal-melt absolute inset-0" />
+        <div className="absolute inset-0 bg-gradient-to-br from-red-900/10 via-yellow-900/10 to-blue-900/10 pointer-events-none -z-10" />
+        <div className="absolute inset-x-0 top-0 h-[800px] bg-[radial-gradient(ellipse_2000px_1500px_at_50%_-200px,#ff000020,#ffff0020,#00ffff20,transparent)] opacity-[0.15] blur-3xl pointer-events-none -z-10" />
+        <div className="absolute right-0 top-[10%] size-[1000px] bg-[radial-gradient(circle_at_center,#00ff0030,#ff00ff30,#ffff0030,transparent)] opacity-[0.12] blur-3xl pointer-events-none -z-10" />
+        <div className="absolute left-[10%] bottom-[30%] size-[800px] bg-[radial-gradient(circle_at_center,#0000ff30,#ff000030,transparent)] opacity-[0.10] blur-3xl pointer-events-none -z-10" />
+        <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,#ffffff10,transparent)] opacity-[0.08] blur-3xl transform -translate-x-1/2 -translate-y-1/2 pointer-events-none -z-10" />
+      </>
 
       <Navbar />
 
@@ -180,34 +238,38 @@ export default function App() {
         <motion.section
           id="hero"
           className="grid items-center gap-8 md:gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20 pt-12 md:pt-20"
-          variants={sectionVariants}
+          variants={luxurySectionVariants}
           initial="hidden"
           animate="visible"
         >
           <motion.div
             className="space-y-10"
-            variants={staggerContainer}
+            variants={luxuryStaggerContainer}
             initial="hidden"
             animate="visible"
           >
-            <motion.div variants={fadeItem}>
-              <Badge variant="glass" className="bg-[var(--brand-purple)]/10 text-[var(--brand-purple)] border-[var(--brand-purple)]/20 px-3 py-1">
+            <motion.div variants={luxuryFadeItem}>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-400 text-sm font-medium">
+                <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
                 {t("hero.badge")}
-              </Badge>
+              </div>
             </motion.div>
 
-            <div className="space-y-8">
+            <div className="space-y-6">
               <motion.h1
-                className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl text-smooth leading-[1.1]"
-                variants={textReveal}
+                className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.1] tracking-tight"
+                variants={luxuryTextReveal}
                 initial="hidden"
                 animate="visible"
               >
-                {t("hero.title1")} <span className="text-accent italic font-serif">{t("hero.title2")}</span> {t("hero.title3")} <span className="text-accent italic font-serif">{t("hero.title4")}</span>
+                <span className="text-white">{t("hero.title1")}</span>{' '}
+                <span className="text-purple-400">{t("hero.title2")}</span>{' '}
+                <span className="text-white">{t("hero.title3")}</span>{' '}
+                <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">{t("hero.title4")}</span>
               </motion.h1>
               <motion.p
-                className="text-xl leading-relaxed text-muted-foreground max-w-2xl"
-                variants={textReveal}
+                className="text-lg md:text-xl leading-relaxed text-slate-400 max-w-xl"
+                variants={luxuryTextReveal}
                 initial="hidden"
                 animate="visible"
               >
@@ -215,44 +277,48 @@ export default function App() {
               </motion.p>
             </div>
 
-            <motion.div className="flex flex-wrap gap-5" variants={fadeItem}>
-               <Button asChild size="lg" className="rounded-full px-10 text-base shadow-2xl shadow-brand-purple/20 hover:shadow-brand-purple/30 hover:-translate-y-1 glow-effect transition-all duration-300">
-                <a
-                  href="mailto:chosenfewrecords@hotmail.de"
-                  className="inline-flex items-center gap-2"
-                >
-                  {t("hero.contact")}
+            <motion.div className="flex flex-wrap gap-4" variants={luxuryFadeItem}>
+              <Button 
+                asChild 
+                size="lg" 
+                className="bg-purple-600 hover:bg-purple-500 text-white rounded-full px-8 font-semibold shadow-lg shadow-purple-500/25 transition-all hover:-translate-y-0.5"
+              >
+                <a href="mailto:chosenfewrecords@hotmail.de" className="flex items-center gap-2">
+                  {t("hero.cta1")}
                   <ArrowUpRight className="size-5" />
                 </a>
               </Button>
-               <Button asChild variant="outline" size="lg" className="rounded-full px-10 text-base border-border hover:bg-muted/50 hover:border-brand-purple hover:text-brand-purple hover:-translate-y-1 glow-effect transition-all duration-300">
-                <a
-                  href="https://cyber-sec-six.vercel.app/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  View Portfolio
+              <Button 
+                asChild 
+                variant="outline" 
+                size="lg" 
+                className="border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white rounded-full px-8 font-semibold transition-all"
+              >
+                <a href="https://cyber-sec-six.vercel.app/" target="_blank" rel="noreferrer" className="flex items-center gap-2">
+                  {t("hero.cta2")}
+                  <ArrowUpRight className="size-5" />
                 </a>
               </Button>
             </motion.div>
 
             <motion.div
-              className="grid gap-8 border-t border-slate-200 pt-8 sm:grid-cols-3"
-              variants={staggerContainer}
+              className="grid gap-6 border-t border-slate-800 pt-10 sm:grid-cols-3"
+              variants={luxuryStaggerContainer}
               initial="hidden"
               animate="visible"
             >
-              {t("hero.stats").map((stat: any) => (
+              {t("hero.stats").map((stat: any, index: number) => (
                 <motion.div
                   key={stat.label}
-                  className="space-y-1"
-                  variants={fadeItem}
+                  className="text-center"
+                  variants={luxuryFadeItem}
+                  transition={{ delay: index * 0.1 }}
                 >
-                  <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground/60">
-                    {stat.label}
-                  </p>
-                  <p className="text-lg font-semibold text-foreground">
+                  <p className="text-3xl md:text-4xl font-bold text-white mb-1">
                     {stat.value}
+                  </p>
+                  <p className="text-sm text-slate-500 uppercase tracking-wider">
+                    {stat.label}
                   </p>
                 </motion.div>
               ))}
@@ -260,84 +326,82 @@ export default function App() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.8, ease: "easeInOut" as const }}
-            className="relative mx-auto w-full max-w-md lg:max-w-full"
+            variants={metallicGlow}
+            className="relative mx-auto w-full max-w-xl lg:max-w-none"
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.3 }}
           >
-            <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[2.5rem] shadow-2xl shadow-slate-200 border border-white/50">
+            <div className="relative aspect-[3/4] md:aspect-[4/5] lg:aspect-square w-full overflow-visible rounded-2xl border border-purple-500/20 shadow-2xl shadow-purple-500/10 group">
               <Image
                 src="/images/pic-github.jpg"
                 alt="Portrait of Maurice Holda"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover"
+                className="object-cover object-top rounded-2xl opacity-95 group-hover:opacity-100 transition-all duration-500"
                 priority
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-
-              <div className="absolute bottom-0 left-0 p-8 text-white">
-                <p className="text-sm font-medium uppercase tracking-widest text-white/80 mb-2">
-                  Maurice Holda
-                </p>
-                <h3 className="text-3xl font-bold mb-2">
-                  AI & Cyber Security Graduate
-                </h3>
-                <p className="text-white/90 text-lg leading-relaxed max-w-md">
-                  Human-centered strategist delivering AI copilots and secure web surfaces.
-                </p>
-              </div>
+              
+              {/* Subtle gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent rounded-2xl" />
+              
+              {/* Accent glow */}
+              <div className="absolute -inset-1 bg-gradient-to-br from-purple-500/20 via-transparent to-cyan-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
             </div>
 
-             {/* Floating Badges */}
-             <div className="hidden md:block absolute -left-6 -top-6 z-20">
+             {/* Certification Badge */}
+             <div className="hidden md:block absolute -left-4 top-12 z-20">
                <motion.div
                  initial={{ opacity: 0, scale: 0.8 }}
-                 animate={{ opacity: 1, scale: 1, y: [0, -5, 0] }}
-                 transition={{
-                   delay: 0.8,
-                   duration: 0.5,
-                   y: { repeat: Infinity, duration: 3, ease: "easeInOut" }
-                 }}
+                 animate={{ opacity: 1, scale: 1 }}
+                 transition={{ delay: 1, duration: 0.5 }}
+                 whileHover={{ scale: 1.05 }}
                >
-                <div className="size-24 rounded-full bg-white/90 backdrop-blur-md shadow-2xl border border-white/50 p-2 flex items-center justify-center overflow-hidden">
-                  <Image
-                    src="/images/badge.png"
-                    alt="AI Manager Badge"
-                    width={80}
-                    height={80}
-                    className="object-contain"
-                  />
-                </div>
-              </motion.div>
-            </div>
+                 <div className="size-24 rounded-2xl bg-slate-900/80 backdrop-blur-sm border border-slate-700/50 p-2 flex items-center justify-center shadow-xl">
+                   <Image
+                     src="/images/badge.png"
+                     alt="AI Manager Badge"
+                     width={80}
+                     height={80}
+                     className="object-contain"
+                     priority
+                   />
+                 </div>
+               </motion.div>
+             </div>
 
-             {/* Floating Right Badges */}
-             <div className="hidden md:flex absolute -right-4 top-12 flex-col gap-3">
-               <div className="flex flex-wrap gap-2 pt-2">
+             {/* BALANCED SKILL BADGES - AI, Web, Security */}
+             <div className="hidden md:flex absolute -right-6 bottom-16 flex-col gap-3">
+               <div className="flex flex-wrap gap-2 max-w-[180px]">
                  {[
-                   "Certified AI Manager",
-                   "Full-Stack Web Developer",
-                   "CompTIA Security+",
-                   "CCNA (in progress)",
-                   "MCP Automation Systems",
+                   { label: "AI", icon: "🤖", color: "purple" },
+                   { label: "ML", icon: "🧠", color: "violet" },
+                   { label: "React", icon: "⚛️", color: "cyan" },
+                   { label: "Next.js", icon: "▲", color: "slate" },
+                   { label: "Security", icon: "🔐", color: "emerald" },
+                   { label: "Cloud", icon: "☁️", color: "sky" },
                  ].map((badge, i) => (
                    <motion.div
-                     key={badge}
-                     initial={{ opacity: 0, scale: 0.8 }}
-                     animate={{ opacity: 1, scale: 1, x: [0, 3, 0] }}
+                     key={badge.label}
+                     initial={{ opacity: 0, y: 20 }}
+                     animate={{ opacity: 1, y: 0 }}
                      transition={{
-                       delay: 0.5 + i * 0.1,
+                       delay: 0.8 + i * 0.1,
                        duration: 0.5,
-                       x: { repeat: Infinity, duration: 4 + i * 0.5, ease: "easeInOut" }
+                       ease: "easeOut"
                      }}
+                     whileHover={{ scale: 1.1, y: -2 }}
                    >
-                    <Badge
-                      variant="glass"
-                      className="bg-primary/5 text-primary border-primary/20 backdrop-blur-md px-3 py-1 text-[10px] font-bold uppercase tracking-widest"
-                    >
-                      {badge}
-                    </Badge>
+                    <div className={`text-xs font-medium px-3 py-1.5 rounded-full border backdrop-blur-sm
+                      ${badge.color === 'purple' ? 'border-purple-400/50 bg-purple-500/20 text-purple-300' : ''}
+                      ${badge.color === 'violet' ? 'border-violet-400/50 bg-violet-500/20 text-violet-300' : ''}
+                      ${badge.color === 'cyan' ? 'border-cyan-400/50 bg-cyan-500/20 text-cyan-300' : ''}
+                      ${badge.color === 'slate' ? 'border-slate-400/50 bg-slate-500/20 text-slate-300' : ''}
+                      ${badge.color === 'emerald' ? 'border-emerald-400/50 bg-emerald-500/20 text-emerald-300' : ''}
+                      ${badge.color === 'sky' ? 'border-sky-400/50 bg-sky-500/20 text-sky-300' : ''}
+                    `}>
+                      <span className="mr-1">{badge.icon}</span>
+                      {badge.label}
+                    </div>
                   </motion.div>
                 ))}
               </div>
@@ -349,19 +413,19 @@ export default function App() {
         <motion.section
           id="services"
           className="scroll-mt-32 space-y-12"
-          variants={sectionVariants}
+          variants={luxurySectionVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
         >
           <div className="text-center space-y-4 max-w-3xl mx-auto mb-12">
-            <Badge variant="glass" className="bg-primary/10 text-primary border-primary/20 px-4 py-1.5 uppercase tracking-widest text-xs font-bold">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-400 text-sm font-medium">
               {t("services.badge")}
-            </Badge>
-            <h2 className="text-3xl md:text-6xl font-bold text-foreground tracking-tight">
-              {t("services.title1")} <span className="text-primary italic font-serif">{t("services.title2")}</span> {t("services.title3")} <span className="text-primary italic font-serif">{t("services.title4")}</span>
+            </div>
+            <h2 className="text-3xl md:text-6xl font-bold text-white tracking-tight">
+              {t("services.title1")} <span className="text-purple-400">{t("services.title2")}</span> {t("services.title3")} <span className="text-purple-400">{t("services.title4")}</span>
             </h2>
-            <p className="text-xl text-muted-foreground leading-relaxed">
+            <p className="text-xl text-slate-400 leading-relaxed">
               {t("services.description")}
             </p>
           </div>
@@ -383,13 +447,13 @@ export default function App() {
           viewport={{ once: true }}
         >
           <div className="text-center space-y-4 max-w-2xl mx-auto mb-8">
-            <Badge variant="outline" className="text-primary border-primary/20 uppercase tracking-tighter py-1 font-bold">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-sm font-medium">
               {t("services.aiCreationBadge") || "AI Image Artistry"}
-            </Badge>
-            <h3 className="text-3xl md:text-5xl font-bold text-foreground">
+            </div>
+            <h3 className="text-3xl md:text-5xl font-bold text-white">
               {t("services.aiCreationTitle") || "Showcase: AI Image Creation"}
             </h3>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-lg text-slate-400">
               {t("services.aiCreationDescription") || "Discover how we leverage state-of-the-art AI models to create bespoke, production-ready brand assets."}
             </p>
           </div>
@@ -400,7 +464,7 @@ export default function App() {
         <motion.section
           id="audio"
           className="scroll-mt-32 pt-12"
-          variants={sectionVariants}
+          variants={luxurySectionVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
@@ -411,7 +475,7 @@ export default function App() {
         <motion.section
           id="work"
           className={`${sectionShell} space-y-12`}
-          variants={sectionVariants}
+          variants={luxurySectionVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
@@ -419,8 +483,8 @@ export default function App() {
           <div className="flex flex-wrap items-end justify-between gap-8 px-6">
             <div className="space-y-6">
               <motion.div
-                className="flex items-center gap-4 text-brand-purple"
-                variants={fadeItem}
+                className="flex items-center gap-4 text-purple-400"
+                variants={luxuryFadeItem}
               >
                 <div className="h-px w-10 bg-current opacity-30" />
                 <span className="text-xs font-bold uppercase tracking-[0.25em]">
@@ -429,17 +493,17 @@ export default function App() {
                 <div className="h-px w-10 bg-current opacity-30" />
               </motion.div>
               <motion.h2
-                className="text-5xl font-bold text-foreground sm:text-7xl tracking-tighter leading-[1.05]"
-                variants={titleReveal}
+                className="text-5xl font-bold text-white sm:text-7xl tracking-tighter leading-[1.05]"
+                variants={luxuryTextReveal}
               >
-                {t("work.title1")} <span className="text-brand-purple italic font-serif">{t("work.title2")}</span>
+                {t("work.title1")} <span className="text-purple-400">{t("work.title2")}</span>
               </motion.h2>
             </div>
           </div>
 
           <motion.div
             className="mt-12"
-            variants={fadeItem}
+            variants={luxuryFadeItem}
           >
             <WorkGalleryCarousel />
           </motion.div>
@@ -448,7 +512,7 @@ export default function App() {
         <motion.section
           id="highlights"
           className="scroll-mt-32 pt-24"
-          variants={sectionVariants}
+          variants={luxurySectionVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
@@ -456,18 +520,18 @@ export default function App() {
           <div className="space-y-12">
             <div className="space-y-6 text-center max-w-4xl mx-auto">
               <motion.div
-                className="inline-flex items-center gap-3 text-brand-purple bg-brand-purple/5 px-5 py-2 rounded-full border border-brand-purple/10"
-                variants={fadeItem}
+                className="inline-flex items-center gap-3 text-purple-400 bg-purple-500/10 px-5 py-2 rounded-full border border-purple-500/20"
+                variants={luxuryFadeItem}
               >
                 <span className="text-xs font-bold uppercase tracking-[0.25em]">
                   {t("highlights.badge")}
                 </span>
               </motion.div>
               <motion.h2
-                className="text-5xl font-bold text-foreground sm:text-7xl tracking-tighter leading-[1.05]"
-                variants={titleReveal}
+                className="text-5xl font-bold text-white sm:text-7xl tracking-tighter leading-[1.05]"
+                variants={luxuryTextReveal}
               >
-                {t("highlights.title1")} <span className="text-brand-purple italic font-serif">{t("highlights.title2")}</span>
+                {t("highlights.title1")} <span className="text-purple-400">{t("highlights.title2")}</span>
               </motion.h2>
             </div>
 
@@ -479,18 +543,18 @@ export default function App() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
-                  className="glass-panel p-8 rounded-[2rem] border-primary/5 hover:border-brand-purple hover:shadow-[0_0_30px_-5px_rgba(var(--brand-purple),0.4)] hover:bg-brand-purple/5 transition-all duration-300 group"
+                  className="bg-slate-900/50 backdrop-blur-sm p-8 rounded-2xl border border-slate-800 hover:border-purple-500/50 hover:bg-purple-500/5 transition-all duration-300 group"
                 >
-                  <div className="size-12 rounded-xl bg-primary/5 flex items-center justify-center mb-6 group-hover:bg-primary/10 transition-colors">
-                    <item.icon className="size-6 text-primary/60 group-hover:text-primary transition-colors" />
+                  <div className="size-12 rounded-xl bg-purple-500/10 flex items-center justify-center mb-6 group-hover:bg-purple-500/20 transition-colors">
+                    <item.icon className="size-6 text-purple-400 group-hover:text-purple-300 transition-colors" />
                   </div>
-                  <h3 className="text-2xl font-bold text-foreground mb-2 truncate">
+                  <h3 className="text-2xl font-bold text-white mb-2 truncate">
                     {item.title}
                   </h3>
-                  <div className="text-primary/70 text-[10px] font-bold uppercase tracking-widest mb-4">
+                  <div className="text-purple-400/70 text-[10px] font-bold uppercase tracking-widest mb-4">
                     {item.subtitle}
                   </div>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-slate-400 leading-relaxed">
                     {item.description}
                   </p>
                 </motion.div>
@@ -504,27 +568,27 @@ export default function App() {
         <motion.section
           id="about"
           className="scroll-mt-32 pt-24"
-          variants={sectionVariants}
+          variants={luxurySectionVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
-          <div className="glass-panel rounded-[3rem] overflow-hidden border-border/40 shadow-2xl bg-card/40 backdrop-blur-2xl">
+          <div className="bg-slate-900/50 backdrop-blur-sm rounded-3xl overflow-hidden border border-slate-800 shadow-2xl">
             <div className="grid lg:grid-cols-[1fr_1.2fr] items-stretch min-h-[500px]">
               {/* Left Column: Content Area */}
               <div className="p-8 md:p-12 lg:p-16 flex flex-col justify-center space-y-8 relative z-10">
                 <div className="space-y-10">
                   <div className="space-y-6">
-                    <p className="text-xs font-bold uppercase tracking-[0.3em] text-brand-purple">{t("about.title")}</p>
-                    <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-[1.05] tracking-tight">
-                      {t("about.subtitle")} <span className="text-brand-purple italic font-serif">{t("about.subtitleI")}</span>
+                    <p className="text-xs font-bold uppercase tracking-[0.3em] text-purple-400">{t("about.title")}</p>
+                    <h2 className="text-4xl md:text-5xl font-bold text-white leading-[1.05] tracking-tight">
+                      {t("about.subtitle")} <span className="text-purple-400">{t("about.subtitleI")}</span>
                     </h2>
                   </div>
-                  <p className="text-xl text-muted-foreground leading-relaxed font-medium">
+                  <p className="text-xl text-slate-400 leading-relaxed font-medium">
                     {t("about.bio")}
                   </p>
                   <div className="pt-4">
-                    <Button asChild className="rounded-full gap-2">
+                    <Button asChild className="rounded-full gap-2 bg-purple-600 hover:bg-purple-500 text-white">
                       <Link href="/contact">
                         {t("about.contact")}
                         <ArrowUpRight className="size-4" />
@@ -541,17 +605,17 @@ export default function App() {
                 {/* Education */}
                 <div className="space-y-16">
                   <div className="space-y-8">
-                    <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-purple flex items-center gap-3">
+                    <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-purple-400 flex items-center gap-3">
                       <GraduationCap className="size-4" />
                       {t("about.education.title")}
                     </h3>
                     <div className="space-y-8">
                       {aboutData.education.map((item: any) => (
                         <div key={item.title} className="space-y-2">
-                          <h4 className="text-lg font-bold text-foreground">
+                          <h4 className="text-lg font-bold text-white">
                             {item.title}
                           </h4>
-                          <p className="text-sm text-muted-foreground font-medium">{item.detail}</p>
+                          <p className="text-sm text-slate-400 font-medium">{item.detail}</p>
                         </div>
                       ))}
                     </div>
@@ -559,7 +623,7 @@ export default function App() {
 
                   <div className="grid md:grid-cols-2 gap-16">
                     <div className="space-y-8">
-                      <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-purple flex items-center gap-3">
+                      <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-purple-400 flex items-center gap-3">
                         <Languages className="size-4" />
                         {t("about.languages.title")}
                       </h3>
@@ -569,10 +633,10 @@ export default function App() {
                             key={langItem.name}
                             className="flex items-center justify-between text-sm"
                           >
-                            <span className="text-foreground font-bold">
+                            <span className="text-white font-bold">
                               {langItem.name}
                             </span>
-                            <span className="text-muted-foreground font-medium italic">
+                            <span className="text-slate-400 font-medium italic">
                               {langItem.level}
                             </span>
                           </div>
@@ -581,7 +645,7 @@ export default function App() {
                     </div>
 
                     <div className="space-y-8">
-                      <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-purple flex items-center gap-3">
+                      <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-purple-400 flex items-center gap-3">
                         <BrainCircuit className="size-4" />
                         {t("about.skills.title")}
                       </h3>
@@ -589,7 +653,7 @@ export default function App() {
                         {aboutData.skills.map((skill: string) => (
                           <span
                             key={skill}
-                            className="px-3 py-1.5 rounded-lg bg-foreground/5 border border-foreground/5 text-[11px] font-bold text-foreground/70"
+                            className="px-3 py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-[11px] font-bold text-slate-300"
                           >
                             {skill}
                           </span>
@@ -598,8 +662,8 @@ export default function App() {
                     </div>
                   </div>
 
-                  <div className="space-y-8 text-center pt-8 border-t border-border/40">
-                    <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-purple flex items-center justify-center gap-3">
+                  <div className="space-y-8 text-center pt-8 border-t border-slate-800">
+                    <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-purple-400 flex items-center justify-center gap-3">
                       <ShieldCheck className="size-4" />
                       {t("about.certifications.title")}
                     </h3>
@@ -607,9 +671,9 @@ export default function App() {
                       {aboutData.certifications.map((item: string) => (
                         <div
                           key={item}
-                          className="text-xs font-bold text-muted-foreground flex items-center gap-2 "
+                          className="text-xs font-bold text-slate-400 flex items-center gap-2"
                         >
-                          <div className="size-1.5 rounded-full bg-brand-purple" />
+                          <div className="size-1.5 rounded-full bg-purple-400" />
                           {item}
                         </div>
                       ))}
@@ -624,7 +688,7 @@ export default function App() {
         {/* Video Background Section */}
         <motion.section
           className="relative scroll-mt-32 overflow-hidden rounded-[2.5rem] border border-border/40 shadow-2xl bg-card/50"
-          variants={sectionVariants}
+          variants={luxurySectionVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
@@ -651,23 +715,23 @@ export default function App() {
         <motion.section
           id="codex"
           className="grid gap-20 lg:grid-cols-[0.8fr_1.2fr] items-start"
-          variants={sectionVariants}
+          variants={luxurySectionVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
         >
           <div className="space-y-12">
-            <motion.div variants={fadeItem} className="space-y-8">
-              <Badge variant="glass" className="bg-brand-purple/10 text-brand-purple border-brand-purple/20 px-4 py-1.5 uppercase tracking-widest text-xs font-bold">
+            <motion.div variants={luxuryFadeItem} className="space-y-8">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-400 text-sm font-medium">
                 {t("codex.badge")}
-              </Badge>
-              <h2 className="text-5xl md:text-6xl font-bold text-foreground leading-[1.05] tracking-tighter">
+              </div>
+              <h2 className="text-5xl md:text-6xl font-bold text-white leading-[1.05] tracking-tighter">
                 {t("codex.title")}
               </h2>
-              <p className="text-xl text-muted-foreground leading-relaxed font-medium">
+              <p className="text-xl text-slate-400 leading-relaxed font-medium">
                 {t("codex.description")}
               </p>
-              <Button className="rounded-full px-10 h-14 text-base font-bold shadow-2xl hover:scale-105 transition-all" variant="outline">
+              <Button className="rounded-full px-10 h-14 text-base font-bold shadow-2xl hover:scale-105 transition-all border-slate-700 text-white hover:bg-slate-800" variant="outline">
                 {t("codex.download")}
                 <ArrowUpRight className="size-5 ml-2" />
               </Button>
@@ -682,21 +746,21 @@ export default function App() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
-                className="glass-panel p-10 rounded-[3rem] border-border/40 hover:border-brand-purple hover:shadow-[0_0_40px_-5px_rgba(var(--brand-purple),0.4)] hover:bg-brand-purple/5 transition-all duration-300 group"
+                className="bg-slate-900/50 backdrop-blur-sm p-10 rounded-2xl border border-slate-800 hover:border-purple-500/50 hover:bg-purple-500/5 transition-all duration-300 group"
               >
                 <div className="flex justify-between items-start mb-8">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-brand-purple/50 group-hover:text-brand-purple transition-colors">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-purple-400/50 group-hover:text-purple-400 transition-colors">
                     {principle.label}
                   </p>
-                  <Badge className="bg-foreground text-background font-bold px-3 py-1 rounded-full text-[10px] uppercase tracking-widest border-none">
+                  <span className="bg-white text-slate-900 font-bold px-3 py-1 rounded-full text-[10px] uppercase tracking-widest">
                     Naga Codex
-                  </Badge>
+                  </span>
                 </div>
                 <div className="space-y-4">
-                  <h3 className="text-3xl font-bold text-foreground tracking-tight">
+                  <h3 className="text-3xl font-bold text-white tracking-tight">
                     {principle.title}
                   </h3>
-                  <p className="text-lg text-muted-foreground font-medium leading-relaxed">
+                  <p className="text-lg text-slate-400 font-medium leading-relaxed">
                     {principle.copy}
                   </p>
                 </div>
@@ -711,12 +775,12 @@ export default function App() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] as const }}
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--brand-purple),transparent_70%)] opacity-20" />
           <div className="relative grid gap-20 px-10 py-20 md:grid-cols-[1.1fr_0.9fr] md:px-20 lg:p-24">
             <div className="space-y-12">
-              <motion.div variants={fadeItem} className="space-y-8">
+              <motion.div variants={luxuryFadeItem} className="space-y-8">
                 <Badge className="bg-background/10 text-background border-background/20 px-4 py-1.5 font-bold uppercase tracking-widest text-[10px]">
                   {t("contact.badge")}
                 </Badge>
@@ -768,7 +832,7 @@ export default function App() {
             </div>
           </div>
         </motion.section>
-      </main >
+      </main>
 
       <footer className="bg-background border-t border-border/40 py-20">
         <div className="mx-auto max-w-7xl px-8">

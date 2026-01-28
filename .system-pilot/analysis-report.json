@@ -1,0 +1,200 @@
+{
+  "structure": {
+    "app": {
+      "api": {
+        "chat": {
+          "route.ts": {
+            "lines": 108,
+            "complexity": 8,
+            "cyberpunkElements": 1
+          }
+        }
+      },
+      "certifications": {
+        "page.tsx": {
+          "lines": 437,
+          "complexity": 29,
+          "cyberpunkElements": 5
+        }
+      },
+      "chat": {
+        "page.tsx": {
+          "lines": 71,
+          "complexity": 2,
+          "cyberpunkElements": 0
+        }
+      },
+      "contact": {
+        "page.tsx": {
+          "lines": 230,
+          "complexity": 8,
+          "cyberpunkElements": 3
+        }
+      },
+      "layout.tsx": {
+        "lines": 128,
+        "complexity": 2,
+        "cyberpunkElements": 2
+      },
+      "page.tsx": {
+        "lines": 898,
+        "complexity": 8,
+        "cyberpunkElements": 6
+      },
+      "policies": {
+        "page.tsx": {
+          "lines": 137,
+          "complexity": 2,
+          "cyberpunkElements": 1
+        }
+      }
+    },
+    "components": {
+      "AIActSection.tsx": {
+        "lines": 103,
+        "complexity": 3,
+        "cyberpunkElements": 0
+      },
+      "AICreationCarousel.tsx": {
+        "lines": 135,
+        "complexity": 5,
+        "cyberpunkElements": 0
+      },
+      "AINetworkAnimation.tsx": {
+        "lines": 99,
+        "complexity": 2,
+        "cyberpunkElements": 0
+      },
+      "AudioShowcase.tsx": {
+        "lines": 245,
+        "complexity": 21,
+        "cyberpunkElements": 0
+      },
+      "BackgroundParticles.tsx": {
+        "lines": 138,
+        "complexity": 21,
+        "cyberpunkElements": 0
+      },
+      "ChaosExplosion.tsx": {
+        "lines": 114,
+        "complexity": 12,
+        "cyberpunkElements": 3
+      },
+      "ChatBot.tsx": {
+        "lines": 248,
+        "complexity": 16,
+        "cyberpunkElements": 0
+      },
+      "CodeParticles.tsx": {
+        "lines": 84,
+        "complexity": 14,
+        "cyberpunkElements": 1
+      },
+      "CookieBanner.tsx": {
+        "lines": 91,
+        "complexity": 6,
+        "cyberpunkElements": 0
+      },
+      "DataCorruption.tsx": {
+        "lines": 63,
+        "complexity": 7,
+        "cyberpunkElements": 0
+      },
+      "HackerTerminal.tsx": {
+        "lines": 68,
+        "complexity": 9,
+        "cyberpunkElements": 3
+      },
+      "LanguageToggle.tsx": {
+        "lines": 29,
+        "complexity": 2,
+        "cyberpunkElements": 0
+      },
+      "MatrixRain.tsx": {
+        "lines": 43,
+        "complexity": 8,
+        "cyberpunkElements": 5
+      },
+      "Navbar.tsx": {
+        "lines": 216,
+        "complexity": 15,
+        "cyberpunkElements": 9
+      },
+      "PerlinNoiseBackground.tsx": {
+        "lines": 148,
+        "complexity": 17,
+        "cyberpunkElements": 0
+      },
+      "Providers.tsx": {
+        "lines": 13,
+        "complexity": 2,
+        "cyberpunkElements": 0
+      },
+      "RAGSection.tsx": {
+        "lines": 132,
+        "complexity": 3,
+        "cyberpunkElements": 0
+      },
+      "ServicesCarousel.tsx": {
+        "lines": 160,
+        "complexity": 5,
+        "cyberpunkElements": 0
+      },
+      "Testimonials.tsx": {
+        "lines": 104,
+        "complexity": 2,
+        "cyberpunkElements": 0
+      },
+      "WorkGalleryCarousel.tsx": {
+        "lines": 152,
+        "complexity": 5,
+        "cyberpunkElements": 0
+      },
+      "ui": {
+        "badge.tsx": {
+          "lines": 49,
+          "complexity": 2,
+          "cyberpunkElements": 0
+        },
+        "button.tsx": {
+          "lines": 62,
+          "complexity": 2,
+          "cyberpunkElements": 0
+        },
+        "card.tsx": {
+          "lines": 93,
+          "complexity": 8,
+          "cyberpunkElements": 0
+        }
+      }
+    },
+    "lib": {
+      "LanguageContext.tsx": {
+        "lines": 66,
+        "complexity": 11,
+        "cyberpunkElements": 0
+      },
+      "translations.ts": {
+        "lines": 685,
+        "complexity": 1,
+        "cyberpunkElements": 36
+      },
+      "utils.ts": {
+        "lines": 7,
+        "complexity": 2,
+        "cyberpunkElements": 0
+      }
+    }
+  },
+  "dependencies": {
+    "total": 20,
+    "devDependencies": 25,
+    "cyberpunkLibs": [
+      "framer-motion",
+      "gsap",
+      "lucide-react"
+    ]
+  },
+  "performance": {},
+  "cyberpunkScore": 100
+}
