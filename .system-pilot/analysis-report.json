@@ -37,9 +37,9 @@
         "cyberpunkElements": 6
       },
       "page.tsx": {
-        "lines": 982,
+        "lines": 968,
         "complexity": 8,
-        "cyberpunkElements": 6
+        "cyberpunkElements": 9
       },
       "policies": {
         "page.tsx": {
@@ -51,13 +51,18 @@
     },
     "components": {
       "AIActSection.tsx": {
-        "lines": 103,
-        "complexity": 3,
+        "lines": 223,
+        "complexity": 7,
         "cyberpunkElements": 0
       },
       "AICreationCarousel.tsx": {
         "lines": 135,
         "complexity": 5,
+        "cyberpunkElements": 0
+      },
+      "AILabAnimation.tsx": {
+        "lines": 348,
+        "complexity": 7,
         "cyberpunkElements": 0
       },
       "AINetworkAnimation.tsx": {
@@ -66,7 +71,7 @@
         "cyberpunkElements": 0
       },
       "AudioShowcase.tsx": {
-        "lines": 245,
+        "lines": 252,
         "complexity": 21,
         "cyberpunkElements": 0
       },
@@ -110,10 +115,20 @@
         "complexity": 7,
         "cyberpunkElements": 0
       },
+      "FloatingBadge.tsx": {
+        "lines": 48,
+        "complexity": 2,
+        "cyberpunkElements": 0
+      },
+      "GlassCard.tsx": {
+        "lines": 37,
+        "complexity": 2,
+        "cyberpunkElements": 0
+      },
       "HackerTerminal.tsx": {
-        "lines": 68,
-        "complexity": 9,
-        "cyberpunkElements": 3
+        "lines": 294,
+        "complexity": 26,
+        "cyberpunkElements": 2
       },
       "LanguageToggle.tsx": {
         "lines": 29,
@@ -140,18 +155,38 @@
         "complexity": 17,
         "cyberpunkElements": 0
       },
+      "PremiumButton.tsx": {
+        "lines": 80,
+        "complexity": 2,
+        "cyberpunkElements": 0
+      },
+      "PremiumFooter.tsx": {
+        "lines": 183,
+        "complexity": 2,
+        "cyberpunkElements": 1
+      },
       "Providers.tsx": {
         "lines": 13,
         "complexity": 2,
         "cyberpunkElements": 0
       },
       "RAGSection.tsx": {
-        "lines": 132,
-        "complexity": 3,
+        "lines": 222,
+        "complexity": 7,
         "cyberpunkElements": 0
       },
       "ScanlinesOverlay.tsx": {
         "lines": 8,
+        "complexity": 2,
+        "cyberpunkElements": 0
+      },
+      "SectionDivider.tsx": {
+        "lines": 79,
+        "complexity": 4,
+        "cyberpunkElements": 0
+      },
+      "SectionLabel.tsx": {
+        "lines": 57,
         "complexity": 2,
         "cyberpunkElements": 0
       },
@@ -166,8 +201,8 @@
         "cyberpunkElements": 0
       },
       "WorkGalleryCarousel.tsx": {
-        "lines": 152,
-        "complexity": 5,
+        "lines": 59,
+        "complexity": 3,
         "cyberpunkElements": 0
       },
       "ui": {

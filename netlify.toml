@@ -8,4 +8,8 @@
 [build.environment]
   # Disable blob storage requirement for Netlify
   NEXT_PRIVATE_SKIP_BLOB_STORAGE = "true"
+  # Fix for pnpm symlinks in standalone output
+  NETLIFY_NEXT_PLUGIN_SKIP_ROOT_PATHS = "true"
+  # Ensure pnpm uses hoisted node_modules to avoid symlink issues
+  NODE_OPTIONS = "--max-old-space-size=4096"
 

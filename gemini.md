@@ -7,7 +7,7 @@ Building a deterministic, high-performance portfolio for a Certified AI Manager.
 1. **Blueprint**: Data defines the UI. Check `translations.ts` before modifying components.
 2. **Link**: All API routes must have Zod validation and structured error handling.
 3. **Architect**: 3-Layer separation. `src/components` (UI), `src/app` (Navigation/Pages), `src/lib` (Logic/Data).
-4. **Stylize**: 
+4. **Stylize**: opencode
     - **Typography**: `Orbitron` for high-impact display, `JetBrains Mono` for tech metadata, `Inter` for readability.
     - **Palette**: `Cyber-Dark` base (`oklch(0.04 0.012 250)`) with `Neon-Purple` and `Holographic-Cyan` accents.
     - **Motion**: High-impact staggered reveals. Stated: "Staggered reveals > scattered interactions".

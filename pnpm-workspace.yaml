@@ -1,0 +1,7 @@
+packages:
+  - "."
+
+# pnpm-specific settings
+public-hoist-pattern:
+  - "*"
+node-linker: hoisted

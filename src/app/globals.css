@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Audiowide&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -159,9 +160,11 @@
   }
 
   ::selection {
-    background: linear-gradient(135deg,
-        oklch(from var(--metallic-gold) l c h / 0.2),
-        oklch(from var(--brand-purple) l c h / 0.1));
+    background: linear-gradient(
+      135deg,
+      oklch(from var(--metallic-gold) l c h / 0.2),
+      oklch(from var(--brand-purple) l c h / 0.1)
+    );
     color: var(--foreground);
     text-shadow: 0 0 20px oklch(from var(--metallic-gold) l c h / 0.3);
   }
@@ -252,35 +255,39 @@
 }
 
 @layer utilities {
-
   /* Luxury gradients with metallic undertones */
   .gradient-hero {
-    background: radial-gradient(ellipse at 20% -5%,
-        oklch(from var(--metallic-gold) l c h / 0.15) 0%,
-        oklch(from var(--platinum) l c h / 0.08) 40%,
-        var(--background) 100%);
+    background: radial-gradient(
+      ellipse at 20% -5%,
+      oklch(from var(--metallic-gold) l c h / 0.15) 0%,
+      oklch(from var(--platinum) l c h / 0.08) 40%,
+      var(--background) 100%
+    );
   }
 
   .gradient-luxury {
-    background: linear-gradient(135deg,
-        oklch(from var(--metallic-gold) l c h / 0.3),
-        oklch(from var(--brand-purple) l c h / 0.2),
-        oklch(from var(--platinum) l c h / 0.1));
+    background: linear-gradient(
+      135deg,
+      oklch(from var(--metallic-gold) l c h / 0.3),
+      oklch(from var(--brand-purple) l c h / 0.2),
+      oklch(from var(--platinum) l c h / 0.1)
+    );
   }
 
   .gradient-brutal {
-    background: linear-gradient(45deg,
-        var(--foreground) 0%,
-        var(--metallic-gold) 25%,
-        var(--brand-purple) 50%,
-        var(--platinum) 75%,
-        var(--foreground) 100%);
+    background: linear-gradient(
+      45deg,
+      var(--foreground) 0%,
+      var(--metallic-gold) 25%,
+      var(--brand-purple) 50%,
+      var(--platinum) 75%,
+      var(--foreground) 100%
+    );
     background-size: 200% 200%;
     animation: brutal-shift 8s ease infinite;
   }
 
   @keyframes brutal-shift {
-
     0%,
     100% {
       background-position: 0% 50%;
@@ -292,10 +299,12 @@
   }
 
   .text-gradient {
-    background: linear-gradient(135deg,
-        var(--metallic-gold),
-        var(--brand-purple),
-        var(--platinum));
+    background: linear-gradient(
+      135deg,
+      var(--metallic-gold),
+      var(--brand-purple),
+      var(--platinum)
+    );
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
@@ -305,7 +314,6 @@
   }
 
   @keyframes gradient-shift {
-
     0%,
     100% {
       background-position: 0% 50%;
@@ -328,10 +336,12 @@
   /* Ultra-refined glassmorphism with depth */
   .glass-panel {
     @apply backdrop-blur-3xl;
-    background: linear-gradient(135deg,
-        rgba(255, 255, 255, 0.1),
-        rgba(255, 255, 255, 0.05),
-        rgba(255, 255, 255, 0.02));
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.05),
+      rgba(255, 255, 255, 0.02)
+    );
     border: 1px solid rgba(255, 255, 255, 0.1);
     position: relative;
     box-shadow:
@@ -345,20 +355,24 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg,
-        rgba(255, 255, 255, 0.15) 0%,
-        transparent 50%,
-        rgba(255, 255, 255, 0.05) 100%);
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.15) 0%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
     mask: linear-gradient(135deg, transparent 30%, black 70%);
     pointer-events: none;
     z-index: 1;
   }
 
   .glass-panel:hover {
-    background: linear-gradient(135deg,
-        rgba(255, 255, 255, 0.15),
-        rgba(255, 255, 255, 0.08),
-        rgba(255, 255, 255, 0.03));
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.15),
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0.03)
+    );
     border-color: rgba(var(--metallic-gold), 0.3);
     box-shadow:
       0 20px 60px -8px rgba(0, 0, 0, 0.12),
@@ -416,9 +430,11 @@
   }
 
   .scrollbar-luxury::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg,
-        var(--metallic-gold),
-        var(--brand-purple));
+    background: linear-gradient(
+      135deg,
+      var(--metallic-gold),
+      var(--brand-purple)
+    );
     border-radius: 4px;
   }
 
@@ -435,10 +451,12 @@
     left: -50%;
     width: 200%;
     height: 200%;
-    background: linear-gradient(45deg,
-        transparent 30%,
-        rgba(255, 255, 255, 0.1) 50%,
-        transparent 70%);
+    background: linear-gradient(
+      45deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 70%
+    );
     animation: metallic-sweep 4s ease infinite;
     pointer-events: none;
   }
@@ -464,12 +482,16 @@
     inset: 0;
     opacity: 0.03;
     background-image:
-      radial-gradient(circle at 25% 25%,
+      radial-gradient(
+        circle at 25% 25%,
         transparent 0%,
-        rgba(0, 0, 0, 0.1) 100%),
-      radial-gradient(circle at 75% 75%,
+        rgba(0, 0, 0, 0.1) 100%
+      ),
+      radial-gradient(
+        circle at 75% 75%,
         transparent 0%,
-        rgba(0, 0, 0, 0.1) 100%);
+        rgba(0, 0, 0, 0.1) 100%
+      );
     pointer-events: none;
     z-index: 1;
   }
@@ -492,9 +514,11 @@
 
   /* Luxury background patterns */
   .luxury-dots {
-    background-image: radial-gradient(circle at 1px 1px,
-        var(--metallic-gold) / 0.3 1px,
-        transparent 1px);
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      var(--metallic-gold) / 0.3 1px,
+      transparent 1px
+    );
     background-size: 40px 40px;
   }
 
@@ -542,7 +566,6 @@
 
   /* Premium loading animations */
   @keyframes luxury-pulse {
-
     0%,
     100% {
       opacity: 1;
@@ -568,19 +591,23 @@
   }
 
   .luxury-shimmer {
-    background: linear-gradient(90deg,
-        transparent,
-        rgba(var(--metallic-gold), 0.2),
-        transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(var(--metallic-gold), 0.2),
+      transparent
+    );
     background-size: 200% 100%;
     animation: luxury-shimmer 2s infinite;
   }
 
   /* Elevated surfaces */
   .surface-elevated {
-    background: linear-gradient(135deg,
-        rgba(255, 255, 255, 0.1),
-        rgba(255, 255, 255, 0.02));
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.02)
+    );
     backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow:
@@ -624,7 +651,6 @@
   }
 
   /* CYBERPUNK HACKER GLITCH EFFECTS */
-  @import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Audiowide&display=swap");
 
   .cyberpunk-bg {
     background:
@@ -672,7 +698,6 @@
   }
 
   @keyframes glitch-1 {
-
     0%,
     100% {
       clip-path: inset(40% 0 61% 0);
@@ -696,7 +721,6 @@
   }
 
   @keyframes glitch-2 {
-
     0%,
     100% {
       clip-path: inset(80% 0 1% 0);
@@ -720,7 +744,6 @@
   }
 
   @keyframes glitch-skew {
-
     0%,
     100% {
       transform: skew(0deg);
@@ -803,7 +826,8 @@
     }
 
     100% {
-      transform: translate(var(--random-x, 100px), var(--random-y, -100px)) rotate(720deg);
+      transform: translate(var(--random-x, 100px), var(--random-y, -100px))
+        rotate(720deg);
       opacity: 0;
     }
   }
@@ -816,7 +840,6 @@
   }
 
   @keyframes warp-3d {
-
     0%,
     100% {
       transform: perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1);
@@ -850,8 +873,10 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%,
-        rgba(0, 0, 0, 0.25) 50%);
+    background: linear-gradient(
+      rgba(18, 16, 16, 0) 50%,
+      rgba(0, 0, 0, 0.25) 50%
+    );
     background-size: 100% 4px;
     z-index: 1000;
     pointer-events: none;
@@ -865,9 +890,11 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(ellipse at center,
-        transparent 0%,
-        rgba(0, 0, 0, 0.4) 100%);
+    background: radial-gradient(
+      ellipse at center,
+      transparent 0%,
+      rgba(0, 0, 0, 0.4) 100%
+    );
     pointer-events: none;
     z-index: 1001;
   }
@@ -885,10 +912,12 @@
   /* Broken Glass Effect */
   .broken-glass {
     position: relative;
-    background: linear-gradient(45deg,
-        rgba(255, 0, 255, 0.1) 0%,
-        rgba(0, 255, 255, 0.1) 50%,
-        rgba(255, 255, 0, 0.1) 100%);
+    background: linear-gradient(
+      45deg,
+      rgba(255, 0, 255, 0.1) 0%,
+      rgba(0, 255, 255, 0.1) 50%,
+      rgba(255, 255, 0, 0.1) 100%
+    );
   }
 
   .broken-glass::before {
@@ -896,21 +925,30 @@
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(45deg,
-        transparent 48%,
-        #ff00ff 49%,
-        #ff00ff 51%,
-        transparent 52%) 0 0,
-      linear-gradient(-45deg,
-        transparent 48%,
-        #00ffff 49%,
-        #00ffff 51%,
-        transparent 52%) 0 0,
-      linear-gradient(45deg,
-        transparent 48%,
-        #ffff00 49%,
-        #ffff00 51%,
-        transparent 52%) 100% 100%;
+      linear-gradient(
+          45deg,
+          transparent 48%,
+          #ff00ff 49%,
+          #ff00ff 51%,
+          transparent 52%
+        )
+        0 0,
+      linear-gradient(
+          -45deg,
+          transparent 48%,
+          #00ffff 49%,
+          #00ffff 51%,
+          transparent 52%
+        )
+        0 0,
+      linear-gradient(
+          45deg,
+          transparent 48%,
+          #ffff00 49%,
+          #ffff00 51%,
+          transparent 52%
+        )
+        100% 100%;
     background-size: 20px 20px;
     opacity: 0.3;
     animation: crack-move 10s linear infinite;
@@ -936,7 +974,6 @@
   }
 
   @keyframes error-pulse {
-
     0%,
     100% {
       background: rgba(255, 0, 0, 0.1);
@@ -976,7 +1013,6 @@
   }
 
   @keyframes cyber-pulse {
-
     0%,
     100% {
       box-shadow: 0 0 10px #ff00ff;
@@ -1091,7 +1127,6 @@
   }
 
   @keyframes pixelate-chaos {
-
     0%,
     100% {
       filter: contrast(120%) brightness(95%) hue-rotate(0deg) saturate(300%);
@@ -1130,21 +1165,27 @@
 
   .screen-crack::before {
     background:
-      linear-gradient(45deg,
+      linear-gradient(
+        45deg,
         transparent 48%,
         #00ff00 49%,
         #00ff00 51%,
-        transparent 52%),
-      linear-gradient(-45deg,
+        transparent 52%
+      ),
+      linear-gradient(
+        -45deg,
         transparent 48%,
         #ff00ff 49%,
         #ff00ff 51%,
-        transparent 52%),
-      linear-gradient(90deg,
+        transparent 52%
+      ),
+      linear-gradient(
+        90deg,
         transparent 48%,
         #ffff00 49%,
         #ffff00 51%,
-        transparent 52%);
+        transparent 52%
+      );
     background-size:
       150px 150px,
       200px 200px,
@@ -1156,28 +1197,33 @@
 
   .screen-crack::after {
     background:
-      radial-gradient(ellipse at 25% 35%,
+      radial-gradient(
+        ellipse at 25% 35%,
         transparent 25%,
         #00ff00 28%,
         #00ff00 32%,
-        transparent 33%),
-      radial-gradient(ellipse at 75% 65%,
+        transparent 33%
+      ),
+      radial-gradient(
+        ellipse at 75% 65%,
         transparent 20%,
         #ff00ff 24%,
         #ff00ff 28%,
-        transparent 29%),
-      radial-gradient(ellipse at 50% 75%,
+        transparent 29%
+      ),
+      radial-gradient(
+        ellipse at 50% 75%,
         transparent 15%,
         #ffff00 18%,
         #ffff00 22%,
-        transparent 23%);
+        transparent 23%
+      );
     animation: crack-grow 15s infinite;
     opacity: 0.3;
     mix-blend-mode: multiply;
   }
 
   @keyframes crack-appear {
-
     0%,
     100% {
       opacity: 0.2;
@@ -1244,7 +1290,8 @@
     }
 
     100% {
-      transform: translate(var(--explode-x, 100px), var(--explode-y, 100px)) scale(2);
+      transform: translate(var(--explode-x, 100px), var(--explode-y, 100px))
+        scale(2);
       opacity: 0;
     }
   }
@@ -1289,11 +1336,11 @@
   /* CALMED MEGA CHAOS MODE */
   .mega-chaos {
     animation: thermal-shift 3s infinite alternate;
-    filter: contrast(200%) saturate(400%) hue-rotate(90deg) brightness(120%) blur(0.2px);
+    filter: contrast(200%) saturate(400%) hue-rotate(90deg) brightness(120%)
+      blur(0.2px);
   }
 
   @keyframes glitch-storm {
-
     0%,
     100% {
       transform: translate(0, 0) skew(0deg);
@@ -1603,10 +1650,12 @@
 /* Advanced Multi-Layer Glassmorphism */
 .glass-premium {
   position: relative;
-  background: linear-gradient(135deg,
-      rgba(255, 255, 255, 0.12) 0%,
-      rgba(255, 255, 255, 0.06) 50%,
-      rgba(255, 255, 255, 0.03) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0.06) 50%,
+    rgba(255, 255, 255, 0.03) 100%
+  );
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -1621,10 +1670,12 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg,
-      rgba(255, 255, 255, 0.2) 0%,
-      transparent 50%,
-      rgba(255, 255, 255, 0.08) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.2) 0%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.08) 100%
+  );
   border-radius: inherit;
   mask: linear-gradient(135deg, transparent 30%, black 70%);
   -webkit-mask: linear-gradient(135deg, transparent 30%, black 70%);
@@ -1633,10 +1684,12 @@
 }
 
 .glass-premium:hover {
-  background: linear-gradient(135deg,
-      rgba(255, 255, 255, 0.18) 0%,
-      rgba(255, 255, 255, 0.1) 50%,
-      rgba(255, 255, 255, 0.05) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.18) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
   border-color: rgba(168, 85, 247, 0.3);
   box-shadow:
     0 20px 60px -8px rgba(0, 0, 0, 0.18),
@@ -1677,9 +1730,11 @@
 /* Gradient Border Animation */
 .gradient-border {
   position: relative;
-  background: linear-gradient(135deg,
-      rgba(255, 255, 255, 0.08),
-      rgba(255, 255, 255, 0.02));
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.02)
+  );
   border: 1px solid transparent;
 }
 
@@ -1687,10 +1742,12 @@
   content: "";
   position: absolute;
   inset: -1px;
-  background: linear-gradient(135deg,
-      rgba(168, 85, 247, 0.5),
-      rgba(34, 211, 238, 0.5),
-      rgba(236, 72, 153, 0.5));
+  background: linear-gradient(
+    135deg,
+    rgba(168, 85, 247, 0.5),
+    rgba(34, 211, 238, 0.5),
+    rgba(236, 72, 153, 0.5)
+  );
   border-radius: inherit;
   z-index: -1;
   opacity: 0;
@@ -1726,9 +1783,11 @@
   left: 50%;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle,
-      rgba(255, 255, 255, 0.3) 0%,
-      transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.3) 0%,
+    transparent 70%
+  );
   transform: translate(-50%, -50%) scale(0);
   border-radius: 50%;
   pointer-events: none;
@@ -1769,9 +1828,11 @@
   content: "";
   position: absolute;
   inset: -20px;
-  background: radial-gradient(circle at center,
-      rgba(168, 85, 247, 0.15) 0%,
-      transparent 70%);
+  background: radial-gradient(
+    circle at center,
+    rgba(168, 85, 247, 0.15) 0%,
+    transparent 70%
+  );
   opacity: 0;
   transition: opacity 0.4s cubic-bezier(0.19, 1, 0.22, 1);
   pointer-events: none;
@@ -1804,7 +1865,6 @@
 
 /* Floating Animation */
 @keyframes float-smooth {
-
   0%,
   100% {
     transform: translateY(0px);
@@ -1845,11 +1905,7 @@
 }
 
 .gradient-text-animated {
-  background: linear-gradient(90deg,
-      #a855f7,
-      #22d3ee,
-      #ec4899,
-      #a855f7);
+  background: linear-gradient(90deg, #a855f7, #22d3ee, #ec4899, #a855f7);
   background-size: 300% 100%;
   -webkit-background-clip: text;
   background-clip: text;
