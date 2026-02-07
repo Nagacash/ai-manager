@@ -19,7 +19,7 @@ export default function ServicesCarousel() {
   const [direction, setDirection] = useState(0);
 
   const icons = [BrainCircuit, ShieldCheck, LineChart, ShieldCheck, Headphones];
-  const colors = ["#a855f7", "#22d3ee", "#ec4899", "#10b981", "#f59e0b"];
+  const colors = ["#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff"];
 
   const translatedItems = t("services.items");
   const safeItems = Array.isArray(translatedItems) ? translatedItems : [];
@@ -101,7 +101,7 @@ export default function ServicesCarousel() {
                 variant="outline"
                 size="icon"
                 onClick={() => paginate(-1)}
-                className="size-14 rounded-full border-border/60 hover:bg-brand-cyan hover:text-background hover:border-brand-cyan transition-all duration-300"
+                className="size-14 rounded-full border-white/20 bg-white/5 hover:bg-purple-500 hover:text-white hover:border-purple-500 transition-all duration-300"
               >
                 <ChevronLeft className="size-7" />
               </Button>
@@ -109,15 +109,15 @@ export default function ServicesCarousel() {
                 variant="outline"
                 size="icon"
                 onClick={() => paginate(1)}
-                className="size-14 rounded-full border-border/60 hover:bg-brand-cyan hover:text-background hover:border-brand-cyan transition-all duration-300"
+                className="size-14 rounded-full border-white/20 bg-white/5 hover:bg-purple-500 hover:text-white hover:border-purple-500 transition-all duration-300"
               >
                 <ChevronRight className="size-7" />
               </Button>
             </div>
 
-            <div className="h-px flex-1 bg-border/40" />
+            <div className="h-px flex-1 bg-white/20" />
 
-            <div className="text-xs font-bold text-slate-600 tracking-[0.3em] uppercase">
+            <div className="text-xs font-bold text-white/60 tracking-[0.3em] uppercase">
               {String(activeIndex + 1).padStart(2, "0")} —{" "}
               {String(services.length).padStart(2, "0")}
             </div>
@@ -136,8 +136,8 @@ export default function ServicesCarousel() {
             }}
             className={`h-1.5 rounded-full transition-all duration-500 ${
               index === activeIndex
-                ? "w-16 bg-brand-cyan"
-                : "w-4 bg-slate-700 hover:bg-slate-600"
+                ? "w-16 bg-purple-400"
+                : "w-4 bg-white/20 hover:bg-white/40"
             }`}
           />
         ))}

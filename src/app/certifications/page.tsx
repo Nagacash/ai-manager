@@ -3,7 +3,15 @@
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useRef, useLayoutEffect } from "react";
-import { ArrowLeft, FileText, X, Award, Shield, Layout, Settings } from "lucide-react";
+import {
+  ArrowLeft,
+  FileText,
+  X,
+  Award,
+  Shield,
+  Layout,
+  Settings,
+} from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -137,7 +145,10 @@ const AnimatedBackground = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+    <div
+      ref={containerRef}
+      className="fixed inset-0 -z-10 overflow-hidden pointer-events-none"
+    >
       {/* Noise Texture */}
       <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
 
@@ -241,16 +252,19 @@ export default function CertificationsPage() {
   const playClickSound = () => {
     if (audioRef.current) {
       audioRef.current.currentTime = 0;
-      audioRef.current.play().catch(() => { });
+      audioRef.current.play().catch(() => {});
     } else {
       const audio = new Audio("/images/sound/mouse.mp3");
       audio.volume = 0.3;
-      audio.play().catch(() => { });
+      audio.play().catch(() => {});
       audioRef.current = audio;
     }
   };
 
-  const handleCardMouseMove = (e: React.MouseEvent<HTMLDivElement>, card: HTMLDivElement) => {
+  const handleCardMouseMove = (
+    e: React.MouseEvent<HTMLDivElement>,
+    card: HTMLDivElement,
+  ) => {
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -290,13 +304,15 @@ export default function CertificationsPage() {
       <Navbar />
 
       <main className="relative z-10 mx-auto flex max-w-6xl flex-col gap-16 px-6 py-32 sm:px-8 lg:px-12">
-
         <div className="space-y-6">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
           >
-            <Badge variant="outline" className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary border-primary/20">
+            <Badge
+              variant="outline"
+              className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary border-primary/20"
+            >
               {t("nav.certifications")}
             </Badge>
           </motion.div>
@@ -308,7 +324,10 @@ export default function CertificationsPage() {
           </p>
         </div>
 
-        <div ref={cardsRef} className="grid gap-10 md:grid-cols-1 lg:grid-cols-2">
+        <div
+          ref={cardsRef}
+          className="grid gap-10 md:grid-cols-1 lg:grid-cols-2"
+        >
           {certificationList.map((cert) => (
             <div
               key={cert.title}
@@ -316,7 +335,7 @@ export default function CertificationsPage() {
               onMouseMove={(e) => handleCardMouseMove(e, e.currentTarget)}
               onMouseLeave={(e) => handleCardMouseLeave(e.currentTarget)}
             >
-              <Card className="group h-full border-slate-700/50 bg-slate-900/60 backdrop-blur-sm shadow-sm transition-all hover:shadow-2xl hover:border-purple-500/30 overflow-hidden relative">
+              <Card className="group h-full border-slate-700/50 bg-slate-900/60 backdrop-blur-sm shadow-sm transition-all hover:shadow-2xl hover:border-white/30 overflow-hidden relative">
                 {/* Spotlight effect placeholder - can be refined with more GSAP if needed */}
                 <div className="absolute inset-0 bg-radial-gradient(circle_at_var(--mouse-x)_var(--mouse-y),rgba(var(--primary-rgb),0.05)_0%,transparent_50%) opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
@@ -324,7 +343,11 @@ export default function CertificationsPage() {
                   <div className="flex items-start gap-6">
                     <div
                       className="flex-shrink-0 size-16 rounded-2xl flex items-center justify-center transition-transform group-hover:scale-110 duration-500 shadow-sm"
-                      style={{ backgroundColor: `${cert.color.replace(')', ' / 0.15)')}`, color: cert.color, border: `1px solid ${cert.color.replace(')', ' / 0.2)')}` }}
+                      style={{
+                        backgroundColor: `${cert.color.replace(")", " / 0.15)")}`,
+                        color: cert.color,
+                        border: `1px solid ${cert.color.replace(")", " / 0.2)")}`,
+                      }}
                     >
                       <cert.icon className="size-8" />
                     </div>
@@ -342,7 +365,7 @@ export default function CertificationsPage() {
                 </CardHeader>
                 <CardContent className="p-8 pt-4 relative z-10">
                   <div
-                    className="group/preview relative w-full overflow-hidden rounded-2xl border border-slate-700/60 bg-slate-800 shadow-inner cursor-pointer transition-all hover:border-purple-500/30"
+                    className="group/preview relative w-full overflow-hidden rounded-2xl border border-slate-700/60 bg-slate-800 shadow-inner cursor-pointer transition-all hover:border-white/30"
                     onClick={() => {
                       playClickSound();
                       setSelectedCert(cert.file);
@@ -363,7 +386,9 @@ export default function CertificationsPage() {
                     <div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover/preview:bg-primary/5 transition-all duration-300">
                       <div className="translate-y-4 opacity-0 group-hover/preview:translate-y-0 group-hover/preview:opacity-100 transition-all duration-300">
                         <span className="magnetic-btn inline-flex items-center gap-2 bg-slate-800 px-5 py-2.5 rounded-full text-sm font-semibold text-white shadow-xl border border-slate-600">
-                          <span className="inline-block">View full certificate</span>
+                          <span className="inline-block">
+                            View full certificate
+                          </span>
                           <Award className="size-4 text-primary" />
                         </span>
                       </div>
@@ -402,9 +427,14 @@ export default function CertificationsPage() {
                   </div>
                   <div>
                     <h2 className="text-xl font-bold text-foreground leading-none">
-                      {certificationList.find(c => c.file === selectedCert)?.title}
+                      {
+                        certificationList.find((c) => c.file === selectedCert)
+                          ?.title
+                      }
                     </h2>
-                    <p className="text-sm text-slate-500 mt-1">Official Document Preview</p>
+                    <p className="text-sm text-slate-500 mt-1">
+                      Official Document Preview
+                    </p>
                   </div>
                 </div>
                 <button
@@ -431,6 +461,3 @@ export default function CertificationsPage() {
     </div>
   );
 }
-
-
-

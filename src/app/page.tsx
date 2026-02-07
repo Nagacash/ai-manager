@@ -24,6 +24,9 @@ import {
   X,
   Sparkles,
 } from "lucide-react";
+import ChatBot from "@/components/ChatBot";
+import StarParticles from "@/components/StarParticles";
+import SmokeParticles from "@/components/SmokeParticles";
 import PerlinNoiseBackground from "@/components/PerlinNoiseBackground";
 import BackgroundParticles from "@/components/BackgroundParticles";
 import AIActSection from "@/components/AIActSection";
@@ -288,6 +291,8 @@ export default function App() {
       </a>
 
       {/* COSMIC BACKGROUND LAYERS - From Another Planet */}
+      <StarParticles />
+      <SmokeParticles />
       <CosmicStarfield />
       <OrbitalRings />
       <PerlinNoiseBackground />
@@ -487,136 +492,70 @@ export default function App() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
         >
-          <div className="text-center space-y-4 max-w-2xl mx-auto mb-10">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-400 text-sm font-medium">
-              <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
-              {t("terminal.badge") || "Live System"}
-            </div>
-            <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight">
-              {t("terminal.title") || "System"}{" "}
-              <span className="text-purple-400">
-                {t("terminal.titleAccent") || "Terminal"}
-              </span>
-            </h2>
-            <p className="text-lg text-slate-400 leading-relaxed">
-              {t("terminal.description") ||
-                "A live look into the neural network — autonomous agents, quantum encryption, and code intelligence running in real time."}
-            </p>
-          </div>
-
-          {/* Monitor Frame */}
-          <div className="mx-auto max-w-5xl">
-            {/* Monitor Body */}
-            <div className="relative rounded-2xl border-[3px] border-slate-600 bg-gradient-to-b from-slate-700 via-slate-800 to-slate-700 p-2 md:p-3 shadow-[0_8px_60px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.08)]">
-              {/* Top bezel with webcam + indicator */}
-              <div className="flex items-center justify-center gap-2 pb-2">
-                <div className="size-2 rounded-full bg-slate-600 ring-1 ring-slate-500" />
-                <div className="size-3 rounded-full bg-slate-900 ring-1 ring-slate-600 flex items-center justify-center">
-                  <div className="size-1.5 rounded-full bg-slate-700" />
-                </div>
-                <div className="size-2 rounded-full bg-slate-600 ring-1 ring-slate-500" />
+          <div className="bg-slate-950/50 rounded-3xl p-8 md:p-12 border border-white/5">
+            <div className="text-center space-y-4 max-w-2xl mx-auto mb-10">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-400 text-sm font-medium">
+                <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
+                {t("terminal.badge") || "Live System"}
               </div>
+              <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight">
+                {t("terminal.title") || "System"}{" "}
+                <span className="text-purple-400">
+                  {t("terminal.titleAccent") || "Terminal"}
+                </span>
+              </h2>
+              <p className="text-lg text-slate-400 leading-relaxed">
+                {t("terminal.description") ||
+                  "A live look into the neural network — autonomous agents, quantum encryption, and code intelligence running in real time."}
+              </p>
+            </div>
 
-              {/* Screen */}
-              <div className="relative w-full h-[420px] md:h-[520px] rounded-lg overflow-hidden bg-[#0d1117] border border-slate-900 shadow-[inset_0_0_80px_rgba(0,0,0,0.8)]">
-                {/* Window title bar */}
-                <div className="relative z-30 flex items-center gap-2 px-4 py-2 bg-[#161b22] border-b border-[#30363d]">
-                  <div className="flex gap-2">
-                    <div className="size-3 rounded-full bg-[#ff5f57] shadow-[0_0_6px_rgba(255,95,87,0.4)]" />
-                    <div className="size-3 rounded-full bg-[#febc2e] shadow-[0_0_6px_rgba(254,188,46,0.4)]" />
-                    <div className="size-3 rounded-full bg-[#28c840] shadow-[0_0_6px_rgba(40,200,64,0.4)]" />
+            {/* Modern Floating Terminal */}
+            <div className="relative mx-auto max-w-4xl">
+              {/* Glowing backdrop */}
+              <div className="absolute -inset-4 bg-gradient-to-r from-purple-500/20 via-purple-400/10 to-purple-500/20 rounded-3xl blur-2xl" />
+
+              {/* Terminal Window */}
+              <div className="relative rounded-2xl overflow-hidden bg-slate-900/95 backdrop-blur-xl border border-white/10 shadow-2xl">
+                {/* Minimal Header */}
+                <div className="flex items-center justify-between px-4 py-3 bg-slate-800/50 border-b border-white/5">
+                  <div className="flex items-center gap-2">
+                    <div className="flex gap-1.5">
+                      <div className="w-3 h-3 rounded-full bg-red-500/80" />
+                      <div className="w-3 h-3 rounded-full bg-amber-500/80" />
+                      <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
+                    </div>
                   </div>
-                  <div className="flex-1 flex items-center justify-center gap-2">
-                    <svg
-                      className="size-3 text-slate-500"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                      />
-                    </svg>
-                    <span className="text-[11px] font-mono text-slate-500">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-mono text-slate-500">
                       naga@codex: ~/neural-ops
                     </span>
                   </div>
-                  <div className="w-[52px] flex justify-end gap-2">
-                    <svg
-                      className="size-3.5 text-slate-600"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M20 12H4"
-                      />
-                    </svg>
-                    <svg
-                      className="size-3.5 text-slate-600"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"
-                      />
-                    </svg>
+                  <div className="w-16" />
+                </div>
+
+                {/* Terminal Content */}
+                <div className="relative w-full h-[380px] md:h-[480px]">
+                  {/* Background effects */}
+                  <div className="absolute inset-0 overflow-hidden">
+                    <MatrixRain />
+                    <CodeParticles />
+                    <ChaosExplosion />
                   </div>
-                </div>
 
-                {/* Background effects layer (behind terminal text) */}
-                <div className="absolute inset-0 top-[36px] overflow-hidden z-0">
-                  <MatrixRain />
-                  <CodeParticles />
-                  <ChaosExplosion />
-                </div>
+                  {/* Terminal content */}
+                  <div className="absolute inset-0 overflow-hidden">
+                    <HackerTerminal />
+                  </div>
 
-                {/* Terminal content (on top of effects) */}
-                <div className="absolute inset-0 top-[36px] overflow-hidden">
-                  <HackerTerminal />
-                </div>
-
-                {/* CRT scanline overlay */}
-                <div className="absolute inset-0 pointer-events-none z-30 mix-blend-overlay opacity-[0.025] bg-[repeating-linear-gradient(0deg,transparent,transparent_1px,rgba(255,255,255,0.06)_1px,rgba(255,255,255,0.06)_2px)]" />
-                {/* Vignette */}
-                <div className="absolute inset-0 pointer-events-none z-30 bg-[radial-gradient(ellipse_at_center,transparent_60%,rgba(0,0,0,0.35)_100%)]" />
-                {/* Screen reflection glare */}
-                <div className="absolute inset-0 pointer-events-none z-30 bg-gradient-to-br from-white/[0.015] via-transparent to-transparent" />
-              </div>
-
-              {/* Bottom bezel with brand */}
-              <div className="flex items-center justify-center pt-2">
-                <div className="px-4 py-0.5 rounded-sm">
-                  <span className="text-[9px] font-bold uppercase tracking-[0.35em] text-slate-500">
-                    Naga Codex
-                  </span>
+                  {/* Subtle overlays */}
+                  <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-slate-900/50 via-transparent to-slate-900/20" />
                 </div>
               </div>
-            </div>
 
-            {/* Monitor Stand - Neck */}
-            <div className="flex justify-center">
-              <div className="w-16 h-10 bg-gradient-to-b from-slate-700 to-slate-600 border-x border-slate-500/30 shadow-lg" />
-            </div>
-
-            {/* Monitor Stand - Base */}
-            <div className="flex justify-center -mt-px">
-              <div className="w-48 h-3 rounded-b-xl bg-gradient-to-b from-slate-600 to-slate-700 border border-t-0 border-slate-500/30 shadow-xl" />
-            </div>
-
-            {/* Desk reflection */}
-            <div className="flex justify-center mt-1">
-              <div className="w-40 h-4 bg-gradient-to-b from-slate-800/30 to-transparent rounded-full blur-md" />
+              {/* Floating decoration elements */}
+              <div className="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-br from-purple-500/30 to-purple-600/20 rounded-2xl blur-xl animate-pulse" />
+              <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-gradient-to-tr from-purple-400/20 to-purple-500/10 rounded-full blur-2xl" />
             </div>
           </div>
         </motion.section>
@@ -785,228 +724,7 @@ export default function App() {
           </div>
         </motion.section>
 
-        <Testimonials />
-
-        <motion.section
-          id="about"
-          className="scroll-mt-32 pt-24"
-          variants={luxurySectionVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-        >
-          <div className="bg-slate-900/50 backdrop-blur-sm rounded-3xl overflow-hidden border border-white/30 shadow-2xl">
-            <div className="grid lg:grid-cols-[1fr_1.2fr] items-stretch min-h-[500px]">
-              {/* Left Column: Content Area */}
-              <div className="p-8 md:p-12 lg:p-16 flex flex-col justify-center space-y-8 relative z-10">
-                <div className="space-y-10">
-                  <div className="space-y-6">
-                    <p className="text-xs font-bold uppercase tracking-[0.3em] text-purple-400">
-                      {t("about.title")}
-                    </p>
-                    <AnimatedHeader
-                      as="h2"
-                      className="text-4xl md:text-5xl font-bold text-white leading-[1.05] tracking-tight"
-                    >
-                      {t("about.subtitle")}{" "}
-                      <span className="text-purple-400">
-                        {t("about.subtitleI")}
-                      </span>
-                    </AnimatedHeader>
-                  </div>
-                  <p className="text-xl text-slate-400 leading-relaxed font-medium">
-                    {t("about.bio")}
-                  </p>
-                  <div className="pt-4">
-                    <Button
-                      asChild
-                      className="rounded-full gap-2 bg-purple-600 hover:bg-purple-500 text-white"
-                    >
-                      <Link href="/contact">
-                        {t("about.contact")}
-                        <ArrowUpRight className="size-4" />
-                      </Link>
-                    </Button>
-                  </div>
-                </div>
-              </div>
-
-              {/* Right Column: Experience & Skills */}
-              <div className="p-10 md:p-14 lg:p-16 space-y-16">
-                {/* Education */}
-                <div className="space-y-16">
-                  <div className="space-y-8">
-                    <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-purple-400 flex items-center gap-3">
-                      <GraduationCap className="size-4" />
-                      {t("about.education.title")}
-                    </h3>
-                    <div className="space-y-8">
-                      {aboutData.education.map((item: any) => (
-                        <div key={item.title} className="space-y-2">
-                          <h4 className="text-lg font-bold text-white">
-                            {item.title}
-                          </h4>
-                          <p className="text-sm text-slate-400 font-medium">
-                            {item.detail}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="grid md:grid-cols-2 gap-16">
-                    <div className="space-y-8">
-                      <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-purple-400 flex items-center gap-3">
-                        <Languages className="size-4" />
-                        {t("about.languages.title")}
-                      </h3>
-                      <div className="grid gap-4">
-                        {aboutData.languages.map((langItem: any) => (
-                          <div
-                            key={langItem.name}
-                            className="flex items-center justify-between text-sm"
-                          >
-                            <span className="text-white font-bold">
-                              {langItem.name}
-                            </span>
-                            <span className="text-slate-400 font-medium italic">
-                              {langItem.level}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="space-y-8">
-                      <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-purple-400 flex items-center gap-3">
-                        <BrainCircuit className="size-4" />
-                        {t("about.skills.title")}
-                      </h3>
-                      <div className="flex flex-wrap gap-2">
-                        {aboutData.skills.map((skill: string) => (
-                          <span
-                            key={skill}
-                            className="px-3 py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-[11px] font-bold text-slate-300"
-                          >
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="space-y-8 text-center pt-8 border-t border-slate-800">
-                    <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-purple-400 flex items-center justify-center gap-3">
-                      <ShieldCheck className="size-4" />
-                      {t("about.certifications.title")}
-                    </h3>
-                    <div className="flex flex-wrap justify-center gap-4">
-                      {aboutData.certifications.map((item: string) => (
-                        <div
-                          key={item}
-                          className="text-xs font-bold text-slate-400 flex items-center gap-2"
-                        >
-                          <div className="size-1.5 rounded-full bg-purple-400" />
-                          {item}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.section>
-
-        {/* Video Background Section */}
-        <motion.section
-          className="relative scroll-mt-32 overflow-hidden rounded-[2.5rem] border border-border/40 shadow-2xl bg-card/50"
-          variants={luxurySectionVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-        >
-          <div className="relative aspect-video w-full overflow-hidden">
-            <div className="absolute inset-0 z-0">
-              <iframe
-                width="100%"
-                height="100%"
-                src="https://www.youtube.com/embed/4udj0bH9Ouo?si=9SKmxRS8kObU5_W8&autoplay=1&mute=1&loop=1&playlist=4udj0bH9Ouo&controls=0&showinfo=0&rel=0"
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-                className="absolute inset-0 h-full w-full scale-[1.02]"
-                style={{ pointerEvents: "none" }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-background/10 z-10" />
-            </div>
-          </div>
-        </motion.section>
-
-        <motion.section
-          id="codex"
-          className="grid gap-20 lg:grid-cols-[0.8fr_1.2fr] items-start"
-          variants={luxurySectionVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-        >
-          <div className="space-y-12">
-            <motion.div variants={luxuryFadeItem} className="space-y-8">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-400 text-sm font-medium">
-                {t("codex.badge")}
-              </div>
-              <AnimatedHeader
-                as="h2"
-                className="text-5xl md:text-6xl font-bold text-white leading-[1.05] tracking-tighter"
-              >
-                {t("codex.title")}
-              </AnimatedHeader>
-              <p className="text-xl text-slate-400 leading-relaxed font-medium">
-                {t("codex.description")}
-              </p>
-              <Button
-                className="rounded-full px-10 h-14 text-base font-bold shadow-2xl hover:scale-105 transition-all border-slate-700 text-white hover:bg-slate-800"
-                variant="outline"
-              >
-                {t("codex.download")}
-                <ArrowUpRight className="size-5 ml-2" />
-              </Button>
-            </motion.div>
-          </div>
-
-          <div className="space-y-8">
-            {principlesData.map((principle: any, idx: number) => (
-              <motion.div
-                key={principle.label}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
-                className="bg-slate-900/50 backdrop-blur-sm p-10 rounded-2xl border border-white/30 hover:border-white/60 hover:bg-white/5 transition-all duration-300 group"
-              >
-                <div className="flex justify-between items-start mb-8">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-purple-400/50 group-hover:text-purple-400 transition-colors">
-                    {principle.label}
-                  </p>
-                  <span className="bg-white text-slate-900 font-bold px-3 py-1 rounded-full text-[10px] uppercase tracking-widest">
-                    Naga Codex
-                  </span>
-                </div>
-                <div className="space-y-4">
-                  <h3 className="text-3xl font-bold text-white tracking-tight">
-                    {principle.title}
-                  </h3>
-                  <p className="text-lg text-slate-400 font-medium leading-relaxed">
-                    {principle.copy}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
+        <SectionDivider />
 
         <motion.section
           id="contact"

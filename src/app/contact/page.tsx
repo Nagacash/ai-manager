@@ -238,17 +238,17 @@ export default function ContactPage() {
                           ? "noreferrer"
                           : undefined
                       }
-                      className="group flex items-center justify-between p-3 rounded-xl border border-transparent hover:border-brand-cyan/30 hover:bg-brand-cyan/5 transition-all"
+                      className="group flex items-center justify-between p-3 rounded-xl border border-transparent hover:border-white/30 hover:bg-white/5 transition-all"
                     >
                       <div className="flex flex-col">
-                        <span className="text-xs uppercase tracking-[0.15em] text-slate-500 group-hover:text-brand-cyan/70 transition-colors">
+                        <span className="text-xs uppercase tracking-[0.15em] text-slate-500 group-hover:text-white/70 transition-colors">
                           {channel.label}
                         </span>
                         <span className="text-sm font-medium text-slate-300 group-hover:text-white transition-colors">
                           {channel.value}
                         </span>
                       </div>
-                      <ArrowUpRight className="size-4 text-slate-600 group-hover:text-brand-cyan transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                      <ArrowUpRight className="size-4 text-slate-600 group-hover:text-white transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </Link>
                   </motion.div>
                 ))}
@@ -260,7 +260,7 @@ export default function ContactPage() {
               <Button
                 asChild
                 size="lg"
-                className="flex-1 gap-2 h-14 bg-brand-cyan hover:bg-brand-cyan/90 text-background font-semibold rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-brand-cyan/25"
+                className="flex-1 gap-2 h-14 bg-purple-500 hover:bg-purple-400 text-white font-semibold rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-purple-500/25"
               >
                 <a href="mailto:chosenfewrecords@hotmail.de">
                   <Mail className="size-4" />
