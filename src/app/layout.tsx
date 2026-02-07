@@ -1,30 +1,28 @@
 import type { Metadata } from "next";
-import {
-  Geist,
-  Geist_Mono,
-  Libre_Baskerville,
-} from "next/font/google";
+import { Orbitron, Rajdhani, Share_Tech_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const orbitron = Orbitron({
+  variable: "--font-display",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const rajdhani = Rajdhani({
+  variable: "--font-body",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
-const libreBaskerville = Libre_Baskerville({
-  variable: "--font-libre",
+const shareTechMono = Share_Tech_Mono({
+  variable: "--font-mono",
   subsets: ["latin"],
-  weight: ["400", "700"],
-  style: ["normal", "italic"],
+  weight: ["400"],
 });
 
 export const metadata: Metadata = {
-  title: "Maurice Holda | Naga Codex - Certified AI Manager & Web Design Portfolio",
+  title:
+    "Maurice Holda | Naga Codex - Certified AI Manager & Web Design Portfolio",
   description:
     "Maurice Holda is a Certified AI Manager and web design expert at Naga Codex. Specializing in AI automation, intelligent systems, web design, cybersecurity, and full-stack development. Based in Hamburg, Germany.",
   keywords: [
@@ -116,11 +114,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${libreBaskerville.variable} font-sans antialiased`}
+        className={`${orbitron.variable} ${rajdhani.variable} ${shareTechMono.variable} font-sans antialiased`}
       >
-        <Providers>
-          {children}
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

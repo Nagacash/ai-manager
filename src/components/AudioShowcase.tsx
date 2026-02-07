@@ -100,39 +100,39 @@ export default function AudioShowcase() {
                 {/* Left: Info & Link */}
                 <div className="space-y-12 order-2 lg:order-1">
                     <div className="space-y-8">
-                        <Badge variant="glass" className="bg-brand-purple/10 text-brand-purple border-brand-purple/20 px-4 py-1.5 uppercase tracking-widest text-xs font-bold">
+                        <Badge variant="glass" className="bg-brand-purple/10 text-purple-300 border-purple-500/30 px-4 py-1.5 uppercase tracking-widest text-xs font-bold">
                             {t("audio.badge")}
                         </Badge>
-                        <h2 className="text-5xl md:text-7xl font-bold tracking-tighter text-foreground leading-[1.05]">
-                            {t("audio.title1")} <span className="text-brand-purple italic font-serif">{t("audio.title2")}</span>
+                        <h2 className="text-5xl md:text-7xl font-bold tracking-tighter text-white leading-[1.05]">
+                            {t("audio.title1")} <span className="text-purple-400 italic font-serif">{t("audio.title2")}</span>
                         </h2>
-                        <p className="text-xl text-muted-foreground leading-relaxed max-w-xl font-medium">
+                        <p className="text-xl text-slate-300 leading-relaxed max-w-xl font-medium">
                             {t("audio.description")}
                         </p>
                     </div>
 
                     <div className="grid gap-6 sm:grid-cols-2">
-                        <div className="glass-panel p-8 rounded-[2.5rem] space-y-4 border-border/40 hover:border-brand-purple/30 transition-all group">
-                            <div className="size-12 rounded-2xl bg-brand-purple/5 flex items-center justify-center group-hover:bg-brand-purple/10 transition-colors">
-                                <Headphones className="size-6 text-brand-purple/60 group-hover:text-brand-purple transition-colors" />
+                        <div className="glass-panel p-8 rounded-[2.5rem] space-y-4 border-slate-700/40 hover:border-purple-500/30 transition-all group">
+                            <div className="size-12 rounded-2xl bg-purple-500/10 flex items-center justify-center group-hover:bg-purple-500/20 transition-colors">
+                                <Headphones className="size-6 text-purple-400 group-hover:text-purple-300 transition-colors" />
                             </div>
-                            <h3 className="text-xl font-bold text-foreground">{t("audio.gen.title")}</h3>
-                            <p className="text-sm text-muted-foreground leading-relaxed font-medium">{t("audio.gen.detail")}</p>
+                            <h3 className="text-xl font-bold text-white">{t("audio.gen.title")}</h3>
+                            <p className="text-sm text-slate-300 leading-relaxed font-medium">{t("audio.gen.detail")}</p>
                         </div>
                         <a
                             href="https://naga-mastering.vercel.app/#wedo"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="glass-panel p-8 rounded-[2.5rem] space-y-4 border-border/40 hover:border-accent/40 transition-all group cursor-pointer"
+                            className="glass-panel p-8 rounded-[2.5rem] space-y-4 border-slate-700/40 hover:border-cyan-500/40 transition-all group cursor-pointer"
                         >
-                            <div className="size-12 rounded-2xl bg-accent/5 flex items-center justify-center group-hover:bg-accent/10 transition-colors">
-                                <Waves className="size-6 text-accent/60 group-hover:text-accent transition-colors" />
+                            <div className="size-12 rounded-2xl bg-cyan-500/10 flex items-center justify-center group-hover:bg-cyan-500/20 transition-colors">
+                                <Waves className="size-6 text-cyan-400 group-hover:text-cyan-300 transition-colors" />
                             </div>
-                            <h3 className="text-xl font-bold text-foreground flex items-center gap-2">
+                            <h3 className="text-xl font-bold text-white flex items-center gap-2">
                                 {t("audio.mastering.title")}
                                 <ExternalLink className="size-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
                             </h3>
-                            <p className="text-sm text-muted-foreground leading-relaxed font-medium">{t("audio.mastering.detail")}</p>
+                            <p className="text-sm text-slate-300 leading-relaxed font-medium">{t("audio.mastering.detail")}</p>
                         </a>
                     </div>
                 </div>
@@ -140,21 +140,21 @@ export default function AudioShowcase() {
                 {/* Right: Premium Player UI */}
                 <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
                     <motion.div
-                        className="glass-panel relative aspect-square w-full max-w-md rounded-[4rem] overflow-hidden p-12 flex flex-col justify-between shadow-2xl border-white/20 dark:border-white/5"
+                        className="glass-panel relative aspect-square w-full max-w-md rounded-[4rem] overflow-hidden p-12 flex flex-col justify-between shadow-2xl border-white/20 dark:border-white/10"
                         initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                     >
                         {/* Background Glow */}
-                        <div className="absolute inset-0 -z-10 bg-gradient-to-br from-brand-purple/10 via-transparent to-accent/10 opacity-50" />
+                        <div className="absolute inset-0 -z-10 bg-gradient-to-br from-purple-500/10 via-transparent to-cyan-500/10 opacity-50" />
 
                         {/* Top Info */}
                         <div className="flex justify-between items-start">
-                            <div className="size-14 rounded-2xl bg-white/40 dark:bg-black/40 backdrop-blur-xl shadow-xl flex items-center justify-center border border-white/20">
-                                <Music2 className={`size-7 text-brand-purple transition-all duration-700 ${isPlaying ? 'scale-110' : 'opacity-40'}`} />
+                            <div className="size-14 rounded-2xl bg-white/10 backdrop-blur-xl shadow-xl flex items-center justify-center border border-white/20">
+                                <Music2 className={`size-7 text-purple-400 transition-all duration-700 ${isPlaying ? 'scale-110' : 'opacity-60'}`} />
                             </div>
-                            <Badge variant="outline" className="bg-white/20 dark:bg-black/20 backdrop-blur-md border-white/30 uppercase tracking-[0.2em] text-[10px] font-bold px-3 py-1">
+                            <Badge variant="outline" className="bg-white/10 backdrop-blur-md border-white/20 text-white uppercase tracking-[0.2em] text-[10px] font-bold px-3 py-1">
                                 {currentTrack.category}
                             </Badge>
                         </div>
@@ -164,7 +164,7 @@ export default function AudioShowcase() {
                             {[...Array(16)].map((_, i) => (
                                 <motion.div
                                     key={i}
-                                    className="w-1 bg-brand-purple/40 rounded-full"
+                                    className="w-1 bg-purple-400/60 rounded-full"
                                     animate={{
                                         height: isPlaying ? [10, 48, 24, 64, 16, 40][i % 6] : 8,
                                     }}
@@ -182,50 +182,57 @@ export default function AudioShowcase() {
                         {/* Track Info */}
                         <div className="space-y-8 text-center">
                             <div className="space-y-2">
-                                <h3 className="text-3xl font-bold text-foreground truncate px-4 tracking-tight">
+                                <h3 className="text-3xl font-bold text-white truncate px-4 tracking-tight">
                                     {currentTrack.title}
                                 </h3>
-                                <p className="text-sm text-muted-foreground/80 line-clamp-2 px-8 font-medium italic">
+                                <p className="text-sm text-slate-300 line-clamp-2 px-8 font-medium italic">
                                     {currentTrack.description}
                                 </p>
                             </div>
 
-                            {/* Progress slider placeholder refined */}
-                            <div className="space-y-3 px-4">
-                                <div className="relative h-1.5 w-full bg-foreground/5 rounded-full overflow-hidden">
+                            {/* Progress Bar */}
+                            <div className="space-y-3">
+                                <div className="relative h-2 bg-white/10 rounded-full overflow-hidden backdrop-blur-sm">
                                     <motion.div
-                                        className="absolute inset-y-0 left-0 bg-brand-purple shadow-[0_0_12px_rgba(var(--brand-purple),0.4)]"
+                                        className="absolute inset-y-0 left-0 bg-gradient-to-r from-purple-500 to-cyan-400 rounded-full"
                                         style={{ width: `${progress}%` }}
+                                        transition={{ duration: 0.1 }}
                                     />
                                 </div>
-                                <div className="flex justify-between text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground/50">
+                                <div className="flex justify-between items-center text-xs font-mono text-slate-400">
                                     <span>{formatTime(audioRef.current?.currentTime || 0)}</span>
                                     <span>{formatTime(duration)}</span>
                                 </div>
                             </div>
 
                             {/* Controls */}
-                            <div className="flex items-center justify-center gap-4 sm:gap-10">
-                                <button
-                                    onClick={handlePrev}
-                                    className="text-foreground/40 hover:text-brand-purple transition-all duration-300 hover:scale-110"
-                                >
-                                    <SkipBack className="size-8" />
-                                </button>
-
+                            <div className="flex items-center justify-between gap-6">
                                 <Button
-                                    onClick={handleTogglePlay}
-                                    className="size-20 rounded-full bg-foreground text-background shadow-2xl hover:scale-105 transition-all duration-500 hover:shadow-brand-purple/20 p-0 flex items-center justify-center"
+                                    variant="ghost"
+                                    size="icon"
+                                    onClick={handlePrev}
+                                    className="size-11 rounded-full hover:bg-white/10 text-slate-300 hover:text-white transition-all"
                                 >
-                                    {isPlaying ? <Pause className="size-10 fill-current" /> : <Play className="size-10 fill-current translate-x-1" />}
+                                    <SkipBack className="size-5" />
                                 </Button>
 
-                                <button
-                                    onClick={handleNext}
-                                    className="text-foreground/40 hover:text-brand-purple transition-all duration-300 hover:scale-110"
+                                <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    onClick={handleTogglePlay}
+                                    className="size-16 rounded-full bg-gradient-to-br from-purple-500 to-cyan-400 hover:from-purple-400 hover:to-cyan-300 text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all"
                                 >
-                                    <SkipForward className="size-8" />
-                                </button>
+                                    {isPlaying ? <Pause className="size-7" /> : <Play className="size-7 ml-1" />}
+                                </Button>
+
+                                <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    onClick={handleNext}
+                                    className="size-11 rounded-full hover:bg-white/10 text-slate-300 hover:text-white transition-all"
+                                >
+                                    <SkipForward className="size-5" />
+                                </Button>
                             </div>
                         </div>
 

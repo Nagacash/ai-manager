@@ -1,102 +1,222 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ShieldAlert, CheckCircle2, ArrowRight, Gavel, FileSearch, ShieldCheck } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import { useRef, MouseEvent } from "react";
 import { useLanguage } from "@/lib/LanguageContext";
+import SectionLabel from "@/components/SectionLabel";
+import GlassCard from "@/components/GlassCard";
+import PremiumButton from "@/components/PremiumButton";
 
 export default function AIActSection() {
     const { t } = useLanguage();
-
     const items = t("aiAct.items") || [];
     const icons = [FileSearch, ShieldAlert, ShieldCheck];
 
     return (
-        <section id="ai-act" className="relative py-24 overflow-hidden">
-            {/* Background Decorative Elements */}
-            <div className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[oklch(0.5_0.2_300/0.05)] rounded-full blur-[120px]" />
-            <div className="absolute bottom-0 right-0 translate-x-1/3 translate-y-1/3 w-[600px] h-[600px] bg-[oklch(0.8_0.15_320/0.05)] rounded-full blur-[120px]" />
-
-            <div className="container relative z-10 mx-auto px-6">
-                <div className="max-w-4xl mx-auto text-center mb-16 space-y-4">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                    >
-                        <Badge className="bg-[oklch(0.5_0.2_300/0.1)] text-[oklch(0.5_0.2_300)] border-[oklch(0.5_0.2_300/0.1)] mb-6 px-4 py-1.5 uppercase tracking-widest text-[10px] font-bold">
-                            {t("aiAct.badge")}
-                        </Badge>
-                    </motion.div>
-
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 }}
-                        className="text-4xl md:text-6xl font-bold tracking-tight text-foreground leading-tight"
-                    >
-                        {t("aiAct.title1")}{" "}
-                        <span className="text-gradient">{t("aiAct.title2")}</span>
-                        <br />
-                        {t("aiAct.title3")}
-                    </motion.h2>
-
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
-                        className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
-                    >
-                        {t("aiAct.description")}
-                    </motion.p>
-                </div>
-
-                <div className="grid md:grid-cols-3 gap-8 mb-16">
-                    {items.map((item: any, index: number) => {
-                        const Icon = icons[index % icons.length];
-                        return (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.3 + index * 0.1 }}
-                                className="relative z-10 p-8 rounded-[2.5rem] bg-card border border-border hover:border-[oklch(0.5_0.2_300/0.3)] transition-all duration-500 overflow-hidden group"
-                            >
-                                <div className="size-14 rounded-2xl bg-[oklch(0.5_0.2_300/0.1)] flex items-center justify-center text-[oklch(0.5_0.2_300)] mb-6 group-hover:scale-110 transition-transform duration-500">
-                                    <Icon className="size-7" />
-                                </div>
-                                <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-[var(--brand-purple)] transition-colors">
-                                    {item.title}
-                                </h3>
-                                <p className="text-muted-foreground leading-relaxed">
-                                    {item.description}
-                                </p>
-                                <div className="mt-6 flex items-center gap-2 text-xs font-bold text-[oklch(0.5_0.2_300/0.6)] uppercase tracking-widest">
-                                    <CheckCircle2 className="size-4" />
-                                    <span>{t("aiAct.essential")}</span>
-                                </div>
-                            </motion.div>
-                        );
-                    })}
-                </div>
-
+        <div className="relative w-full max-w-6xl mx-auto py-32 px-4 overflow-hidden">
+            {/* Premium Background Elements */}
+            <div className="absolute inset-0 -z-10">
                 <motion.div
+                    className="absolute top-1/4 right-0 w-[700px] h-[700px] bg-emerald-500/15 rounded-full blur-[140px]"
+                    animate={{
+                        scale: [1, 1.3, 1],
+                        opacity: [0.2, 0.4, 0.2]
+                    }}
+                    transition={{
+                        duration: 10,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                    }}
+                />
+                <motion.div
+                    className="absolute bottom-1/4 left-0 w-[700px] h-[700px] bg-blue-500/15 rounded-full blur-[140px]"
+                    animate={{
+                        scale: [1.3, 1, 1.3],
+                        opacity: [0.4, 0.2, 0.4]
+                    }}
+                    transition={{
+                        duration: 10,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                        delay: 2
+                    }}
+                />
+            </div>
+
+            {/* Section Header */}
+            <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{
+                    duration: 0.8,
+                    ease: [0.19, 1, 0.22, 1]
+                }}
+                className="text-center mb-20 space-y-6"
+            >
+                <div className="flex justify-center mb-6">
+                    <SectionLabel icon={<Gavel className="size-4" />} gradient>
+                        {t("aiAct.badge")}
+                    </SectionLabel>
+                </div>
+
+                <motion.h2
+                    className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: 0.6 }}
-                    className="flex justify-center"
+                    transition={{ delay: 0.2, duration: 0.8 }}
                 >
-                    <Button className="rounded-full px-10 py-7 text-lg bg-primary hover:bg-black/90 text-white shadow-2xl shadow-[oklch(0.5_0.2_300/0.2)] hover:shadow-[oklch(0.5_0.2_300/0.4)] transition-all duration-500 group">
-                        {t("aiAct.cta")}
-                        <ArrowRight className="ml-2 size-5" />
-                    </Button>
+                    <span className="bg-gradient-to-r from-white via-emerald-200 to-blue-200 bg-clip-text text-transparent">
+                        {t("aiAct.title")}
+                    </span>
+                </motion.h2>
+
+                <motion.p
+                    className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3, duration: 0.8 }}
+                >
+                    {t("aiAct.subtitle")}
+                </motion.p>
+            </motion.div>
+
+            {/* Premium Features Grid */}
+            <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+                variants={{
+                    hidden: {},
+                    visible: {
+                        transition: {
+                            staggerChildren: 0.2
+                        }
+                    }
+                }}
+                className="grid md:grid-cols-3 gap-8 mb-16"
+            >
+                {items.map((item: any, index: number) => {
+                    const Icon = icons[index];
+                    return (
+                        <ComplianceCard key={index} item={item} Icon={Icon} />
+                    );
+                })}
+            </motion.div>
+
+            {/* Premium CTA */}
+            <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="text-center"
+            >
+                <PremiumButton
+                    variant="primary"
+                    size="lg"
+                    icon={<CheckCircle2 className="size-5" />}
+                >
+                    {t("aiAct.cta")}
+                </PremiumButton>
+            </motion.div>
+        </div>
+    );
+}
+
+// Compliance Card Component with Premium Effects
+function ComplianceCard({ item, Icon }: { item: any; Icon: any }) {
+    const cardRef = useRef<HTMLDivElement>(null);
+    const mouseX = useMotionValue(0);
+    const mouseY = useMotionValue(0);
+
+    const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [5, -5]), {
+        stiffness: 300,
+        damping: 30
+    });
+    const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-5, 5]), {
+        stiffness: 300,
+        damping: 30
+    });
+
+    const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
+        if (!cardRef.current) return;
+        const rect = cardRef.current.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        mouseX.set((e.clientX - centerX) / rect.width);
+        mouseY.set((e.clientY - centerY) / rect.height);
+    };
+
+    const handleMouseLeave = () => {
+        mouseX.set(0);
+        mouseY.set(0);
+    };
+
+    return (
+        <motion.div
+            ref={cardRef}
+            variants={{
+                hidden: { opacity: 0, y: 50, scale: 0.95 },
+                visible: {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    transition: {
+                        duration: 0.8,
+                        ease: [0.19, 1, 0.22, 1]
+                    }
+                }
+            }}
+            style={{
+                rotateX,
+                rotateY,
+                transformStyle: "preserve-3d"
+            }}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            className="group relative h-full"
+        >
+            <GlassCard hover gradient className="h-full p-8">
+                {/* Premium Icon Container */}
+                <motion.div
+                    className="mb-6 inline-flex p-4 rounded-2xl glass-card-deep border border-emerald-500/30 relative overflow-hidden"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                >
+                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <Icon className="size-8 text-emerald-400 group-hover:text-blue-400 transition-colors duration-500 relative z-10" />
                 </motion.div>
-            </div>
-        </section>
+
+                {/* Content */}
+                <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-emerald-400 group-hover:to-blue-400 group-hover:bg-clip-text transition-all duration-500">
+                    {item.title}
+                </h3>
+                <p className="text-slate-400 leading-relaxed text-lg">
+                    {item.description}
+                </p>
+
+                {/* Premium Hover Arrow */}
+                <motion.div
+                    className="mt-6 inline-flex items-center gap-2 text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    initial={{ x: -10 }}
+                    whileHover={{ x: 0 }}
+                >
+                    <span className="text-sm font-medium">Learn more</span>
+                    <ArrowRight className="size-4" />
+                </motion.div>
+
+                {/* Premium Gradient Border Effect */}
+                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-emerald-500/20 via-transparent to-blue-500/20" />
+                </div>
+            </GlassCard>
+
+            {/* Premium Glow Effect */}
+            <div className="absolute -inset-1 bg-gradient-to-br from-emerald-500/0 via-blue-500/0 to-emerald-500/0 group-hover:from-emerald-500/20 group-hover:via-blue-500/10 group-hover:to-emerald-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 -z-10" />
+        </motion.div>
     );
 }

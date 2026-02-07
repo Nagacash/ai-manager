@@ -284,7 +284,7 @@ export default function CertificationsPage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#fcfcfd] text-foreground font-sans overflow-x-hidden">
+    <div className="relative min-h-screen bg-black text-white font-sans overflow-x-hidden">
       <AnimatedBackground />
 
       <Navbar />
@@ -300,10 +300,10 @@ export default function CertificationsPage() {
               {t("nav.certifications")}
             </Badge>
           </motion.div>
-          <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-foreground leading-[1.1]">
+          <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-white leading-[1.1]">
             {t("certifications.title")}
           </h1>
-          <p className="text-lg text-slate-500 max-w-2xl leading-relaxed">
+          <p className="text-lg text-slate-400 max-w-2xl leading-relaxed">
             {t("certifications.description")}
           </p>
         </div>
@@ -316,7 +316,7 @@ export default function CertificationsPage() {
               onMouseMove={(e) => handleCardMouseMove(e, e.currentTarget)}
               onMouseLeave={(e) => handleCardMouseLeave(e.currentTarget)}
             >
-              <Card className="glass-panel group h-full border-slate-200/40 shadow-sm transition-all hover:shadow-2xl hover:border-primary/20 overflow-hidden relative">
+              <Card className="group h-full border-slate-700/50 bg-slate-900/60 backdrop-blur-sm shadow-sm transition-all hover:shadow-2xl hover:border-purple-500/30 overflow-hidden relative">
                 {/* Spotlight effect placeholder - can be refined with more GSAP if needed */}
                 <div className="absolute inset-0 bg-radial-gradient(circle_at_var(--mouse-x)_var(--mouse-y),rgba(var(--primary-rgb),0.05)_0%,transparent_50%) opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
@@ -330,11 +330,11 @@ export default function CertificationsPage() {
                     </div>
                     <div className="flex-1 space-y-2">
                       <div className="flex items-center justify-between">
-                        <CardTitle className="text-2xl font-bold tracking-tight text-foreground leading-tight">
+                        <CardTitle className="text-2xl font-bold tracking-tight text-white leading-tight">
                           {cert.title}
                         </CardTitle>
                       </div>
-                      <CardDescription className="text-base text-muted-foreground leading-relaxed">
+                      <CardDescription className="text-base text-slate-400 leading-relaxed">
                         {cert.description}
                       </CardDescription>
                     </div>
@@ -342,13 +342,13 @@ export default function CertificationsPage() {
                 </CardHeader>
                 <CardContent className="p-8 pt-4 relative z-10">
                   <div
-                    className="group/preview relative w-full overflow-hidden rounded-2xl border border-slate-200/80 bg-slate-100 shadow-inner cursor-pointer transition-all hover:border-primary/20"
+                    className="group/preview relative w-full overflow-hidden rounded-2xl border border-slate-700/60 bg-slate-800 shadow-inner cursor-pointer transition-all hover:border-purple-500/30"
                     onClick={() => {
                       playClickSound();
                       setSelectedCert(cert.file);
                     }}
                   >
-                    <div className="aspect-[16/11] overflow-hidden grayscale-[0.3] group-hover/preview:grayscale-0 transition-all duration-700 bg-slate-200">
+                    <div className="aspect-[16/11] overflow-hidden grayscale-[0.3] group-hover/preview:grayscale-0 transition-all duration-700 bg-slate-900">
                       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                         <FileText className="size-10 text-slate-400/50" />
                       </div>
@@ -362,7 +362,7 @@ export default function CertificationsPage() {
 
                     <div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover/preview:bg-primary/5 transition-all duration-300">
                       <div className="translate-y-4 opacity-0 group-hover/preview:translate-y-0 group-hover/preview:opacity-100 transition-all duration-300">
-                        <span className="magnetic-btn inline-flex items-center gap-2 bg-white px-5 py-2.5 rounded-full text-sm font-semibold text-foreground shadow-xl border border-slate-100">
+                        <span className="magnetic-btn inline-flex items-center gap-2 bg-slate-800 px-5 py-2.5 rounded-full text-sm font-semibold text-white shadow-xl border border-slate-600">
                           <span className="inline-block">View full certificate</span>
                           <Award className="size-4 text-primary" />
                         </span>

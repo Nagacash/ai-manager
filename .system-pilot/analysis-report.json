@@ -26,18 +26,18 @@
       },
       "contact": {
         "page.tsx": {
-          "lines": 230,
-          "complexity": 8,
+          "lines": 347,
+          "complexity": 9,
           "cyberpunkElements": 3
         }
       },
       "layout.tsx": {
-        "lines": 128,
+        "lines": 124,
         "complexity": 2,
-        "cyberpunkElements": 2
+        "cyberpunkElements": 6
       },
       "page.tsx": {
-        "lines": 898,
+        "lines": 982,
         "complexity": 8,
         "cyberpunkElements": 6
       },
@@ -71,9 +71,14 @@
         "cyberpunkElements": 0
       },
       "BackgroundParticles.tsx": {
-        "lines": 138,
+        "lines": 193,
         "complexity": 21,
         "cyberpunkElements": 0
+      },
+      "CalCalendar.tsx": {
+        "lines": 73,
+        "complexity": 2,
+        "cyberpunkElements": 2
       },
       "ChaosExplosion.tsx": {
         "lines": 114,
@@ -86,13 +91,18 @@
         "cyberpunkElements": 0
       },
       "CodeParticles.tsx": {
-        "lines": 84,
-        "complexity": 14,
-        "cyberpunkElements": 1
+        "lines": 119,
+        "complexity": 12,
+        "cyberpunkElements": 2
       },
       "CookieBanner.tsx": {
         "lines": 91,
         "complexity": 6,
+        "cyberpunkElements": 0
+      },
+      "CosmicStarfield.tsx": {
+        "lines": 242,
+        "complexity": 20,
         "cyberpunkElements": 0
       },
       "DataCorruption.tsx": {
@@ -116,9 +126,14 @@
         "cyberpunkElements": 5
       },
       "Navbar.tsx": {
-        "lines": 216,
+        "lines": 238,
         "complexity": 15,
         "cyberpunkElements": 9
+      },
+      "OrbitalRings.tsx": {
+        "lines": 211,
+        "complexity": 14,
+        "cyberpunkElements": 1
       },
       "PerlinNoiseBackground.tsx": {
         "lines": 148,
@@ -135,8 +150,13 @@
         "complexity": 3,
         "cyberpunkElements": 0
       },
+      "ScanlinesOverlay.tsx": {
+        "lines": 8,
+        "complexity": 2,
+        "cyberpunkElements": 0
+      },
       "ServicesCarousel.tsx": {
-        "lines": 160,
+        "lines": 148,
         "complexity": 5,
         "cyberpunkElements": 0
       },
@@ -187,7 +207,7 @@
     }
   },
   "dependencies": {
-    "total": 20,
+    "total": 21,
     "devDependencies": 25,
     "cyberpunkLibs": [
       "framer-motion",

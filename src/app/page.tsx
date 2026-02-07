@@ -22,6 +22,7 @@ import {
   Mail,
   Menu,
   X,
+  Sparkles,
 } from "lucide-react";
 import PerlinNoiseBackground from "@/components/PerlinNoiseBackground";
 import BackgroundParticles from "@/components/BackgroundParticles";
@@ -32,6 +33,13 @@ import CodeParticles from "@/components/CodeParticles";
 import HackerTerminal from "@/components/HackerTerminal";
 import ChaosExplosion from "@/components/ChaosExplosion";
 import DataCorruption from "@/components/DataCorruption";
+import ScanlinesOverlay from "@/components/ScanlinesOverlay";
+import CosmicStarfield from "@/components/CosmicStarfield";
+import OrbitalRings from "@/components/OrbitalRings";
+import PremiumButton from "@/components/PremiumButton";
+import FloatingBadge from "@/components/FloatingBadge";
+import GlassCard from "@/components/GlassCard";
+import PremiumFooter from "@/components/PremiumFooter";
 
 import { Badge } from "@/components/ui/badge";
 import {
@@ -42,7 +50,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import AICreationCarousel from "@/components/AICreationCarousel";
+
 import AudioShowcase from "@/components/AudioShowcase";
 import WorkGalleryCarousel from "@/components/WorkGalleryCarousel";
 import ServicesCarousel from "@/components/ServicesCarousel";
@@ -50,8 +58,8 @@ import RAGSection from "@/components/RAGSection";
 import Testimonials from "@/components/Testimonials";
 import CookieBanner from "@/components/CookieBanner";
 import AINetworkAnimation from "@/components/AINetworkAnimation";
+import AILabAnimation from "@/components/AILabAnimation";
 import { useLanguage } from "@/lib/LanguageContext";
-
 
 const luxurySectionVariants = {
   hidden: { opacity: 0, y: 60, scale: 0.98 },
@@ -59,8 +67,8 @@ const luxurySectionVariants = {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { 
-      duration: 1.2, 
+    transition: {
+      duration: 1.2,
       ease: [0.19, 1, 0.22, 1] as const,
     },
   },
@@ -84,8 +92,8 @@ const luxuryFadeItem = {
     scale: 1,
     transition: {
       duration: 0.8,
-      ease: [0.19, 1, 0.22, 1] as const
-    }
+      ease: [0.19, 1, 0.22, 1] as const,
+    },
   },
 };
 
@@ -110,7 +118,7 @@ const luxuryWordReveal = {
     y: 0,
     transition: {
       duration: 0.5,
-      ease: [0.19, 1, 0.22, 1] as const
+      ease: [0.19, 1, 0.22, 1] as const,
     },
   },
 };
@@ -123,7 +131,7 @@ const luxuryTitleReveal = {
     scale: 1,
     transition: {
       duration: 1.0,
-      ease: [0.19, 1, 0.22, 1] as const
+      ease: [0.19, 1, 0.22, 1] as const,
     },
   },
 };
@@ -136,7 +144,7 @@ const brutalReveal = {
     skewX: 0,
     transition: {
       duration: 0.8,
-      ease: [0.16, 1, 0.3, 1] as const
+      ease: [0.16, 1, 0.3, 1] as const,
     },
   },
 };
@@ -178,10 +186,12 @@ export default function App() {
 
   const highlightIcons = [BrainCircuit, Cpu, Code, Palette];
 
-  const highlightsData = (t("highlights.items") || []).map((item: any, index: number) => ({
-    ...item,
-    icon: highlightIcons[index % highlightIcons.length]
-  }));
+  const highlightsData = (t("highlights.items") || []).map(
+    (item: any, index: number) => ({
+      ...item,
+      icon: highlightIcons[index % highlightIcons.length],
+    }),
+  );
 
   const aboutData = {
     education: t("about.education.items") || [],
@@ -208,28 +218,29 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen cyber-mode text-cyan-400 relative overflow-hidden selection:bg-red-500/50 selection:text-yellow-300 chaos-cursor">
+    <div className="min-h-screen cyber-mode text-white relative overflow-hidden selection:bg-purple-500/50 selection:text-white chaos-cursor">
       {/* Skip to Content for Accessibility */}
       <a href="#hero" className="skip-to-content">
         Skip to main content
       </a>
-      
+
+      {/* COSMIC BACKGROUND LAYERS - From Another Planet */}
+      <CosmicStarfield />
+      <OrbitalRings />
       <PerlinNoiseBackground />
       <BackgroundParticles />
-      <MatrixRain />
-      <CodeParticles />
-      <HackerTerminal />
-      <ChaosExplosion />
       <DataCorruption />
+      <ScanlinesOverlay />
 
       {/* CALMED CHAOS BACKGROUND - STILL INSANE THOUGH */}
       <>
         <div className="thermal-melt absolute inset-0" />
-        <div className="absolute inset-0 bg-gradient-to-br from-red-900/10 via-yellow-900/10 to-blue-900/10 pointer-events-none -z-10" />
-        <div className="absolute inset-x-0 top-0 h-[800px] bg-[radial-gradient(ellipse_2000px_1500px_at_50%_-200px,#ff000020,#ffff0020,#00ffff20,transparent)] opacity-[0.15] blur-3xl pointer-events-none -z-10" />
-        <div className="absolute right-0 top-[10%] size-[1000px] bg-[radial-gradient(circle_at_center,#00ff0030,#ff00ff30,#ffff0030,transparent)] opacity-[0.12] blur-3xl pointer-events-none -z-10" />
-        <div className="absolute left-[10%] bottom-[30%] size-[800px] bg-[radial-gradient(circle_at_center,#0000ff30,#ff000030,transparent)] opacity-[0.10] blur-3xl pointer-events-none -z-10" />
-        <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,#ffffff10,transparent)] opacity-[0.08] blur-3xl transform -translate-x-1/2 -translate-y-1/2 pointer-events-none -z-10" />
+        {/* COHESIVE COSMIC GRADIENTS - Cyan/Purple/Pink System */}
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-950/20 via-purple-950/10 to-purple-950/5 pointer-events-none -z-10" />
+        <div className="absolute inset-x-0 top-0 h-[800px] bg-[radial-gradient(ellipse_2000px_1500px_at_50%_-200px,rgba(168,85,247,0.15),rgba(168,85,247,0.1),rgba(168,85,247,0.05),transparent)] opacity-100 blur-3xl pointer-events-none -z-10" />
+        <div className="absolute right-0 top-[10%] size-[1000px] bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.12),rgba(168,85,247,0.08),transparent)] blur-3xl pointer-events-none -z-10" />
+        <div className="absolute left-[10%] bottom-[30%] size-[800px] bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.1),rgba(168,85,247,0.08),transparent)] blur-3xl pointer-events-none -z-10" />
+        <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.08),transparent)] blur-3xl transform -translate-x-1/2 -translate-y-1/2 pointer-events-none -z-10" />
       </>
 
       <Navbar />
@@ -237,7 +248,7 @@ export default function App() {
       <main className="relative z-10 isolate mx-auto flex max-w-7xl flex-col gap-40 px-6 pt-32 pb-24 lg:px-12">
         <motion.section
           id="hero"
-          className="grid items-center gap-8 md:gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20 pt-12 md:pt-20"
+          className="grid items-center gap-10 md:gap-16 lg:grid-cols-[1.2fr_0.8fr] lg:gap-20 pt-12 md:pt-20"
           variants={luxurySectionVariants}
           initial="hidden"
           animate="visible"
@@ -249,26 +260,27 @@ export default function App() {
             animate="visible"
           >
             <motion.div variants={luxuryFadeItem}>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-400 text-sm font-medium">
-                <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
+              <FloatingBadge icon={<Sparkles className="size-3" />} variant="purple">
                 {t("hero.badge")}
-              </div>
+              </FloatingBadge>
             </motion.div>
 
             <div className="space-y-6">
               <motion.h1
-                className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.1] tracking-tight"
+                className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.1] tracking-tight text-glow-strong"
                 variants={luxuryTextReveal}
                 initial="hidden"
                 animate="visible"
               >
-                <span className="text-white">{t("hero.title1")}</span>{' '}
-                <span className="text-purple-400">{t("hero.title2")}</span>{' '}
-                <span className="text-white">{t("hero.title3")}</span>{' '}
-                <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">{t("hero.title4")}</span>
+                <span className="text-white">{t("hero.title1")}</span>{" "}
+                <span className="gradient-text-animated">{t("hero.title2")}</span>{" "}
+                <span className="text-white">{t("hero.title3")}</span>{" "}
+                <span className="bg-gradient-to-r from-purple-300 to-purple-500 bg-clip-text text-transparent">
+                  {t("hero.title4")}
+                </span>
               </motion.h1>
               <motion.p
-                className="text-lg md:text-xl leading-relaxed text-slate-400 max-w-xl"
+                className="text-lg md:text-xl leading-relaxed text-slate-300 max-w-xl text-glow"
                 variants={luxuryTextReveal}
                 initial="hidden"
                 animate="visible"
@@ -277,28 +289,26 @@ export default function App() {
               </motion.p>
             </div>
 
-            <motion.div className="flex flex-wrap gap-4" variants={luxuryFadeItem}>
-              <Button 
-                asChild 
-                size="lg" 
-                className="bg-purple-600 hover:bg-purple-500 text-white rounded-full px-8 font-semibold shadow-lg shadow-purple-500/25 transition-all hover:-translate-y-0.5"
+            <motion.div
+              className="flex flex-wrap gap-4"
+              variants={luxuryFadeItem}
+            >
+              <PremiumButton
+                variant="primary"
+                size="lg"
+                icon={<ArrowUpRight className="size-5" />}
+                onClick={() => window.location.href = "mailto:chosenfewrecords@hotmail.de"}
               >
-                <a href="mailto:chosenfewrecords@hotmail.de" className="flex items-center gap-2">
-                  {t("hero.cta1")}
-                  <ArrowUpRight className="size-5" />
-                </a>
-              </Button>
-              <Button 
-                asChild 
-                variant="outline" 
-                size="lg" 
-                className="border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white rounded-full px-8 font-semibold transition-all"
+                {t("hero.cta1")}
+              </PremiumButton>
+              <PremiumButton
+                variant="outline"
+                size="lg"
+                icon={<ArrowUpRight className="size-5" />}
+                onClick={() => window.open("https://cyber-sec-six.vercel.app/", "_blank")}
               >
-                <a href="https://cyber-sec-six.vercel.app/" target="_blank" rel="noreferrer" className="flex items-center gap-2">
-                  {t("hero.cta2")}
-                  <ArrowUpRight className="size-5" />
-                </a>
-              </Button>
+                {t("hero.cta2")}
+              </PremiumButton>
             </motion.div>
 
             <motion.div
@@ -314,10 +324,10 @@ export default function App() {
                   variants={luxuryFadeItem}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <p className="text-3xl md:text-4xl font-bold text-white mb-1">
+                  <p className="text-3xl md:text-4xl font-bold text-white mb-1 text-glow">
                     {stat.value}
                   </p>
-                  <p className="text-sm text-slate-500 uppercase tracking-wider">
+                  <p className="text-sm text-slate-400 uppercase tracking-wider">
                     {stat.label}
                   </p>
                 </motion.div>
@@ -327,86 +337,185 @@ export default function App() {
 
           <motion.div
             variants={metallicGlow}
-            className="relative mx-auto w-full max-w-xl lg:max-w-none"
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.3 }}
+            className="relative mx-auto w-full max-w-sm md:max-w-md lg:max-w-none flex flex-col items-center gap-6"
           >
-            <div className="relative aspect-[3/4] md:aspect-[4/5] lg:aspect-square w-full overflow-visible rounded-2xl border border-purple-500/20 shadow-2xl shadow-purple-500/10 group">
-              <Image
-                src="/images/pic-github.jpg"
-                alt="Portrait of Maurice Holda"
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover object-top rounded-2xl opacity-95 group-hover:opacity-100 transition-all duration-500"
-                priority
-              />
-              
-              {/* Subtle gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent rounded-2xl" />
-              
-              {/* Accent glow */}
-              <div className="absolute -inset-1 bg-gradient-to-br from-purple-500/20 via-transparent to-cyan-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
+            {/* Image frame */}
+            <div className="relative w-full group">
+              {/* Glow ring */}
+              <div className="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-purple-500/20 via-purple-400/10 to-purple-500/20 blur-xl opacity-50 group-hover:opacity-100 transition-opacity duration-700 -z-10" />
+
+              <div className="relative aspect-[3/4] w-full rounded-2xl overflow-hidden border-2 border-slate-700/60 shadow-2xl">
+                <Image
+                  src="/images/pic-github.jpg"
+                  alt="Portrait of Maurice Holda"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 40vw"
+                  className="object-cover object-top group-hover:scale-[1.03] transition-transform duration-700"
+                  priority
+                />
+                {/* Subtle bottom fade only */}
+                <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-black/50 to-transparent" />
+              </div>
+
+              {/* Badge — floated top-right over image */}
+              <motion.div
+                className="absolute -bottom-4 -right-4 z-20"
+                initial={{ opacity: 0, scale: 0.6, rotate: -10 }}
+                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                transition={{ delay: 1.2, duration: 0.6, type: "spring" }}
+              >
+                <div className="size-20 md:size-24 rounded-2xl bg-slate-900/90 backdrop-blur-md border border-purple-500/30 p-2 flex items-center justify-center shadow-xl shadow-purple-500/10">
+                  <Image
+                    src="/images/badge.png"
+                    alt="AI Manager Badge"
+                    width={72}
+                    height={72}
+                    className="object-contain"
+                    priority
+                  />
+                </div>
+              </motion.div>
             </div>
 
-             {/* Certification Badge */}
-             <div className="hidden md:block absolute -left-4 top-12 z-20">
-               <motion.div
-                 initial={{ opacity: 0, scale: 0.8 }}
-                 animate={{ opacity: 1, scale: 1 }}
-                 transition={{ delay: 1, duration: 0.5 }}
-                 whileHover={{ scale: 1.05 }}
-               >
-                 <div className="size-24 rounded-2xl bg-slate-900/80 backdrop-blur-sm border border-slate-700/50 p-2 flex items-center justify-center shadow-xl">
-                   <Image
-                     src="/images/badge.png"
-                     alt="AI Manager Badge"
-                     width={80}
-                     height={80}
-                     className="object-contain"
-                     priority
-                   />
-                 </div>
-               </motion.div>
-             </div>
+            {/* Info card below image */}
+            <motion.div
+              className="w-full rounded-2xl border border-slate-700/50 bg-slate-900/60 backdrop-blur-sm p-5 md:p-6 space-y-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8, duration: 0.6 }}
+            >
+              <div>
+                <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight">
+                  Maurice Holda
+                </h3>
+                <p className="text-sm text-slate-400 mt-1">
+                  AI Manager · Full-Stack Developer · Cybersecurity
+                </p>
+              </div>
 
-             {/* BALANCED SKILL BADGES - AI, Web, Security */}
-             <div className="hidden md:flex absolute -right-6 bottom-16 flex-col gap-3">
-               <div className="flex flex-wrap gap-2 max-w-[180px]">
-                 {[
-                   { label: "AI", icon: "🤖", color: "purple" },
-                   { label: "ML", icon: "🧠", color: "violet" },
-                   { label: "React", icon: "⚛️", color: "cyan" },
-                   { label: "Next.js", icon: "▲", color: "slate" },
-                   { label: "Security", icon: "🔐", color: "emerald" },
-                   { label: "Cloud", icon: "☁️", color: "sky" },
-                 ].map((badge, i) => (
-                   <motion.div
-                     key={badge.label}
-                     initial={{ opacity: 0, y: 20 }}
-                     animate={{ opacity: 1, y: 0 }}
-                     transition={{
-                       delay: 0.8 + i * 0.1,
-                       duration: 0.5,
-                       ease: "easeOut"
-                     }}
-                     whileHover={{ scale: 1.1, y: -2 }}
-                   >
-                    <div className={`text-xs font-medium px-3 py-1.5 rounded-full border backdrop-blur-sm
-                      ${badge.color === 'purple' ? 'border-purple-400/50 bg-purple-500/20 text-purple-300' : ''}
-                      ${badge.color === 'violet' ? 'border-violet-400/50 bg-violet-500/20 text-violet-300' : ''}
-                      ${badge.color === 'cyan' ? 'border-cyan-400/50 bg-cyan-500/20 text-cyan-300' : ''}
-                      ${badge.color === 'slate' ? 'border-slate-400/50 bg-slate-500/20 text-slate-300' : ''}
-                      ${badge.color === 'emerald' ? 'border-emerald-400/50 bg-emerald-500/20 text-emerald-300' : ''}
-                      ${badge.color === 'sky' ? 'border-sky-400/50 bg-sky-500/20 text-sky-300' : ''}
-                    `}>
-                      <span className="mr-1">{badge.icon}</span>
-                      {badge.label}
-                    </div>
-                  </motion.div>
+              <div className="flex flex-wrap gap-1.5">
+                {["AI/ML", "React", "Next.js", "Security", "Cloud", "LLMs"].map((skill) => (
+                  <span
+                    key={skill}
+                    className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-purple-500/10 border border-purple-500/20 text-purple-300"
+                  >
+                    {skill}
+                  </span>
                 ))}
               </div>
-            </div>
+
+              <div className="flex items-center gap-3 pt-3 border-t border-slate-700/40">
+                <div className="size-2 rounded-full bg-purple-400 animate-pulse" />
+                <span className="text-xs text-slate-400 font-medium">Available for projects</span>
+              </div>
+            </motion.div>
           </motion.div>
+        </motion.section>
+
+        {/* --- CYBER TERMINAL SHOWCASE --- */}
+        <motion.section
+          id="terminal"
+          className="scroll-mt-32"
+          variants={luxurySectionVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          <div className="text-center space-y-4 max-w-2xl mx-auto mb-10">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-400 text-sm font-medium">
+              <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
+              {t("terminal.badge") || "Live System"}
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight">
+              {t("terminal.title") || "System"}{" "}
+              <span className="text-purple-400">{t("terminal.titleAccent") || "Terminal"}</span>
+            </h2>
+            <p className="text-lg text-slate-400 leading-relaxed">
+              {t("terminal.description") || "A live look into the neural network — autonomous agents, quantum encryption, and code intelligence running in real time."}
+            </p>
+          </div>
+
+          {/* Monitor Frame */}
+          <div className="mx-auto max-w-5xl">
+            {/* Monitor Body */}
+            <div className="relative rounded-2xl border-[3px] border-slate-600 bg-gradient-to-b from-slate-700 via-slate-800 to-slate-700 p-2 md:p-3 shadow-[0_8px_60px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.08)]">
+              {/* Top bezel with webcam + indicator */}
+              <div className="flex items-center justify-center gap-2 pb-2">
+                <div className="size-2 rounded-full bg-slate-600 ring-1 ring-slate-500" />
+                <div className="size-3 rounded-full bg-slate-900 ring-1 ring-slate-600 flex items-center justify-center">
+                  <div className="size-1.5 rounded-full bg-slate-700" />
+                </div>
+                <div className="size-2 rounded-full bg-slate-600 ring-1 ring-slate-500" />
+              </div>
+
+              {/* Screen */}
+              <div className="relative w-full h-[420px] md:h-[520px] rounded-lg overflow-hidden bg-[#0d1117] border border-slate-900 shadow-[inset_0_0_80px_rgba(0,0,0,0.8)]">
+                {/* Window title bar */}
+                <div className="relative z-30 flex items-center gap-2 px-4 py-2 bg-[#161b22] border-b border-[#30363d]">
+                  <div className="flex gap-2">
+                    <div className="size-3 rounded-full bg-[#ff5f57] shadow-[0_0_6px_rgba(255,95,87,0.4)]" />
+                    <div className="size-3 rounded-full bg-[#febc2e] shadow-[0_0_6px_rgba(254,188,46,0.4)]" />
+                    <div className="size-3 rounded-full bg-[#28c840] shadow-[0_0_6px_rgba(40,200,64,0.4)]" />
+                  </div>
+                  <div className="flex-1 flex items-center justify-center gap-2">
+                    <svg className="size-3 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    <span className="text-[11px] font-mono text-slate-500">naga@codex: ~/neural-ops</span>
+                  </div>
+                  <div className="w-[52px] flex justify-end gap-2">
+                    <svg className="size-3.5 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M20 12H4" />
+                    </svg>
+                    <svg className="size-3.5 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                    </svg>
+                  </div>
+                </div>
+
+                {/* Background effects layer (behind terminal text) */}
+                <div className="absolute inset-0 top-[36px] overflow-hidden z-0">
+                  <MatrixRain />
+                  <CodeParticles />
+                  <ChaosExplosion />
+                </div>
+
+                {/* Terminal content (on top of effects) */}
+                <div className="absolute inset-0 top-[36px] overflow-hidden">
+                  <HackerTerminal />
+                </div>
+
+                {/* CRT scanline overlay */}
+                <div className="absolute inset-0 pointer-events-none z-30 mix-blend-overlay opacity-[0.025] bg-[repeating-linear-gradient(0deg,transparent,transparent_1px,rgba(255,255,255,0.06)_1px,rgba(255,255,255,0.06)_2px)]" />
+                {/* Vignette */}
+                <div className="absolute inset-0 pointer-events-none z-30 bg-[radial-gradient(ellipse_at_center,transparent_60%,rgba(0,0,0,0.35)_100%)]" />
+                {/* Screen reflection glare */}
+                <div className="absolute inset-0 pointer-events-none z-30 bg-gradient-to-br from-white/[0.015] via-transparent to-transparent" />
+              </div>
+
+              {/* Bottom bezel with brand */}
+              <div className="flex items-center justify-center pt-2">
+                <div className="px-4 py-0.5 rounded-sm">
+                  <span className="text-[9px] font-bold uppercase tracking-[0.35em] text-slate-500">Naga Codex</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Monitor Stand - Neck */}
+            <div className="flex justify-center">
+              <div className="w-16 h-10 bg-gradient-to-b from-slate-700 to-slate-600 border-x border-slate-500/30 shadow-lg" />
+            </div>
+
+            {/* Monitor Stand - Base */}
+            <div className="flex justify-center -mt-px">
+              <div className="w-48 h-3 rounded-b-xl bg-gradient-to-b from-slate-600 to-slate-700 border border-t-0 border-slate-500/30 shadow-xl" />
+            </div>
+
+            {/* Desk reflection */}
+            <div className="flex justify-center mt-1">
+              <div className="w-40 h-4 bg-gradient-to-b from-slate-800/30 to-transparent rounded-full blur-md" />
+            </div>
+          </div>
         </motion.section>
 
         {/* --- SERVICES SECTION --- */}
@@ -423,7 +532,10 @@ export default function App() {
               {t("services.badge")}
             </div>
             <h2 className="text-3xl md:text-6xl font-bold text-white tracking-tight">
-              {t("services.title1")} <span className="text-purple-400">{t("services.title2")}</span> {t("services.title3")} <span className="text-purple-400">{t("services.title4")}</span>
+              {t("services.title1")}{" "}
+              <span className="text-purple-400">{t("services.title2")}</span>{" "}
+              {t("services.title3")}{" "}
+              <span className="text-purple-400">{t("services.title4")}</span>
             </h2>
             <p className="text-xl text-slate-400 leading-relaxed">
               {t("services.description")}
@@ -438,27 +550,6 @@ export default function App() {
           <AIActSection />
           <RAGSection />
         </div>
-
-        {/* --- AI CREATIVE SHOWCASE --- */}
-        <motion.section
-          className="scroll-mt-32 space-y-12"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <div className="text-center space-y-4 max-w-2xl mx-auto mb-8">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-sm font-medium">
-              {t("services.aiCreationBadge") || "AI Image Artistry"}
-            </div>
-            <h3 className="text-3xl md:text-5xl font-bold text-white">
-              {t("services.aiCreationTitle") || "Showcase: AI Image Creation"}
-            </h3>
-            <p className="text-lg text-slate-400">
-              {t("services.aiCreationDescription") || "Discover how we leverage state-of-the-art AI models to create bespoke, production-ready brand assets."}
-            </p>
-          </div>
-          <AICreationCarousel />
-        </motion.section>
 
         {/* --- AUDIO SHOWCASE SECTION --- */}
         <motion.section
@@ -496,14 +587,28 @@ export default function App() {
                 className="text-5xl font-bold text-white sm:text-7xl tracking-tighter leading-[1.05]"
                 variants={luxuryTextReveal}
               >
-                {t("work.title1")} <span className="text-purple-400">{t("work.title2")}</span>
+                {t("work.title1")}{" "}
+                <span className="text-purple-400">{t("work.title2")}</span>
               </motion.h2>
             </div>
           </div>
 
           <motion.div
             className="mt-12"
-            variants={luxuryFadeItem}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.8 }}
+          >
+            <AILabAnimation />
+          </motion.div>
+
+          <motion.div
+            className="mt-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
           >
             <WorkGalleryCarousel />
           </motion.div>
@@ -531,7 +636,10 @@ export default function App() {
                 className="text-5xl font-bold text-white sm:text-7xl tracking-tighter leading-[1.05]"
                 variants={luxuryTextReveal}
               >
-                {t("highlights.title1")} <span className="text-purple-400">{t("highlights.title2")}</span>
+                {t("highlights.title1")}{" "}
+                <span className="text-purple-400">
+                  {t("highlights.title2")}
+                </span>
               </motion.h2>
             </div>
 
@@ -579,16 +687,24 @@ export default function App() {
               <div className="p-8 md:p-12 lg:p-16 flex flex-col justify-center space-y-8 relative z-10">
                 <div className="space-y-10">
                   <div className="space-y-6">
-                    <p className="text-xs font-bold uppercase tracking-[0.3em] text-purple-400">{t("about.title")}</p>
+                    <p className="text-xs font-bold uppercase tracking-[0.3em] text-purple-400">
+                      {t("about.title")}
+                    </p>
                     <h2 className="text-4xl md:text-5xl font-bold text-white leading-[1.05] tracking-tight">
-                      {t("about.subtitle")} <span className="text-purple-400">{t("about.subtitleI")}</span>
+                      {t("about.subtitle")}{" "}
+                      <span className="text-purple-400">
+                        {t("about.subtitleI")}
+                      </span>
                     </h2>
                   </div>
                   <p className="text-xl text-slate-400 leading-relaxed font-medium">
                     {t("about.bio")}
                   </p>
                   <div className="pt-4">
-                    <Button asChild className="rounded-full gap-2 bg-purple-600 hover:bg-purple-500 text-white">
+                    <Button
+                      asChild
+                      className="rounded-full gap-2 bg-purple-600 hover:bg-purple-500 text-white"
+                    >
                       <Link href="/contact">
                         {t("about.contact")}
                         <ArrowUpRight className="size-4" />
@@ -597,8 +713,6 @@ export default function App() {
                   </div>
                 </div>
               </div>
-
-
 
               {/* Right Column: Experience & Skills */}
               <div className="p-10 md:p-14 lg:p-16 space-y-16">
@@ -615,7 +729,9 @@ export default function App() {
                           <h4 className="text-lg font-bold text-white">
                             {item.title}
                           </h4>
-                          <p className="text-sm text-slate-400 font-medium">{item.detail}</p>
+                          <p className="text-sm text-slate-400 font-medium">
+                            {item.detail}
+                          </p>
                         </div>
                       ))}
                     </div>
@@ -705,7 +821,7 @@ export default function App() {
                 referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
                 className="absolute inset-0 h-full w-full scale-[1.02]"
-                style={{ pointerEvents: 'none' }}
+                style={{ pointerEvents: "none" }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-background/10 z-10" />
             </div>
@@ -731,7 +847,10 @@ export default function App() {
               <p className="text-xl text-slate-400 leading-relaxed font-medium">
                 {t("codex.description")}
               </p>
-              <Button className="rounded-full px-10 h-14 text-base font-bold shadow-2xl hover:scale-105 transition-all border-slate-700 text-white hover:bg-slate-800" variant="outline">
+              <Button
+                className="rounded-full px-10 h-14 text-base font-bold shadow-2xl hover:scale-105 transition-all border-slate-700 text-white hover:bg-slate-800"
+                variant="outline"
+              >
                 {t("codex.download")}
                 <ArrowUpRight className="size-5 ml-2" />
               </Button>
@@ -793,7 +912,11 @@ export default function App() {
               </motion.div>
 
               <div className="flex flex-wrap gap-6 pt-4">
-                <Button asChild size="lg" className="rounded-full px-12 h-16 text-lg font-bold bg-background text-foreground hover:bg-background/90 shadow-2xl transition-all hover:-translate-y-1">
+                <Button
+                  asChild
+                  size="lg"
+                  className="rounded-full px-12 h-16 text-lg font-bold bg-background text-foreground hover:bg-background/90 shadow-2xl transition-all hover:-translate-y-1"
+                >
                   <Link href="/contact">
                     {t("contact.open")}
                     <ArrowUpRight className="size-6 ml-2" />
@@ -826,7 +949,9 @@ export default function App() {
                   </div>
                 </div>
                 <div className="pt-8 border-t border-background/10">
-                  <p className="text-4xl font-bold text-background">{t("contact.reply")}</p>
+                  <p className="text-4xl font-bold text-background">
+                    {t("contact.reply")}
+                  </p>
                 </div>
               </div>
             </div>
@@ -834,62 +959,7 @@ export default function App() {
         </motion.section>
       </main>
 
-      <footer className="bg-background border-t border-border/40 py-20">
-        <div className="mx-auto max-w-7xl px-8">
-          <div className="flex flex-col md:flex-row justify-between items-start gap-16">
-            <div className="space-y-8 max-w-sm">
-              <Image src="/images/logo.png" alt="Logo" width={140} height={40} className="dark:invert opacity-80" />
-              <p className="text-muted-foreground font-medium leading-relaxed">
-                Human-centered strategist delivering AI coproductions and secure digital surfaces.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-2 gap-20">
-              <div className="space-y-6">
-                <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-purple">Navigation</h4>
-                <ul className="space-y-4">
-                  {navLinks.map((link) => (
-                    <li key={link.href}>
-                      <Link href={link.href} className="text-sm font-bold text-foreground/60 hover:text-brand-purple transition-colors">
-                        {link.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="space-y-6">
-                <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-purple">Social</h4>
-                <ul className="space-y-4">
-                  <li><a href="https://linkedin.com/in/maurice-holda" className="text-sm font-bold text-foreground/60 hover:text-brand-purple transition-colors">LinkedIn</a></li>
-                  <li><a href="https://instagram.com/naga_apparel/" className="text-sm font-bold text-foreground/60 hover:text-brand-purple transition-colors">Instagram</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div className="pt-20 mt-20 border-t border-border/40 flex flex-col md:flex-row justify-between items-center gap-8">
-            <p className="text-xs font-bold text-muted-foreground/40 tracking-widest uppercase">
-              © 2026 Naga Codex · Designed by Maurice Holda
-            </p>
-
-            <div className="flex items-center gap-8">
-              <div className="flex gap-8">
-                <Link href="/policies" className="text-xs font-bold text-muted-foreground/40 hover:text-foreground transition-colors uppercase tracking-widest">Privacy</Link>
-                <Link href="/policies" className="text-xs font-bold text-muted-foreground/40 hover:text-foreground transition-colors uppercase tracking-widest">Legal</Link>
-              </div>
-
-              <Button
-                variant="outline"
-                size="icon"
-                className="rounded-full size-10 border-border/40 hover:bg-foreground hover:text-background transition-all"
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              >
-                <ArrowUp className="size-4" />
-              </Button>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <PremiumFooter navLinks={navLinks} />
 
       <CookieBanner />
     </div>
