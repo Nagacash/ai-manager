@@ -44,7 +44,7 @@ export default function ServicesCarousel() {
 
   return (
     <div className="relative w-full max-w-5xl mx-auto px-6">
-      <div className="glass-panel rounded-[2.5rem] overflow-hidden border-border/40 shadow-2xl bg-card/30 backdrop-blur-3xl">
+      <div className="glass-panel rounded-[2.5rem] overflow-hidden border-white/30 shadow-2xl bg-card/30 backdrop-blur-3xl">
         <div className="p-10 md:p-14 lg:p-20 flex flex-col justify-center space-y-10 relative z-10 min-h-[500px]">
           <AnimatePresence mode="wait">
             <motion.div

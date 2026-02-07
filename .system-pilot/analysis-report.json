@@ -37,8 +37,8 @@
         "cyberpunkElements": 6
       },
       "page.tsx": {
-        "lines": 968,
-        "complexity": 8,
+        "lines": 1082,
+        "complexity": 9,
         "cyberpunkElements": 9
       },
       "policies": {
@@ -61,8 +61,8 @@
         "cyberpunkElements": 0
       },
       "AILabAnimation.tsx": {
-        "lines": 348,
-        "complexity": 7,
+        "lines": 428,
+        "complexity": 9,
         "cyberpunkElements": 0
       },
       "AINetworkAnimation.tsx": {
@@ -70,9 +70,14 @@
         "complexity": 2,
         "cyberpunkElements": 0
       },
+      "AnimatedHeader.tsx": {
+        "lines": 71,
+        "complexity": 2,
+        "cyberpunkElements": 0
+      },
       "AudioShowcase.tsx": {
-        "lines": 252,
-        "complexity": 21,
+        "lines": 319,
+        "complexity": 28,
         "cyberpunkElements": 0
       },
       "BackgroundParticles.tsx": {
@@ -171,7 +176,7 @@
         "cyberpunkElements": 0
       },
       "RAGSection.tsx": {
-        "lines": 222,
+        "lines": 237,
         "complexity": 7,
         "cyberpunkElements": 0
       },
@@ -196,7 +201,7 @@
         "cyberpunkElements": 0
       },
       "Testimonials.tsx": {
-        "lines": 104,
+        "lines": 121,
         "complexity": 2,
         "cyberpunkElements": 0
       },

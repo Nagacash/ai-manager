@@ -107,8 +107,23 @@ export default function Navbar() {
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
     >
       <div
-        className={`bg-black/95 backdrop-blur-xl rounded-none rounded-b-2xl border-b border-cyan-500/20 px-6 py-4 flex items-center justify-between gap-8 shadow-2xl transition-all duration-500 ${scrolled ? "py-3 bg-black/98" : ""}`}
+        className={`relative bg-black/95 backdrop-blur-xl rounded-none rounded-b-2xl px-6 py-4 flex items-center justify-between gap-8 shadow-2xl transition-all duration-500 ${scrolled ? "py-3 bg-black/98" : ""}`}
       >
+        {/* Animated bottom border */}
+        <div className="absolute bottom-0 left-0 right-0 h-px overflow-hidden">
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent"
+            initial={{ x: "-100%" }}
+            animate={{ x: "100%" }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "linear",
+              repeatDelay: 0.5,
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+        </div>
         <Link
           href="/"
           onClick={(e) => {

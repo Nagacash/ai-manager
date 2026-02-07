@@ -59,7 +59,70 @@ import Testimonials from "@/components/Testimonials";
 import CookieBanner from "@/components/CookieBanner";
 import AINetworkAnimation from "@/components/AINetworkAnimation";
 import AILabAnimation from "@/components/AILabAnimation";
+import AnimatedHeader from "@/components/AnimatedHeader";
+import SectionDivider from "@/components/SectionDivider";
 import { useLanguage } from "@/lib/LanguageContext";
+
+// Animated text component for hero
+function AnimatedText({ text }: { text: string }) {
+  const words = text.split(" ");
+
+  const container = {
+    hidden: { opacity: 1 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const child = {
+    hidden: {
+      opacity: 0,
+      y: 50,
+      scale: 0.8,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.4,
+        ease: "easeOut" as const,
+      },
+    },
+  };
+
+  return (
+    <motion.span
+      variants={container}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.5 }}
+      className="inline-flex flex-wrap"
+    >
+      {words.map((word, index) => (
+        <motion.span
+          key={index}
+          variants={child}
+          className="inline-block mr-[0.25em] will-change-transform"
+        >
+          <span
+            className={
+              index === 1 || index === 3
+                ? "bg-gradient-to-r from-purple-300 to-purple-500 bg-clip-text text-transparent"
+                : "text-white"
+            }
+          >
+            {word}
+          </span>
+        </motion.span>
+      ))}
+    </motion.span>
+  );
+}
 
 const luxurySectionVariants = {
   hidden: { opacity: 0, y: 60, scale: 0.98 },
@@ -260,25 +323,20 @@ export default function App() {
             animate="visible"
           >
             <motion.div variants={luxuryFadeItem}>
-              <FloatingBadge icon={<Sparkles className="size-3" />} variant="purple">
+              <FloatingBadge
+                icon={<Sparkles className="size-3" />}
+                variant="purple"
+              >
                 {t("hero.badge")}
               </FloatingBadge>
             </motion.div>
 
             <div className="space-y-6">
-              <motion.h1
-                className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.1] tracking-tight text-glow-strong"
-                variants={luxuryTextReveal}
-                initial="hidden"
-                animate="visible"
-              >
-                <span className="text-white">{t("hero.title1")}</span>{" "}
-                <span className="gradient-text-animated">{t("hero.title2")}</span>{" "}
-                <span className="text-white">{t("hero.title3")}</span>{" "}
-                <span className="bg-gradient-to-r from-purple-300 to-purple-500 bg-clip-text text-transparent">
-                  {t("hero.title4")}
-                </span>
-              </motion.h1>
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.1] tracking-tight text-glow-strong">
+                <AnimatedText
+                  text={`${t("hero.title1")} ${t("hero.title2")} ${t("hero.title3")} ${t("hero.title4")}`}
+                />
+              </h1>
               <motion.p
                 className="text-lg md:text-xl leading-relaxed text-slate-300 max-w-xl text-glow"
                 variants={luxuryTextReveal}
@@ -297,7 +355,9 @@ export default function App() {
                 variant="primary"
                 size="lg"
                 icon={<ArrowUpRight className="size-5" />}
-                onClick={() => window.location.href = "mailto:chosenfewrecords@hotmail.de"}
+                onClick={() =>
+                  (window.location.href = "mailto:chosenfewrecords@hotmail.de")
+                }
               >
                 {t("hero.cta1")}
               </PremiumButton>
@@ -305,7 +365,9 @@ export default function App() {
                 variant="outline"
                 size="lg"
                 icon={<ArrowUpRight className="size-5" />}
-                onClick={() => window.open("https://cyber-sec-six.vercel.app/", "_blank")}
+                onClick={() =>
+                  window.open("https://cyber-sec-six.vercel.app/", "_blank")
+                }
               >
                 {t("hero.cta2")}
               </PremiumButton>
@@ -394,19 +456,23 @@ export default function App() {
               </div>
 
               <div className="flex flex-wrap gap-1.5">
-                {["AI/ML", "React", "Next.js", "Security", "Cloud", "LLMs"].map((skill) => (
-                  <span
-                    key={skill}
-                    className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-purple-500/10 border border-purple-500/20 text-purple-300"
-                  >
-                    {skill}
-                  </span>
-                ))}
+                {["AI/ML", "React", "Next.js", "Security", "Cloud", "LLMs"].map(
+                  (skill) => (
+                    <span
+                      key={skill}
+                      className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-purple-500/10 border border-purple-500/20 text-purple-300"
+                    >
+                      {skill}
+                    </span>
+                  ),
+                )}
               </div>
 
               <div className="flex items-center gap-3 pt-3 border-t border-slate-700/40">
                 <div className="size-2 rounded-full bg-purple-400 animate-pulse" />
-                <span className="text-xs text-slate-400 font-medium">Available for projects</span>
+                <span className="text-xs text-slate-400 font-medium">
+                  Available for projects
+                </span>
               </div>
             </motion.div>
           </motion.div>
@@ -428,10 +494,13 @@ export default function App() {
             </div>
             <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight">
               {t("terminal.title") || "System"}{" "}
-              <span className="text-purple-400">{t("terminal.titleAccent") || "Terminal"}</span>
+              <span className="text-purple-400">
+                {t("terminal.titleAccent") || "Terminal"}
+              </span>
             </h2>
             <p className="text-lg text-slate-400 leading-relaxed">
-              {t("terminal.description") || "A live look into the neural network — autonomous agents, quantum encryption, and code intelligence running in real time."}
+              {t("terminal.description") ||
+                "A live look into the neural network — autonomous agents, quantum encryption, and code intelligence running in real time."}
             </p>
           </div>
 
@@ -458,17 +527,49 @@ export default function App() {
                     <div className="size-3 rounded-full bg-[#28c840] shadow-[0_0_6px_rgba(40,200,64,0.4)]" />
                   </div>
                   <div className="flex-1 flex items-center justify-center gap-2">
-                    <svg className="size-3 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    <svg
+                      className="size-3 text-slate-500"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                      />
                     </svg>
-                    <span className="text-[11px] font-mono text-slate-500">naga@codex: ~/neural-ops</span>
+                    <span className="text-[11px] font-mono text-slate-500">
+                      naga@codex: ~/neural-ops
+                    </span>
                   </div>
                   <div className="w-[52px] flex justify-end gap-2">
-                    <svg className="size-3.5 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M20 12H4" />
+                    <svg
+                      className="size-3.5 text-slate-600"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M20 12H4"
+                      />
                     </svg>
-                    <svg className="size-3.5 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                    <svg
+                      className="size-3.5 text-slate-600"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"
+                      />
                     </svg>
                   </div>
                 </div>
@@ -496,7 +597,9 @@ export default function App() {
               {/* Bottom bezel with brand */}
               <div className="flex items-center justify-center pt-2">
                 <div className="px-4 py-0.5 rounded-sm">
-                  <span className="text-[9px] font-bold uppercase tracking-[0.35em] text-slate-500">Naga Codex</span>
+                  <span className="text-[9px] font-bold uppercase tracking-[0.35em] text-slate-500">
+                    Naga Codex
+                  </span>
                 </div>
               </div>
             </div>
@@ -518,6 +621,8 @@ export default function App() {
           </div>
         </motion.section>
 
+        <SectionDivider />
+
         {/* --- SERVICES SECTION --- */}
         <motion.section
           id="services"
@@ -531,12 +636,15 @@ export default function App() {
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-400 text-sm font-medium">
               {t("services.badge")}
             </div>
-            <h2 className="text-3xl md:text-6xl font-bold text-white tracking-tight">
+            <AnimatedHeader
+              as="h2"
+              className="text-3xl md:text-6xl font-bold text-white tracking-tight"
+            >
               {t("services.title1")}{" "}
               <span className="text-purple-400">{t("services.title2")}</span>{" "}
               {t("services.title3")}{" "}
               <span className="text-purple-400">{t("services.title4")}</span>
-            </h2>
+            </AnimatedHeader>
             <p className="text-xl text-slate-400 leading-relaxed">
               {t("services.description")}
             </p>
@@ -544,6 +652,8 @@ export default function App() {
 
           <ServicesCarousel />
         </motion.section>
+
+        <SectionDivider />
 
         {/* --- CAPABILITIES & AUTOMATION --- */}
         <div className="space-y-24">
@@ -560,8 +670,10 @@ export default function App() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
-          <AudioShowcase />
+          <AudioShowcase autoPlay />
         </motion.section>
+
+        <SectionDivider />
 
         <motion.section
           id="work"
@@ -583,13 +695,13 @@ export default function App() {
                 </span>
                 <div className="h-px w-10 bg-current opacity-30" />
               </motion.div>
-              <motion.h2
+              <AnimatedHeader
+                as="h2"
                 className="text-5xl font-bold text-white sm:text-7xl tracking-tighter leading-[1.05]"
-                variants={luxuryTextReveal}
               >
                 {t("work.title1")}{" "}
                 <span className="text-purple-400">{t("work.title2")}</span>
-              </motion.h2>
+              </AnimatedHeader>
             </div>
           </div>
 
@@ -614,6 +726,8 @@ export default function App() {
           </motion.div>
         </motion.section>
 
+        <SectionDivider />
+
         <motion.section
           id="highlights"
           className="scroll-mt-32 pt-24"
@@ -632,15 +746,15 @@ export default function App() {
                   {t("highlights.badge")}
                 </span>
               </motion.div>
-              <motion.h2
+              <AnimatedHeader
+                as="h2"
                 className="text-5xl font-bold text-white sm:text-7xl tracking-tighter leading-[1.05]"
-                variants={luxuryTextReveal}
               >
                 {t("highlights.title1")}{" "}
                 <span className="text-purple-400">
                   {t("highlights.title2")}
                 </span>
-              </motion.h2>
+              </AnimatedHeader>
             </div>
 
             <div className="grid gap-6 md:grid-cols-2">
@@ -651,7 +765,7 @@ export default function App() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
-                  className="bg-slate-900/50 backdrop-blur-sm p-8 rounded-2xl border border-slate-800 hover:border-purple-500/50 hover:bg-purple-500/5 transition-all duration-300 group"
+                  className="bg-slate-900/50 backdrop-blur-sm p-8 rounded-2xl border border-white/30 hover:border-white/60 hover:bg-white/5 transition-all duration-300 group"
                 >
                   <div className="size-12 rounded-xl bg-purple-500/10 flex items-center justify-center mb-6 group-hover:bg-purple-500/20 transition-colors">
                     <item.icon className="size-6 text-purple-400 group-hover:text-purple-300 transition-colors" />
@@ -681,7 +795,7 @@ export default function App() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
-          <div className="bg-slate-900/50 backdrop-blur-sm rounded-3xl overflow-hidden border border-slate-800 shadow-2xl">
+          <div className="bg-slate-900/50 backdrop-blur-sm rounded-3xl overflow-hidden border border-white/30 shadow-2xl">
             <div className="grid lg:grid-cols-[1fr_1.2fr] items-stretch min-h-[500px]">
               {/* Left Column: Content Area */}
               <div className="p-8 md:p-12 lg:p-16 flex flex-col justify-center space-y-8 relative z-10">
@@ -690,12 +804,15 @@ export default function App() {
                     <p className="text-xs font-bold uppercase tracking-[0.3em] text-purple-400">
                       {t("about.title")}
                     </p>
-                    <h2 className="text-4xl md:text-5xl font-bold text-white leading-[1.05] tracking-tight">
+                    <AnimatedHeader
+                      as="h2"
+                      className="text-4xl md:text-5xl font-bold text-white leading-[1.05] tracking-tight"
+                    >
                       {t("about.subtitle")}{" "}
                       <span className="text-purple-400">
                         {t("about.subtitleI")}
                       </span>
-                    </h2>
+                    </AnimatedHeader>
                   </div>
                   <p className="text-xl text-slate-400 leading-relaxed font-medium">
                     {t("about.bio")}
@@ -841,9 +958,12 @@ export default function App() {
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-400 text-sm font-medium">
                 {t("codex.badge")}
               </div>
-              <h2 className="text-5xl md:text-6xl font-bold text-white leading-[1.05] tracking-tighter">
+              <AnimatedHeader
+                as="h2"
+                className="text-5xl md:text-6xl font-bold text-white leading-[1.05] tracking-tighter"
+              >
                 {t("codex.title")}
-              </h2>
+              </AnimatedHeader>
               <p className="text-xl text-slate-400 leading-relaxed font-medium">
                 {t("codex.description")}
               </p>
@@ -865,7 +985,7 @@ export default function App() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
-                className="bg-slate-900/50 backdrop-blur-sm p-10 rounded-2xl border border-slate-800 hover:border-purple-500/50 hover:bg-purple-500/5 transition-all duration-300 group"
+                className="bg-slate-900/50 backdrop-blur-sm p-10 rounded-2xl border border-white/30 hover:border-white/60 hover:bg-white/5 transition-all duration-300 group"
               >
                 <div className="flex justify-between items-start mb-8">
                   <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-purple-400/50 group-hover:text-purple-400 transition-colors">
@@ -903,9 +1023,12 @@ export default function App() {
                 <Badge className="bg-background/10 text-background border-background/20 px-4 py-1.5 font-bold uppercase tracking-widest text-[10px]">
                   {t("contact.badge")}
                 </Badge>
-                <h2 className="text-5xl md:text-7xl font-bold tracking-tighter leading-[1.05]">
+                <AnimatedHeader
+                  as="h2"
+                  className="text-5xl md:text-7xl font-bold tracking-tighter leading-[1.05]"
+                >
                   {t("contact.title")}
-                </h2>
+                </AnimatedHeader>
                 <p className="text-xl text-background/70 leading-relaxed font-medium max-w-xl">
                   {t("contact.description")}
                 </p>

@@ -38,6 +38,7 @@ const PROCESS_NAMES = [
 ];
 
 export default function AILabAnimation() {
+  const [mounted, setMounted] = useState(false);
   const [metrics, setMetrics] = useState<GpuMetrics>({
     temp: 72,
     power: 285,
@@ -50,10 +51,10 @@ export default function AILabAnimation() {
 
   const [processes, setProcesses] = useState<ProcessItem[]>([]);
   const [coreLoads, setCoreLoads] = useState<number[]>(
-    Array.from({ length: GPU_CORES }, () => randomBetween(60, 100))
+    Array.from({ length: GPU_CORES }, () => 75), // Static initial value
   );
   const [throughput, setThroughput] = useState(
-    Array.from({ length: 20 }, () => randomBetween(40, 95))
+    Array.from({ length: 20 }, () => 65), // Static initial value
   );
   const [statusLog, setStatusLog] = useState<string[]>([
     "GPU cluster online",
@@ -90,6 +91,15 @@ export default function AILabAnimation() {
     }));
   }, []);
 
+  // Initialize random values only on client side to avoid hydration mismatch
+  useEffect(() => {
+    setMounted(true);
+    setCoreLoads(
+      Array.from({ length: GPU_CORES }, () => randomBetween(60, 100)),
+    );
+    setThroughput(Array.from({ length: 20 }, () => randomBetween(40, 95)));
+  }, []);
+
   useEffect(() => {
     setProcesses(generateProcesses());
   }, [generateProcesses]);
@@ -107,13 +117,10 @@ export default function AILabAnimation() {
       });
 
       setCoreLoads(
-        Array.from({ length: GPU_CORES }, () => randomBetween(50, 100))
+        Array.from({ length: GPU_CORES }, () => randomBetween(50, 100)),
       );
 
-      setThroughput((prev) => [
-        ...prev.slice(1),
-        randomBetween(40, 98),
-      ]);
+      setThroughput((prev) => [...prev.slice(1), randomBetween(40, 98)]);
 
       setProcesses(generateProcesses());
 
@@ -135,12 +142,39 @@ export default function AILabAnimation() {
         ? "text-yellow-400"
         : "text-green-400";
 
+  // Prevent hydration mismatch by not rendering dynamic content until mounted
+  if (!mounted) {
+    return (
+      <div className="w-full">
+        <div className="relative rounded-2xl border border-slate-700/60 bg-gradient-to-b from-[#1a1a2e] via-[#16162a] to-[#0f0f1a] overflow-hidden shadow-[0_0_80px_rgba(118,185,0,0.04)] h-[400px] animate-pulse" />
+      </div>
+    );
+  }
+
   return (
     <div className="w-full">
       {/* GPU Card Frame */}
-      <div className="relative rounded-2xl border border-slate-700/60 bg-gradient-to-b from-[#1a1a2e] via-[#16162a] to-[#0f0f1a] overflow-hidden shadow-[0_0_80px_rgba(118,185,0,0.04)]">
+      <div className="relative rounded-2xl border border-white/30 overflow-hidden shadow-[0_0_100px_rgba(168,85,247,0.15)]">
+        {/* Animated gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-[#0a0a1a] to-slate-950" />
+        <motion.div
+          className="absolute inset-0 opacity-30"
+          style={{
+            background:
+              "radial-gradient(ellipse at 20% 50%, rgba(168, 85, 247, 0.3) 0%, transparent 50%), radial-gradient(ellipse at 80% 50%, rgba(34, 211, 238, 0.2) 0%, transparent 50%)",
+          }}
+          animate={{
+            opacity: [0.2, 0.4, 0.2],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+
         {/* Top bar — NVIDIA style header */}
-        <div className="flex items-center justify-between px-5 py-3 border-b border-slate-700/40 bg-[#1a1a2e]">
+        <div className="relative flex items-center justify-between px-5 py-3 border-b border-white/20 bg-white/5 backdrop-blur-sm">
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-1.5">
               <div className="w-5 h-3 rounded-sm bg-[#a855f7] shadow-[0_0_8px_rgba(168,85,247,0.5)]" />
@@ -151,11 +185,17 @@ export default function AILabAnimation() {
             </span>
           </div>
           <div className="flex items-center gap-4">
-            <span className="text-[10px] font-mono text-slate-500">CUDA 12.4</span>
-            <span className="text-[10px] font-mono text-slate-500">Driver 560.35</span>
+            <span className="text-[10px] font-mono text-slate-500">
+              CUDA 12.4
+            </span>
+            <span className="text-[10px] font-mono text-slate-500">
+              Driver 560.35
+            </span>
             <div className="flex items-center gap-1.5">
               <div className="size-1.5 rounded-full bg-[#a855f7] animate-pulse" />
-              <span className="text-[10px] font-bold text-[#a855f7]">ONLINE</span>
+              <span className="text-[10px] font-bold text-[#a855f7]">
+                ONLINE
+              </span>
             </div>
           </div>
         </div>
@@ -166,14 +206,38 @@ export default function AILabAnimation() {
             {/* Primary Metrics */}
             <div className="grid grid-cols-3 gap-3">
               {[
-                { label: "UTIL", value: `${metrics.utilization}%`, bar: metrics.utilization, color: "bg-[#a855f7]" },
-                { label: "TEMP", value: `${metrics.temp}°C`, bar: metrics.temp, color: metrics.temp > 80 ? "bg-red-500" : metrics.temp > 74 ? "bg-yellow-500" : "bg-[#a855f7]" },
-                { label: "PWR", value: `${metrics.power}W`, bar: (metrics.power / 350) * 100, color: "bg-purple-400" },
+                {
+                  label: "UTIL",
+                  value: `${metrics.utilization}%`,
+                  bar: metrics.utilization,
+                  color: "bg-[#a855f7]",
+                },
+                {
+                  label: "TEMP",
+                  value: `${metrics.temp}°C`,
+                  bar: metrics.temp,
+                  color:
+                    metrics.temp > 80
+                      ? "bg-red-500"
+                      : metrics.temp > 74
+                        ? "bg-yellow-500"
+                        : "bg-[#a855f7]",
+                },
+                {
+                  label: "PWR",
+                  value: `${metrics.power}W`,
+                  bar: (metrics.power / 350) * 100,
+                  color: "bg-purple-400",
+                },
               ].map((m) => (
                 <div key={m.label} className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-[9px] font-bold uppercase tracking-widest text-slate-500">{m.label}</span>
-                    <span className="text-xs font-bold font-mono text-white">{m.value}</span>
+                    <span className="text-[9px] font-bold uppercase tracking-widest text-slate-500">
+                      {m.label}
+                    </span>
+                    <span className="text-xs font-bold font-mono text-white">
+                      {m.value}
+                    </span>
                   </div>
                   <div className="h-1.5 rounded-full bg-slate-800 overflow-hidden">
                     <motion.div
@@ -189,7 +253,9 @@ export default function AILabAnimation() {
             {/* VRAM Bar */}
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <span className="text-[9px] font-bold uppercase tracking-widest text-slate-500">VRAM</span>
+                <span className="text-[9px] font-bold uppercase tracking-widest text-slate-500">
+                  VRAM
+                </span>
                 <span className="text-[11px] font-mono text-slate-400">
                   {metrics.memUsed}GB / {metrics.memTotal}GB
                 </span>
@@ -201,14 +267,18 @@ export default function AILabAnimation() {
                   transition={{ duration: 1, ease: "easeInOut" }}
                 />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-[8px] font-bold text-white/70">{memPercent.toFixed(0)}%</span>
+                  <span className="text-[8px] font-bold text-white/70">
+                    {memPercent.toFixed(0)}%
+                  </span>
                 </div>
               </div>
             </div>
 
             {/* Core Grid */}
             <div className="space-y-2">
-              <span className="text-[9px] font-bold uppercase tracking-widest text-slate-500">SM Cores</span>
+              <span className="text-[9px] font-bold uppercase tracking-widest text-slate-500">
+                SM Cores
+              </span>
               <div className="grid grid-cols-6 gap-1">
                 {coreLoads.map((load, i) => (
                   <motion.div
@@ -245,9 +315,16 @@ export default function AILabAnimation() {
                 { label: "PCIe", value: "Gen5 x16" },
                 { label: "NVLink", value: "600 GB/s" },
               ].map((s) => (
-                <div key={s.label} className="flex items-center justify-between">
-                  <span className="text-[9px] text-slate-500 uppercase tracking-wider">{s.label}</span>
-                  <span className="text-[11px] font-mono font-bold text-slate-300">{s.value}</span>
+                <div
+                  key={s.label}
+                  className="flex items-center justify-between"
+                >
+                  <span className="text-[9px] text-slate-500 uppercase tracking-wider">
+                    {s.label}
+                  </span>
+                  <span className="text-[11px] font-mono font-bold text-slate-300">
+                    {s.value}
+                  </span>
                 </div>
               ))}
             </div>
@@ -258,7 +335,9 @@ export default function AILabAnimation() {
             {/* Throughput Sparkline */}
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <span className="text-[9px] font-bold uppercase tracking-widest text-slate-500">Throughput</span>
+                <span className="text-[9px] font-bold uppercase tracking-widest text-slate-500">
+                  Throughput
+                </span>
                 <span className="text-[11px] font-mono text-[#a855f7]">
                   {throughput[throughput.length - 1]}% peak
                 </span>
@@ -283,7 +362,9 @@ export default function AILabAnimation() {
 
             {/* GPU Processes */}
             <div className="space-y-2">
-              <span className="text-[9px] font-bold uppercase tracking-widest text-slate-500">Active Processes</span>
+              <span className="text-[9px] font-bold uppercase tracking-widest text-slate-500">
+                Active Processes
+              </span>
               <div className="space-y-1">
                 {processes.map((proc) => (
                   <div
@@ -291,8 +372,12 @@ export default function AILabAnimation() {
                     className="flex items-center gap-3 px-3 py-1.5 rounded-lg bg-slate-800/40 text-[11px] font-mono"
                   >
                     <span className="text-slate-500 w-10">{proc.pid}</span>
-                    <span className="text-cyan-400 flex-1 truncate">{proc.name}</span>
-                    <span className="text-slate-400 w-16 text-right">{proc.memMB}MB</span>
+                    <span className="text-cyan-400 flex-1 truncate">
+                      {proc.name}
+                    </span>
+                    <span className="text-slate-400 w-16 text-right">
+                      {proc.memMB}MB
+                    </span>
                     <div className="w-12">
                       <div className="h-1 rounded-full bg-slate-700 overflow-hidden">
                         <motion.div
@@ -302,7 +387,9 @@ export default function AILabAnimation() {
                         />
                       </div>
                     </div>
-                    <span className="text-slate-500 w-8 text-right">{proc.usage}%</span>
+                    <span className="text-slate-500 w-8 text-right">
+                      {proc.usage}%
+                    </span>
                   </div>
                 ))}
               </div>
@@ -310,13 +397,18 @@ export default function AILabAnimation() {
 
             {/* Status Log */}
             <div className="space-y-2">
-              <span className="text-[9px] font-bold uppercase tracking-widest text-slate-500">System Log</span>
+              <span className="text-[9px] font-bold uppercase tracking-widest text-slate-500">
+                System Log
+              </span>
               <div className="bg-slate-900/60 rounded-lg p-3 space-y-1 border border-slate-800/50 h-[120px] overflow-hidden">
                 {statusLog.map((msg, i) => (
                   <motion.div
                     key={`${msg}-${i}`}
                     initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: i === statusLog.length - 1 ? 1 : 0.5, x: 0 }}
+                    animate={{
+                      opacity: i === statusLog.length - 1 ? 1 : 0.5,
+                      x: 0,
+                    }}
                     transition={{ duration: 0.3 }}
                     className="text-[11px] font-mono flex gap-2"
                   >
@@ -332,9 +424,15 @@ export default function AILabAnimation() {
         {/* Bottom status bar */}
         <div className="flex items-center justify-between px-5 py-2 border-t border-slate-700/30 bg-[#0f0f1a]">
           <div className="flex items-center gap-4">
-            <span className="text-[9px] font-mono text-slate-600">TDP: 350W</span>
-            <span className="text-[9px] font-mono text-slate-600">24GB GDDR7</span>
-            <span className="text-[9px] font-mono text-slate-600">18,432 CUDA Cores</span>
+            <span className="text-[9px] font-mono text-slate-600">
+              TDP: 350W
+            </span>
+            <span className="text-[9px] font-mono text-slate-600">
+              24GB GDDR7
+            </span>
+            <span className="text-[9px] font-mono text-slate-600">
+              18,432 CUDA Cores
+            </span>
           </div>
           <div className="flex items-center gap-2">
             <span className="text-[9px] font-mono text-slate-600">ECC: OK</span>

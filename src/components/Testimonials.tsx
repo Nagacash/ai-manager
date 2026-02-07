@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "@/lib/LanguageContext";
+import AnimatedHeader from "./AnimatedHeader";
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -30,8 +31,8 @@ const fadeItem = {
     y: 0,
     transition: {
       duration: 0.5,
-      ease: "easeInOut" as const
-    }
+      ease: "easeInOut" as const,
+    },
   },
 };
 
@@ -42,7 +43,7 @@ const titleReveal = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: "easeInOut" as const
+      ease: "easeInOut" as const,
     },
   },
 };
@@ -54,22 +55,31 @@ export default function Testimonials() {
 
   return (
     <motion.section
-      className="scroll-mt-32 space-y-12"
+      className="scroll-mt-32 space-y-12 dark bg-slate-950 py-12 px-4 rounded-3xl"
       variants={sectionVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
     >
       <div className="text-center space-y-4 max-w-3xl mx-auto mb-12">
-        <Badge variant="glass" className="bg-[var(--accent-green)]/10 text-[var(--accent-green)] border-[var(--accent-green)]/20 px-4 py-1.5 uppercase tracking-widest text-xs font-bold">
+        <Badge
+          variant="glass"
+          className="bg-white/10 text-white border-white/30 px-4 py-1.5 uppercase tracking-widest text-xs font-bold"
+        >
           {t("testimonials.badge")}
         </Badge>
-        <motion.h2
-          className="text-3xl md:text-6xl font-bold text-foreground tracking-tight"
-          variants={titleReveal}
+        <AnimatedHeader
+          as="h2"
+          className="text-3xl md:text-6xl font-bold !text-white tracking-tight"
         >
-          {t("testimonials.title1")} <span className="text-primary italic font-serif">{t("testimonials.title2")}</span>
-        </motion.h2>
+          {t("testimonials.title1")}{" "}
+          <span
+            className="!text-white italic font-serif"
+            style={{ color: "white" }}
+          >
+            {t("testimonials.title2")}
+          </span>
+        </AnimatedHeader>
       </div>
 
       <div className="grid gap-8 md:grid-cols-3">
@@ -80,19 +90,25 @@ export default function Testimonials() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: idx * 0.1 }}
-            className="glass-panel p-8 rounded-[2rem] border-primary/5 hover:border-primary hover:shadow-[0_0_30px_-5px_rgba(var(--primary),0.4)] hover:bg-primary/5 transition-all duration-300 group"
+            className="p-8 rounded-[2rem] border border-white/30 bg-slate-900 transition-all duration-300 group hover:border-white/60"
           >
             <div className="flex items-start justify-between mb-6">
               <Quote className="size-8 text-[var(--accent-green)]/60 group-hover:text-[var(--accent-green)] transition-colors" />
             </div>
-            <p className="text-muted-foreground leading-relaxed mb-6 italic">
+            <p
+              className="!text-white leading-relaxed mb-6 italic font-medium"
+              style={{ color: "white" }}
+            >
               "{testimonial.quote}"
             </p>
             <div className="space-y-1">
-              <p className="text-foreground font-bold">
+              <p className="!text-white font-bold" style={{ color: "white" }}>
                 {testimonial.name}
               </p>
-              <p className="text-primary/70 text-sm font-medium">
+              <p
+                className="!text-white/90 text-sm font-medium"
+                style={{ color: "rgba(255,255,255,0.9)" }}
+              >
                 {testimonial.role}, {testimonial.company}
               </p>
             </div>
